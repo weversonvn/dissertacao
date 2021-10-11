@@ -1,84 +1,20 @@
-% ----------------------------------------------------------
-% Introdução
-% ----------------------------------------------------------
-\chapter{Introdução}\label{cap:introducao} % note que a divisão é em capítulos, e dentro dele que é em seções
-
-\section{Contexto} % com exceção desta, as próximas seções são uma estrutura recomendada para a introdução
-
-% eu mantive essa figura para ilustrar como usar
-% eu prefiro salvar minhas figuras em formato vetorial
-% aqui eu usei pdf, não sei se é o melhor, mas tem também eps e svg
-%\begin{figure}[!htb]
-    % entre colchete é como aparece na lista de ilustrações
-    % o título tem que aparecer em cima, e em baixo a fonte, que é obrigatória mesmo que seja do próprio autor
-	%\caption[Título curto]{Título longo: \textnormal{descrição.}}
-	%\label{fig:titulo_para_referencia}
-	%\centering
-	%\includegraphics[width=.8\textwidth]{figura.pdf} \\
-	% eu referenciei minha figura assim, mas não é a regra
-	% eu não lembro da norma dizer algo sobre esse formato
-	%\begin{small}\textbf{Fonte: \cite{item_da_bibliografia}}\end{small}
-%\end{figure}
-
-% sintaxe tanto da nota de rodapé quanto para colocar url, que pode ser clicada no pdf
-bla blah \footnote{link para o repositório com o código implementado: \href{https://weversonvn.github.io}{texto do url (é melhor colocar a própria url)}} balh.
-
-% eu uso equação assim, que numera e da para referenciar no texto
-% eu já vi texto que numera as equações de maneira corrida desde o começo do texto, aqui é por seção, não lembro da norma dizer algo sobre isso, mas de qualquer maneira aqui ta assim pq não sei como fazer do outro jeito :)
-% é separado por ~ para não ter quebra de linha (vale também para fig, tab, etc)
-bla blah na equação~\ref{eq:afim}.
-
-\begin{equation}\label{eq:afim}
-	\mathbf{y}=x+2\text{ texto sem formatação de equação}
-\end{equation}
-
-% caso alguém queira aqui ta como colocar um algoritmo
- Algoritmo~\ref{alg:execucao}.
-
-\begin{algorithm}[H]
-   \label{alg:execucao}
-   \SetAlgoLined
-   \Entrada{variáveis} 
-   \Saida{retornos}
-   \Inicio{
-   \Para{classes}{
-       \Para{amostras}{
-           \Para{características}{
-               treina\\
-               testa\\
-               calcula acurácia\\
-           }
-       }
-       calcula acurácia\\
-   }
-   exibe os resultados graficamente
-   }
-   \caption{\textsc{Execução}}
-\end{algorithm}
-
-% para as tabelas eu criei arquivos .tex separados, porque algumas ficam muito grandes e atrapalham na leitura aqui
-% deve-se usar includes também
-
-% referências apareceção de maneira adequada no local de citação e no final
-blah blah \cite{autor-titulo-ano} blah.
+\chapter{Introdução}\label{cap:introducao}
+\section{Contexto}
 
 \section{Justificativa}
 
-\section{Motivação}
-
 \section{Objetivos}
 \subsection{Objetivo Geral}
-\begin{itemize}
-\item ...
-\end{itemize}
+Elaborar um roteiro para execução de um curso introdutório em neurociências computacionais usando linguagens de programação livres
 
 \subsection{Objetivos Específicos}
 \begin{itemize}
-\item ...
-\item ...
-\item ...
+\item Obter uma bibliografia robusta para servir de base na elaboração do roteiro
+\item Criar um conjunto de códigos contendo exemplos dos conceitos apresentados ao longo do roteiro
+\item Consolidar o material criado em uma estrutura de fácil uso por interessados no tema em questão
 \end{itemize}
 
 \section{Metodologia}
 
 \section{Estrutura do Trabalho}
+O trabalho está estruturado da seguinte maneira: o Capítulo~\ref{cap:teoria} mostra os elementos da base teórica apresentada. Uma breve apresentação de definições sobre fisiologia, equações diferenciais ordinárias, probabilidade, noções sobre algoritmos e linguagem de programação são mostradas. O Capítulo~\ref{cap:temas} contém os temas teóricos e práticos que constituem o roteiro em si. O Capítulo~\ref{cap:conclusoes} contém as conclusões acerca do trabalho e os desdobramentos possíveis para este.
