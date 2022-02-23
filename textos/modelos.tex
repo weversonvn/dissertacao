@@ -1,9 +1,22 @@
-\chapter{Modelos de neurônio}\label{cap:modelos}
+\chapter{Modelos de disparo de neurônio}\label{cap:modelos}
 \section{Introdução}\label{sec:modelos_intro}
 
 \section{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
+% fig. circuito equivalente membrana
 
-\section{Modelo de resposta de disparo}\label{sec:srmmodel}
+\begin{equation}
+c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_K-V_m)+G_L(E_L-V_m)
+\end{equation}
+
+\subsection{Extenções do modelo LIF}
+
+\subsubsection{Período refratário}
+
+\subsubsection{Adaptação da taxa de disparo}
+
+\subsection{Modelo LIF exponencial}
+
+\subsection{Modelo LIF exponencial adaptativo}
 
 \section{Modelo de Izhikevich}\label{sec:izhikevich}
 
