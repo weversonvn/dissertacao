@@ -3,7 +3,7 @@
 
 \section{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
 % fig. circuito equivalente membrana
-\nocite{lapicque_recherches_1907}
+\cite{lapicque_recherches_1907}
 
 \begin{equation}
 c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_K-V_m)+G_L(E_L-V_m)
@@ -35,7 +35,7 @@ c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_
 		\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
 	\end{figure}
 	
-	adicionando-se a corrente aplicada, incluímos também uma condição que força o disparo do potencial de ação quando o potencial de membrana atinge um determinado limitar ($V_{th}$), forçando o potencial de membrana para um valor de \textit{reset} ($V_{reset}$) \nocite{miller_introductory_2018}
+	adicionando-se a corrente aplicada, incluímos também uma condição que força o disparo do potencial de ação quando o potencial de membrana atinge um determinado limitar ($V_{th}$), forçando o potencial de membrana para um valor de \textit{reset} ($V_{reset}$) \cite{miller_introductory_2018}
 	$$
 	c_m\frac{dV_m}{dt} = G_L(E_L-V_m)+I_{ap}; \text{ se } V_m > V_{th} \text{ então } V_m\mapsto V_{reset}
 	$$
@@ -149,7 +149,7 @@ sendo $a$ o parâmetro de agrupamento e $b$ o de adaptação.
 
 \section{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
 \subsection{Canais iônicos}
-\nocite{miller_introductory_2018}
+\cite{miller_introductory_2018}
 \begin{description}
 	\item[Canal iônico dependentes de tensão] A probabilidade de abertura do canal é modificada em função do potencial de membrana
 	\item[Ativação] O processo de abertura de um canal iônico, geralmente devido à despolarização. O seu oposto é a \textbf{desativação}. A despolarização aumenta a probabilidade de um canal estar aberto
@@ -193,7 +193,7 @@ $$$$
 \qquad
 \beta_n=125\exp\Big[\frac{(-V_m-0.070)}{0.08}\Big]
 $$
-As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente} (o comportamento em repouso depois de um longo período de tempo): \nocite{ermentrout_mathematical_2010}
+As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente} (o comportamento em repouso depois de um longo período de tempo): \cite{ermentrout_mathematical_2010}
 $$
 m_\infty=\frac{\alpha_m}{\alpha_m+\beta_m}
 \qquad
