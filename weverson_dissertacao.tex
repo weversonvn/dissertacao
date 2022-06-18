@@ -44,7 +44,7 @@
 \usepackage{gensymb}            % Para inserir o símbolo de grau em ângulos
 \usepackage{enumitem}           % Para criar listas "numeradas" por letras (no abntex2 tem alineas no lugar)
 \usepackage{bm,amsbsy}          % Para usar símbolos em negrito
-%\usepackage{minted}				% Para realçar código
+\usepackage{minted}				% Para exibir código-fonte com realce de cores
 
 \newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
 % ---
@@ -369,15 +369,16 @@ abstract
 % ---
 % Inicia os apêndices
 % ---
-%\begin{apendicesenv}
+\begin{apendicesenv}
 	
 	% Imprime uma página indicando o início dos apêndices
 	% a norma não diz para criar essa página
 %	\partapendices
 
 % usar um include com \chapter para cada apêndice
+\include{textos/python}
 	
-%\end{apendicesenv}
+\end{apendicesenv}
 % ---
 
 % ----------------------------------------------------------
