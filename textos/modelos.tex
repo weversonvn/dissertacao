@@ -12,7 +12,7 @@ c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_
 \begin{description}
 	\item[Circuito equivalente da membrana neuronal] A membrana do neurônio pode ser representada pelo circuito elétrico da Figura~\ref{fig:circuitomembrana}
 	
-	\begin{figure}[h!]
+	\begin{figure}[htb!]
 		\centering
 		\caption{Circuito equivalente da membrana}
 		\label{fig:circuitomembrana}
@@ -28,7 +28,7 @@ c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_
 	c_m\frac{dV_m}{dt} = G_L(E_L-V_m)
 	$$
 	
-	\begin{figure}[h!]
+	\begin{figure}[htb!]
 		\centering
 		\caption{Circuito equivalente do modelo LIF}
 		\label{fig:circuitolif}
@@ -40,7 +40,7 @@ c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_
 	c_m\frac{dV_m}{dt} = G_L(E_L-V_m)+I_{ap}; \text{ se } V_m > V_{th} \text{ então } V_m\mapsto V_{reset}
 	$$
 	
-	\begin{figure}[h!]
+	\begin{figure}[htb!]
 		\centering
 		\caption{Exemplo da simulação com o modelo LIF. Cada coluna representa um valor diferente de corrente aplicada ao modelo, que são mostradas na primeira linha de gráficos. Na segunda linha são exibidos os potenciais de membrana para cada corrente injetada. Em baixo, os instantes em que ocorreu o disparo de potenciais de ação.}
 		\label{fig:lif}
@@ -74,7 +74,7 @@ Imediatamente após a ocorrência do potencial de ação, o neurônio não é ca
 	
 	sendo $V^0_{th}$ o potencial de limiar de referência
 	
-	\begin{figure}[h!]
+	\begin{figure}[htb!]
 		\centering
 		\caption{Simulação do modelo LIF com período refratário}
 		\label{fig:lifrefratario}
@@ -93,7 +93,7 @@ Imediatamente após a ocorrência do potencial de ação, o neurônio não é ca
 	\end{itemize}
 \end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[htb!]
 	\centering
 	\caption{Adaptação da taxa de disparo no neurônio LIF}
 	\label{fig:lifatd}
@@ -113,7 +113,7 @@ $$$$
 \text{se } V_m > V_{max} \text{ então } V_m\mapsto V_{reset}
 $$
 
-\begin{figure}[h!]
+\begin{figure}[htb!]
 	\centering
 	\caption{Comparação dos modelos LIF e ELIF}
 	\label{fig:elif}
@@ -157,7 +157,7 @@ sendo $a$ o parâmetro de agrupamento e $b$ o de adaptação.
 	\item[Variável de portão] Uma variável com valores entre 0 e 1, representando a fração de canais iônicos em um determinado estado (ativado/desativado, inativado/desinativado)
 \end{description}
 
-\begin{figure}[h!]
+\begin{figure}[htb!]
 	\centering
 	\caption{Mecanismo de funcionamento dos canais iônicos dependentes de tensão}
 	\label{fig:canais}
@@ -224,7 +224,7 @@ O modelo também assume algumas constantes além das usadas em outros modelos:
 	\includegraphics[width=0.7\linewidth]{figs/hh_vm}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[htb!]
 	\centering
 	\caption{Dinâmica das variáveis de portão}
 	\label{fig:portoes}
