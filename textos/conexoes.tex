@@ -142,7 +142,7 @@ com $F_{max}$ o valor máximo de facilitação e $F_{fat}$ denota o grau de faci
 % exemplo livro (sistemas bi-estáveis)
 \begin{figure}[htb!]
 	\centering
-	\caption{\textit{Nullclines} mostrando pontos fixos de sistemas bi-estáveis. A linha pontilhada é para $r_2$, e a contínua é para $r_1$. Os pontos fixos, onde as linhas se interceptam, são representados pelos círculos. Os sólidos são pontos estáveis, enquanto os abertos são instáveis.}
+	\caption[\textit{Nullclines} mostrando pontos fixos de sistemas bi-estáveis]{\textit{Nullclines} mostrando pontos fixos de sistemas bi-estáveis. A linha pontilhada é para $r_2$, e a contínua é para $r_1$. Os pontos fixos, onde as linhas se interceptam, são representados pelos círculos. Os sólidos são pontos estáveis, enquanto os abertos são instáveis.}
 	\label{fig:nullcline}
 	\includegraphics[width=0.9\linewidth]{figs/nullcline}\\
 	\small{Fonte: adaptado de \cite{miller_introductory_2018}}
@@ -176,7 +176,7 @@ com $F_{max}$ o valor máximo de facilitação e $F_{fat}$ denota o grau de faci
 % indicar o estímulo
 \begin{figure}[htb!]
 	\centering
-	\caption{Unidades de disparo com \textit{feedback} recorrente. A atividade média dos neurônios é simulada, e a saída da unidade também serve como entrada para a mesma. A força da conexão recorrente é excitatória, reforçando a taxa de disparos}
+	\caption[Unidades de disparo com \textit{feedback} recorrente]{Unidades de disparo com \textit{feedback} recorrente. A atividade média dos neurônios é simulada, e a saída da unidade também serve como entrada para a mesma. A força da conexão recorrente é excitatória, reforçando a taxa de disparos}
 	\label{fig:feedbackrecorrente}
 	\includegraphics[width=0.45\linewidth]{figs/feedback_recorrente}
 \end{figure}
@@ -184,7 +184,7 @@ sendo $r(S)$ a taxa média de disparos dos neurônios da unidade, que é funçã
 % ligar ambas as figuras
 \begin{figure}[ht!]
 	\centering
-	\caption{Unidade com feedback recorrente que determina a estabilidade de um circuito. A taxa de disparo da unidade é uma função sigmoidal, a linha contínua na direita, e o feedback é representado pela linha tracejada. Na direita, a dinâmica da taxa de disparos em função do tempo, com um pulso de entrada entre 0,5 e 0,55 segundos (a região cinza). O feedback, nesse caso, é médio ($W^{EE}=0.6$), onde taxas baixas e altas de estado são estáveis, causando uma transição entre os estados do sistema}
+	\caption[Unidade com feedback recorrente que determina a estabilidade de um circuito]{Unidade com feedback recorrente que determina a estabilidade de um circuito. A taxa de disparo da unidade é uma função sigmoidal, a linha contínua na direita, e o feedback é representado pela linha tracejada. Na direita, a dinâmica da taxa de disparos em função do tempo, com um pulso de entrada entre 0,5 e 0,55 segundos (a região cinza). O feedback, nesse caso, é médio ($W^{EE}=0.6$), onde taxas baixas e altas de estado são estáveis, causando uma transição entre os estados do sistema}
 	\label{fig:biestavel}
 	\includegraphics[width=0.7\linewidth]{figs/biestavel}
 \end{figure}
@@ -192,14 +192,14 @@ sendo $r(S)$ a taxa média de disparos dos neurônios da unidade, que é funçã
 
 \begin{figure}[htb!]
 	\centering
-	\caption{Unidades de decisão com feedback recorrente e interconexão. As conexões recorrentes são excitatórias, enquanto as interconexões são inibitórias. A presença de ruído, tanto na entrada quanto nas unidades, pode induzir a transições entre estados bi-estáveis}
+	\caption[Unidades de decisão com feedback recorrente e interconexão]{Unidades de decisão com feedback recorrente e interconexão. As conexões recorrentes são excitatórias, enquanto as interconexões são inibitórias. A presença de ruído, tanto na entrada quanto nas unidades, pode induzir a transições entre estados bi-estáveis}
 	\label{fig:unidadesdecisao}
 	\includegraphics[width=0.7\linewidth]{figs/unidades_decisao}
 \end{figure}
 
 \begin{figure}[htb!]
 	\centering
-	\caption{Transições induzidas por ruído geram intinerância entre dois estados atratores, explicando alternância perceptual. Em (a), três \textit{trials} separados indicando alteração entre os estados, onde a atividade de uma unidade domina sobre a outra. Em (b), a média das atividades ao longo de 10 \textit{trials} (promediação)}
+	\caption[Transições induzidas por ruído]{Transições induzidas por ruído geram intinerância entre dois estados atratores, explicando alternância perceptual. Em (a), três \textit{trials} separados indicando alteração entre os estados, onde a atividade de uma unidade domina sobre a outra. Em (b), a média das atividades ao longo de 10 \textit{trials} (promediação)}
 	\label{fig:noiseinducedtransitions}
 	\includegraphics[width=0.35\linewidth]{figs/noise_induced_transitions}
 \end{figure}
@@ -215,7 +215,7 @@ sendo $r(S)$ a taxa média de disparos dos neurônios da unidade, que é funçã
 
 \begin{figure}[htb!]
 	\centering
-	\caption{Modelos ocultos de Markov. Em (a), os conjuntos de trens de disparo de potenciais de ação. Em (b), os estados discretos que o HMM assume. Em (c), as probabilidades a posteori para cada estado}
+	\caption[Modelos ocultos de Markov]{Modelos ocultos de Markov. Em (a), os conjuntos de trens de disparo de potenciais de ação. Em (b), os estados discretos que o HMM assume. Em (c), as probabilidades a posteori para cada estado}
 	\label{fig:hmm}
 	\includegraphics[width=0.8\linewidth]{figs/hmm}
 \end{figure}
