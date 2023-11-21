@@ -1,7 +1,8 @@
-\chapter{Modelos de disparo de neurônio}\label{cap:modelos}
+\chapter{Modelos de neurônio}\label{cap:modelos}
 \section{Introdução}\label{sec:modelos_intro}
 
-\section{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
+\section{Modelos de disparo de neurônios}\label{sec:modelosdisparo}
+\subsection{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
 % fig. circuito equivalente membrana
 \cite{lapicque_recherches_1907}
 
@@ -100,7 +101,7 @@ Imediatamente após a ocorrência do potencial de ação, o neurônio não é ca
 	\includegraphics[width=0.7\linewidth]{figs/lif_atd}
 \end{figure}
 
-\subsection{Modelo LIF exponencial}
+\subsubsection{Modelo LIF exponencial}
 \begin{itemize}
 	\item Incorpora um termo adicional para a geração do potencial de ação
 	\item Não há exatamente um valor fixo para o disparo do potencial, e sim um intervalo ($\Delta_{th}$)
@@ -121,7 +122,7 @@ $$
 \end{figure}
 
 
-\subsection{Modelo LIF exponencial adaptativo}
+\subsubsection{Modelo LIF exponencial adaptativo}
 \begin{itemize}
 	\item Adiciona uma corrente adaptativa hiperpolarizante, que depende do potencial de membrana
 	\item É um modelo com duas equações. A primeira contém a dinâmica do potencial de membrana (semelhante ao modelo anterior), e a segunda é referente à adaptação ($w$)
@@ -145,10 +146,10 @@ sendo $a$ o parâmetro de agrupamento e $b$ o de adaptação.
 \end{figure}
 
 
-\section{Modelo de Izhikevich}\label{sec:izhikevich}
+\subsection{Modelo de Izhikevich}\label{sec:izhikevich}
 
-\section{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
-\subsection{Canais iônicos}
+\subsection{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
+\subsubsection{Canais iônicos}
 \cite{miller_introductory_2018}
 \begin{description}
 	\item[Canal iônico dependentes de tensão] A probabilidade de abertura do canal é modificada em função do potencial de membrana
@@ -230,4 +231,4 @@ O modelo também assume algumas constantes além das usadas em outros modelos:
 	\label{fig:portoes}
 	\includegraphics[width=0.7\linewidth]{figs/portoes}
 \end{figure}
-
+\section{Modelos de taxa de disparo}\label{sec:modelostaxa}
