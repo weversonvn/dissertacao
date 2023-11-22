@@ -3,47 +3,59 @@
 Dada a variedade de estudantes que podem ingressar em um curso de neurociência computacional, muitos deles podem não ter tido algumas disciplinas de base que são necessárias para um bom entendimento do conteúdo apresentado. Por isso, este capítulo contém uma base teórica útil para um nivelamento dos estudantes das mais diversas áreas. As sessões seguintes contemplam conteúdos de neurobiologia, equações diferenciais ordinárias, probabilidade e algoritmos.
 
 \section{Neurobiologia básica}\label{sec:fisiologia}
-\subsection{Propriedades elétricas dos neurônios}
+%\subsection{Propriedades elétricas dos neurônios}
+O neurônio é uma célula, como outras do corpo humano, composta por íons e moléculas, ambas podendo possuir cargas positivas ou negativas. A célula neuronal é revestida por uma bi-camada lipídica, e geralmente o interior dela possui uma maior concentração de cargas negativas, fazendo com que o potencial de membrana ($V_m$), que é a diferença de potencial entre a parte interna e a externa da célula neuronal ($V_M=V_{dentro}-V_{fora}$), fique a maior parte do tempo com valor negativo. O potencial de membrana se altera quando há o fluxo de íons através dos poros de canais iônicos (Figura~\ref{fig:membrananeuronio}).
 
-\begin{description}
-	\item[Potencial de membrana ($V_M$)] A diferença de potencial entre a parte interna e a externa da célula neuronal
-	$$V_M=V_{dentro}-V_{fora}$$
-	\item[Equação de Nernst ($E_A$)] O valor do potencial de membrana onde o fluxo de um íon particular está em equilíbrio (o fluxo de saída é igual ao fluxo de entrada). É chamado também de potencial de reversão
-	$$
-	E_A=\frac{k_BT}{z_Aq_e}ln\Big(\frac{A_{fora}}{A_{dentro}}\Big)
-	$$
-	sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentração desse íon fora e dentro da célula neuronal, respectivamente, $T$ a temperatura absoluta (em Kelvin), $k_B$ a a constante de \textit{Boltzmann} ($1,39*10^{-23}JK^{-1}$) e $q_e$ a carga elétrica fundamental ($1,6*10^{-19}C$)
-	
-	\begin{tabular}{ccccc}
+\begin{figure}[tbh!]
+	\centering
+	\caption[Membrana do neurônio]{Membrana do neurônio}
+	\includegraphics[width=0.55\linewidth]{figs/membrana_neuronio}
+	\label{fig:membrananeuronio}
+	\\
+	Fonte: adaptado de \cite{hille_ionic_1992}
+	%% adaptado de hille 1992 (pág. 170 pdf)
+\end{figure}
+
+Os canais iônicos são canais proteicos na membrana da célula neuronal e permitem a movimentação de íons através deles, como mostrado na Figura~\ref{fig:canaisions}. Podem ser de dois tipos: com ou sem portão. Canais sem portão estão sempre abertos, enquanto os com portão podem abrir ou fechar, dependendo do valor do potencial de membrana, e por isso são chamados de canais iônicos dependentes de tensão. Quando o fluxo de corrente elétrica de todos os íons é equilibrado dentro e fora da célula neuronal (ou seja, o potencial de membrana não se altera), ele é chamado de potencial de repouso (ou de equilíbrio). O valor típico é próximo de $-70mV$. O valor do potencial de repouso é calculado com base na concentração de cada íon dentro e fora da célula neuronal usando a equação de Nernst, dada por:
+$$
+E_A=\frac{k_BT}{z_Aq_e}ln\Big(\frac{A_{fora}}{A_{dentro}}\Big)
+$$
+sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentração desse íon fora e dentro da célula neuronal, respectivamente, $T$ a temperatura absoluta (em Kelvin), $k_B$ a a constante de \textit{Boltzmann} ($1,39*10^{-23}JK^{-1}$) e $q_e$ a carga elétrica fundamental ($1,6*10^{-19}C$). Os valores de cargas, concentração e potencial de Nernst para alguns íons são apresentados na Tabela~\ref{tab:concentracao_nernst}.
+
+\begin{figure}[htb!]
+	\centering
+	\caption[Canais iônicos de potássio]{Canais iônicos de potássio. Em \textbf{a} os íons de potássio saem da célula, causando um excesso de cargas positivas fora e negativas dentro. Em \textbf{b} o fluxo para fora e dentro é igual, causando equilíbrio}
+	\label{fig:canaisions}
+	\includegraphics[width=0.7\linewidth]{figs/canais_ions}
+	\\
+	\cite{ermentrout_mathematical_2010}
+\end{figure}
+
+\begin{table}
+	\centering
+	\caption[Concentração de íons]{Concentração de íons}
+	\label{tab:concentracao_nernst}
+	\begin{tabular}{c|c|c|c|c}
 		\hline
-		Ion & Carga & Conc. Interna & Conc. Externa & Potencial de Nernst \\
+		Íon & Carga & Conc. Interna & Conc. Externa & Potencial de Nernst \\
 		\hline
 		Sódio & +1 & 15nM & 120nM & 61,6mV \\
-		
-		Potássio & + & 150nM & 6nM & -86,1mV \\
-		
+		\hline
+		Potássio &  & 150nM & 6nM & -86,1mV \\
+		\hline
 		Cálcio & +2 & 50nM & 2nM & 141,7mV \\
 		\hline
 	\end{tabular}
-	
-	% tabela de potenciais de equilíbrio
-	\item[Potencial de repouso (de equilíbrio)] O valor do potencial de membrana onde o fluxo de corrente elétrica de todos os íons é equilibrado dentro e fora da célula neuronal (o potencial de membrana não se altera). O valor típico para um neurônio é próximo de $-70mV$
-	\item[Canais iônicos] Canais proteicos na membrana da célula neuronal que permitem a movimentação de íons através deles. Podem ser de dois tipos: com ou sem portão. Canais sem portão estão sempre abertos, enquanto os com portão podem abrir ou fechar, dependendo do valor do potencial de membrana, e por isso são chamados de canais iônicos dependentes de tensão
-	
-	\begin{figure}[htb!]
-		\centering
-		\caption[Canais iônicos de potássio]{Canais iônicos de potássio. Em \textbf{a} os íons de potássio saem da célula, causando um excesso de cargas positivas fora e negativas dentro. Em \textbf{b} o fluxo para fora e dentro é igual, causando equilíbrio}
-		\label{fig:canaisions}
-		\includegraphics[width=0.7\linewidth]{figs/canais_ions}
-		\\
-		\cite{ermentrout_mathematical_2010}
-	\end{figure}
-	
-	\item[Despolarização] Ocorre quando íons positivos (como $Na^+$) entram na célula neuronal, elevando o potencial de membrana para valores mais positivos, até próximo de 0
-	\item[Hiperpolarização] Ocorre quando íons positivos (como $K^+$) saem da célula neuronal, ou negativos (como $Cl^-$) entram na célula neuronal, deixando o potencial de membrana cada vez mais negativo
-	%%\item[Constante de tempo da membrana] 
-	%\item[Modelos de único compartimento] 
-\end{description}
+\end{table}
+
+Devido ao excesso de cargas negativas no interior da célula neuronal, e a existência de cargas positivas no exterior, a membrana do neurônio acaba funcionando como um capacitor, criando uma capacitância ($c_m$), que pode ser usada para determinar a relação entre o potencial de membrana e a carga:
+%% TODO: ajustar d de diferencial
+$$
+c_m\frac{dV}{dt}=\frac{dQ}{dt}
+$$
+com o lado direito da equação sendo equivalente à corrente passando pela célula neuronal. Fora do repouso, a diferença de potencial entre o interior e o exterior do neurônio produz movimentação iônica. Quando íons positivos (como $Na^+$ ou $Ca^{2+})$ entram na célula neuronal, o potencial de membrana fica menos positivo (até próximo de 0 mV), fenômeno conhecido como despolarização. De maneira semelhante, quando íons negativos (como $K^+$) saem da célula neuronal, ou negativos (como $Cl^-$) entram, o potencial de membrana fica mais negativo, fenômeno conhecido como hiperpolarização.
+%%\item[Constante de tempo da membrana] 
+%\item[Modelos de único compartimento] 
 
 \section{Equações diferenciais ordinárias}\label{sec:eqdif}
 \begin{itemize}
