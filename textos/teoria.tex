@@ -81,7 +81,7 @@ onde $\lambda$ é a constante de decaimento. Uma solução para essa equação d
 	\centering
 	\caption{Decaimento radioativo ($\lambda = 0,5$)}
 	\label{fig:decaimento}
-	\includegraphics[width=0.7\linewidth]{figs/decaimento}
+	\includegraphics[width=0.6\linewidth]{figs/decaimento}
 \end{figure}
 
 \subsubsection{Equações de Lotka-volterra}
@@ -98,7 +98,7 @@ sendo $x$ a população da presa, $y$ a do predador, $x',\ y'$ as taxas de varia
 	\centering
 	\caption{Sistema de Lotka-Volterra ($a$ = 1,5; $b$ = 1; $c$ = 3; $d$ = 1)}
 	\label{fig:lotka-volterra}
-	\includegraphics[width=0.7\linewidth]{figs/lotka-volterra}
+	\includegraphics[width=0.6\linewidth]{figs/lotka-volterra}
 \end{figure}
 
 
@@ -136,7 +136,7 @@ Equações diferenciais ordinárias podem ser resolvidas analiticamente, não ab
 $$
 x_{n+1}=x_n+f(x_n,t_n)\Delta t
 $$
-como é demonstrado na Figura~\ref{fig:euler}. Outros métodos não abordados no curso incluem o método de Euler reverso e o Runge-Kutta de segunda e quarta ordens, que são mais precisos na solução.
+como é demonstrado na Figura~\ref{fig:euler}. Outros métodos não abordados no curso incluem o método de Euler reverso e o Runge-Kutta de segunda e quarta ordens, que são mais precisos na solução. O algoritmo (sequência de instruções para executar uma determinada tarefa) do método de Euler será implementado usando a linguagem Python, que tem a sua base detalhada no Apêndice~\ref{ap:python}.
 \begin{figure}[tb]
 	\centering
 	\caption{Método de Euler}
@@ -145,160 +145,160 @@ como é demonstrado na Figura~\ref{fig:euler}. Outros métodos não abordados no
 \end{figure}
 
 
-\section{Probabilidade}\label{sec:probabilidade}
-\begin{itemize}
-	\item Experimento aleatório: pode fornecer resultados diferentes a cada vez que se repete da mesma maneira
-	\item Espaço amostral (S): conjunto de resultados possíveis para um experimento aleatório (pode ser contínuo ou discreto)
-	\item Espaço amostral discreto: conjunto finito ou infinito contável de resultados
-	\item Espaço amostral contínuo: intervalo (finito ou infinito) de números reais
-	\item Evento (E): subconjunto do espaço amostral
-\end{itemize}
+%\section{Probabilidade}\label{sec:probabilidade}
+%\begin{itemize}
+%	\item Experimento aleatório: pode fornecer resultados diferentes a cada vez que se repete da mesma maneira
+%	\item Espaço amostral (S): conjunto de resultados possíveis para um experimento aleatório (pode ser contínuo ou discreto)
+%	\item Espaço amostral discreto: conjunto finito ou infinito contável de resultados
+%	\item Espaço amostral contínuo: intervalo (finito ou infinito) de números reais
+%	\item Evento (E): subconjunto do espaço amostral
+%\end{itemize}
+%
+%
+%\subsection{Probabilidade}
+%\begin{itemize}
+%	\item Probabilidade: quantifica a chance de ocorrer o resultado de um experimento aleatório (“A chance de chover hoje é de 30\%")
+%	\item Axiomas:
+%	\begin{enumerate}
+%		\item $P(S)=1$
+%		\item $0\leq P(E)\leq 1$
+%		\item $E_1\cap E_2=\emptyset\to P(E_1)+P(E_2)$
+%	\end{enumerate}
+%	\item Probabilidade da união: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+%	\item Probabilidade condicional: $P(B|A)=P(A\cap B)/P(A),\quad P(A)>0$
+%	\item Teorema de Bayes:  $P(A|B)=\frac{P(B|A)P(A)}{P(B)},\quad P(B)>0$\\ % ex. do teste de droga
+%	\begin{description}
+%		\item[Exemplo:] Pelo fato de um novo procedimento médico ter se mostrado efetivo na detecção prévia de uma doença, propôs-se um rastreamento médico da população. A probabilidade de o teste identificar corretamente alguém com a doença, dando positivo, é $0,99$, e a probabilidade de o teste identificar corretamente alguém sem a doença, dando negativo, é $0,95$. A incidência da doença na população em geral é $0,0001$. Você fez o teste e o resultado foi positivo. Qual é a probabilidade de você ter a doença?
+%		\item[Solução:] Seja $D$ o evento em que você tem a doença e seja $S$ o evento é que o teste é positivo. A probabilidade requerida pode ser denotada como $P(D|S)$. A probabilidade de o teste identificar corretamente alguém sem a doença, dando negativo, é $0,95$. Consequentemente a probabilidade de um teste positivo sem a doença é
+%		$$P(S|D') = 0,05$$
+%		Do Teorema de Bayes,
+%		\begin{align*}
+%			P(D|S)&=P(S|D)P(D)/[P(S|D)P(D)+P(S|D')P(D')]\\
+%			&=0,99*0,0001/[0,99*0,0001+0,05*(1-0,0001)]\\
+%			&=1/506=0,002
+%		\end{align*}
+%		\item[Interpretação Prática:] A probabilidade de você ter a doença da de um resultado positivo do teste é somente 0,002. Surpreendentemente, embora o teste seja efetivo, no sentido de que $P(S|D)$ é alto e $P(S|D')$ é baixo, por causa da incidência da doença na população em geral ser baixa, as chances são bem pequenas de você realmente ter a doença, mesmo se o teste for positivo
+%	\end{description}
+%\end{itemize}
+%
+%
+%\subsection{Variáveis aleatórias}
+%\begin{itemize}
+%	\item Variável aleatória ($X$): função que atribui um número real ($x$) a cada resultado no espaço amostral de um evento aleatório
+%	\item Discretas: número de pessoas adultas em um ambiente; numero de carros em uma rodovia
+%	\item Contínuas: corrente elétrica; temperatura; tempo
+%	\item Função densidade de probabilidade discretas:
+%	\begin{enumerate}
+%		\item $f(x_i) \geq 0$ (para todo $x$)
+%		\item $\sum_{i=1}^n f(x_i)=1$
+%		\item $f(x_i)=P(X=x_i)$
+%	\end{enumerate}
+%	\item Função de distribuição cumulativa discretas: $F(x)=P(X\leq x)=\sum_{x_i\leq x}f(x_i)$
+%	\begin{enumerate}
+%		\item $0\leq F(x)\leq 1$
+%		\item Se $x\leq y$, então $F(x)\leq F(y)$
+%	\end{enumerate}
+%	\item Função densidade de probabilidade contínuas:
+%	\begin{enumerate}
+%		\item $f(x) \geq 0$ (para todo $x$)
+%		\item $\int_{-\infty}^\infty f(x)\mathrm{d}x=1$
+%		\item $P(a\leq X\leq b)=\int_a^b f(x)\mathrm{d}x=$ área sob $f(x)$ de $a$ a $b$ para qualquer $a$ e $b$
+%	\end{enumerate}
+%	\item Função de distribuição cumulativa contínuas: $F(x)=P(X\leq x)=\int_{-\infty}^{x}f(u)\mathrm{d}u$
+%\end{itemize}
+%\subsubsection{Média e variância}
+%\begin{itemize}
+%	\item Média (valor esperado) de uma variável aleatória discreta: $\mu=E(X)=\sum_{x}xf(x)$
+%	\item Variância de uma variável aleatória discreta: $\sigma^2=V(X)=E(X-\mu)^2$ (desvio-padrão: $\sigma=\sqrt{\sigma^2}$)
+%	\item Média (valor esperado) de uma variável aleatória contínua: $\mu=E(X)=\int_{\infty}^{\infty}xf(x)\mathrm{d}x$
+%	\item Variância de uma variável aleatória contínua: $\sigma^2=V(X)=\int_{-\infty}^{\infty}x^2f(x)\mathrm{d}x-\mu^2$ (desvio-padrão: $\sigma=\sqrt{\sigma^2}$)
+%\end{itemize}
+%
+%\subsubsection{Distribuição de Poisson}
+%$$
+%f(x)=\frac{e^{-\lambda T}(\lambda T)^x}{x!}, x=0,1,2,\dots
+%$$
+%\begin{itemize}
+%	\item $T$: intervalo do evento
+%	\item $\lambda$: número médio de eventos por intervalo ($0\leq\lambda$)
+%	\begin{description}
+%		\item[Exemplo:] Falhas ocorrem ao acaso ao longo do comprimento de um fio delgado de cobre. Suponha que o número de falhas siga a distribuição de Poisson, com uma média de 2,3 falhas por milímetro. Determine a probabilidade de existirem exatamente duas falhas em 1 milímetro de fio.
+%		\item[Solução:] Seja $X$ o número de falhas em 1 milímetro de fio. Então, $E(X)=2,3$ falhas e
+%		$$P(X=2) = \frac{e^{-2,3}(2,3)^2}{2!}=0,265$$
+%		Para determinar a probabilidade de 10 falhas em 5 milímetros de fio, consideramos $X$ o número de falhas em 5 milímetros de fio. Então, $X$ tem uma distribuição de Poisson com
+%		$$\lambda T=5\text{ mm X }2,3\text{ falhas/mm}=11,5\text{ falhas}$$
+%		Consequentemente,
+%		$$P(X=10)=e^{-11,5}\frac{(11,5)^{10}}{10!}=0,113$$
+%		\item[Interpretação Prática:] Dadas as suposições para um processo de Poisson e um valor para $\lambda$, as probabilidades podem ser calculadas para intervalos arbitrários de comprimento.
+%	\end{description}
+%\end{itemize}
+%
+%\subsubsection{Distribuição normal (Gaussiana)}
+%$$
+%f(x)=\frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}\qquad-\infty<x<\infty
+%$$
+%
+%$$
+%E(X)=\mu\qquad V(X)=\sigma^2
+%$$
+%
+%\begin{figure}[htb!]
+%	\centering
+%	\caption{Funções densidade de probabilidade normal para diferentes valores de $\mu$ e $\sigma^2$}
+%	\label{fig:normal}
+%	\includegraphics[width=0.7\linewidth]{figs/normal}
+%\end{figure}
+%
+%
+%\begin{itemize}
+%	\item Normal padrão: $\Phi(z)=P(Z\leq z)$, quando $\mu=0$ e $\sigma=1$
+%\end{itemize}
 
-
-\subsection{Probabilidade}
-\begin{itemize}
-	\item Probabilidade: quantifica a chance de ocorrer o resultado de um experimento aleatório (“A chance de chover hoje é de 30\%")
-	\item Axiomas:
-	\begin{enumerate}
-		\item $P(S)=1$
-		\item $0\leq P(E)\leq 1$
-		\item $E_1\cap E_2=\emptyset\to P(E_1)+P(E_2)$
-	\end{enumerate}
-	\item Probabilidade da união: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
-	\item Probabilidade condicional: $P(B|A)=P(A\cap B)/P(A),\quad P(A)>0$
-	\item Teorema de Bayes:  $P(A|B)=\frac{P(B|A)P(A)}{P(B)},\quad P(B)>0$\\ % ex. do teste de droga
-	\begin{description}
-		\item[Exemplo:] Pelo fato de um novo procedimento médico ter se mostrado efetivo na detecção prévia de uma doença, propôs-se um rastreamento médico da população. A probabilidade de o teste identificar corretamente alguém com a doença, dando positivo, é $0,99$, e a probabilidade de o teste identificar corretamente alguém sem a doença, dando negativo, é $0,95$. A incidência da doença na população em geral é $0,0001$. Você fez o teste e o resultado foi positivo. Qual é a probabilidade de você ter a doença?
-		\item[Solução:] Seja $D$ o evento em que você tem a doença e seja $S$ o evento é que o teste é positivo. A probabilidade requerida pode ser denotada como $P(D|S)$. A probabilidade de o teste identificar corretamente alguém sem a doença, dando negativo, é $0,95$. Consequentemente a probabilidade de um teste positivo sem a doença é
-		$$P(S|D') = 0,05$$
-		Do Teorema de Bayes,
-		\begin{align*}
-			P(D|S)&=P(S|D)P(D)/[P(S|D)P(D)+P(S|D')P(D')]\\
-			&=0,99*0,0001/[0,99*0,0001+0,05*(1-0,0001)]\\
-			&=1/506=0,002
-		\end{align*}
-		\item[Interpretação Prática:] A probabilidade de você ter a doença da de um resultado positivo do teste é somente 0,002. Surpreendentemente, embora o teste seja efetivo, no sentido de que $P(S|D)$ é alto e $P(S|D')$ é baixo, por causa da incidência da doença na população em geral ser baixa, as chances são bem pequenas de você realmente ter a doença, mesmo se o teste for positivo
-	\end{description}
-\end{itemize}
-
-
-\subsection{Variáveis aleatórias}
-\begin{itemize}
-	\item Variável aleatória ($X$): função que atribui um número real ($x$) a cada resultado no espaço amostral de um evento aleatório
-	\item Discretas: número de pessoas adultas em um ambiente; numero de carros em uma rodovia
-	\item Contínuas: corrente elétrica; temperatura; tempo
-	\item Função densidade de probabilidade discretas:
-	\begin{enumerate}
-		\item $f(x_i) \geq 0$ (para todo $x$)
-		\item $\sum_{i=1}^n f(x_i)=1$
-		\item $f(x_i)=P(X=x_i)$
-	\end{enumerate}
-	\item Função de distribuição cumulativa discretas: $F(x)=P(X\leq x)=\sum_{x_i\leq x}f(x_i)$
-	\begin{enumerate}
-		\item $0\leq F(x)\leq 1$
-		\item Se $x\leq y$, então $F(x)\leq F(y)$
-	\end{enumerate}
-	\item Função densidade de probabilidade contínuas:
-	\begin{enumerate}
-		\item $f(x) \geq 0$ (para todo $x$)
-		\item $\int_{-\infty}^\infty f(x)\mathrm{d}x=1$
-		\item $P(a\leq X\leq b)=\int_a^b f(x)\mathrm{d}x=$ área sob $f(x)$ de $a$ a $b$ para qualquer $a$ e $b$
-	\end{enumerate}
-	\item Função de distribuição cumulativa contínuas: $F(x)=P(X\leq x)=\int_{-\infty}^{x}f(u)\mathrm{d}u$
-\end{itemize}
-\subsubsection{Média e variância}
-\begin{itemize}
-	\item Média (valor esperado) de uma variável aleatória discreta: $\mu=E(X)=\sum_{x}xf(x)$
-	\item Variância de uma variável aleatória discreta: $\sigma^2=V(X)=E(X-\mu)^2$ (desvio-padrão: $\sigma=\sqrt{\sigma^2}$)
-	\item Média (valor esperado) de uma variável aleatória contínua: $\mu=E(X)=\int_{\infty}^{\infty}xf(x)\mathrm{d}x$
-	\item Variância de uma variável aleatória contínua: $\sigma^2=V(X)=\int_{-\infty}^{\infty}x^2f(x)\mathrm{d}x-\mu^2$ (desvio-padrão: $\sigma=\sqrt{\sigma^2}$)
-\end{itemize}
-
-\subsubsection{Distribuição de Poisson}
-$$
-f(x)=\frac{e^{-\lambda T}(\lambda T)^x}{x!}, x=0,1,2,\dots
-$$
-\begin{itemize}
-	\item $T$: intervalo do evento
-	\item $\lambda$: número médio de eventos por intervalo ($0\leq\lambda$)
-	\begin{description}
-		\item[Exemplo:] Falhas ocorrem ao acaso ao longo do comprimento de um fio delgado de cobre. Suponha que o número de falhas siga a distribuição de Poisson, com uma média de 2,3 falhas por milímetro. Determine a probabilidade de existirem exatamente duas falhas em 1 milímetro de fio.
-		\item[Solução:] Seja $X$ o número de falhas em 1 milímetro de fio. Então, $E(X)=2,3$ falhas e
-		$$P(X=2) = \frac{e^{-2,3}(2,3)^2}{2!}=0,265$$
-		Para determinar a probabilidade de 10 falhas em 5 milímetros de fio, consideramos $X$ o número de falhas em 5 milímetros de fio. Então, $X$ tem uma distribuição de Poisson com
-		$$\lambda T=5\text{ mm X }2,3\text{ falhas/mm}=11,5\text{ falhas}$$
-		Consequentemente,
-		$$P(X=10)=e^{-11,5}\frac{(11,5)^{10}}{10!}=0,113$$
-		\item[Interpretação Prática:] Dadas as suposições para um processo de Poisson e um valor para $\lambda$, as probabilidades podem ser calculadas para intervalos arbitrários de comprimento.
-	\end{description}
-\end{itemize}
-
-\subsubsection{Distribuição normal (Gaussiana)}
-$$
-f(x)=\frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}\qquad-\infty<x<\infty
-$$
-
-$$
-E(X)=\mu\qquad V(X)=\sigma^2
-$$
-
-\begin{figure}[htb!]
-	\centering
-	\caption{Funções densidade de probabilidade normal para diferentes valores de $\mu$ e $\sigma^2$}
-	\label{fig:normal}
-	\includegraphics[width=0.7\linewidth]{figs/normal}
-\end{figure}
-
-
-\begin{itemize}
-	\item Normal padrão: $\Phi(z)=P(Z\leq z)$, quando $\mu=0$ e $\sigma=1$
-\end{itemize}
-
-
-\section{Noções de algoritmos e programação}\label{sec:algoritmo}
-\begin{itemize}
-	\item \textbf{Algoritmo}: sequência de instruções para executar uma determinada tarefa. Ex.: algoritmo para lavar as mãos
-	\begin{enumerate}
-		\centering
-		\item Início
-		\item Abrir a torneira
-		\item Molhar as mãos
-		\item Ensaboar as mãos
-		\item Molhar as mãos
-		\item Secar as mãos
-		\item Fim
-	\end{enumerate}
-	
-	\item \textbf{Programa}: conjunto de instruções escritas em um arquivo com regras específicas
-	\begin{verbatim}
-		print("Olá, mundo!")
-	\end{verbatim}
-	\item \textbf{Linguagem de programação}: converte o programa escrito em ações no computador (ex.: \textit{Python}, \textit{C++}, \textit{Java})
-\end{itemize}
-
-\begin{figure}[htb!]
-	\centering
-	\caption{Do código para e/s}
-	\label{fig:codigoio}
-	\includegraphics[width=0.7\linewidth]{figs/codigo_io}
-\end{figure}
-
-\SetKwComment{Comment}{/* }{ */}
-\begin{algorithm}
-	\caption{Exemplo}\label{alg:ohm}
-	\KwData{$n \geq 0$}
-	\KwResult{$y = x^n$}
-	$y \gets 1$\;
-	$X \gets x$\;
-	$N \gets n$\;
-	\While{$N \neq 0$}{
-		\eIf{$N$ é par}{
-			$X \gets X \times X$\;
-			$N \gets \frac{N}{2}$ \Comment*[r]{Este é um comentário}
-		}{\If{$N$ é impar}{
-				$y \gets y \times X$\;
-				$N \gets N - 1$\;
-			}
-		}
-	}
-\end{algorithm}
+%
+%\section{Noções de algoritmos e programação}\label{sec:algoritmo}
+%\begin{itemize}
+%	\item \textbf{Algoritmo}: sequência de instruções para executar uma determinada tarefa. Ex.: algoritmo para lavar as mãos
+%	\begin{enumerate}
+%		\centering
+%		\item Início
+%		\item Abrir a torneira
+%		\item Molhar as mãos
+%		\item Ensaboar as mãos
+%		\item Molhar as mãos
+%		\item Secar as mãos
+%		\item Fim
+%	\end{enumerate}
+%	
+%	\item \textbf{Programa}: conjunto de instruções escritas em um arquivo com regras específicas
+%	\begin{verbatim}
+%		print("Olá, mundo!")
+%	\end{verbatim}
+%	\item \textbf{Linguagem de programação}: converte o programa escrito em ações no computador (ex.: \textit{Python}, \textit{C++}, \textit{Java})
+%\end{itemize}
+%
+%\begin{figure}[htb!]
+%	\centering
+%	\caption{Do código para e/s}
+%	\label{fig:codigoio}
+%	\includegraphics[width=0.7\linewidth]{figs/codigo_io}
+%\end{figure}
+%
+%\SetKwComment{Comment}{/* }{ */}
+%\begin{algorithm}
+%	\caption{Exemplo}\label{alg:ohm}
+%	\KwData{$n \geq 0$}
+%	\KwResult{$y = x^n$}
+%	$y \gets 1$\;
+%	$X \gets x$\;
+%	$N \gets n$\;
+%	\While{$N \neq 0$}{
+%		\eIf{$N$ é par}{
+%			$X \gets X \times X$\;
+%			$N \gets \frac{N}{2}$ \Comment*[r]{Este é um comentário}
+%		}{\If{$N$ é impar}{
+%				$y \gets y \times X$\;
+%				$N \gets N - 1$\;
+%			}
+%		}
+%	}
+%\end{algorithm}
