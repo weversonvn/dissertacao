@@ -1,5 +1,31 @@
 \chapter{Modelos de neurônio}\label{cap:modelos}
 \section{Introdução}\label{sec:modelos_intro}
+Os modelos são formas de representar, matemática e/ou computacionalmente, o comportamento do neurônio. Os modelos podem variar desde os mais simples, que não representam fielmente o comportamento fisiológico do neurônio mas são úteis para simular grandes quantidades de neurônios, até os mais complexos, que trazem diversas representações de condutância e morfológicas. Alguns modelos de neurônio são apresentados na Tabela~\ref{tab:modelos_neuronios}, incluindo o número de variáveis presentes no modelo, o que reflete o número de equações diferenciais presentes e, consequentemente, a complexidade do mesmo, bem como é informado se o modelo é considerado biologicamente plausível. Os 4~(quatro) primeiros modelos são detalhados neste texto, por hora diferenciados entre os que simulam o disparo do potencial de ação, chamados aqui de modelos de disparo de neurônio, e os que simulam a taxa de disparo.
+
+\begin{table}
+	\centering
+	\caption[Modelos de neurônio]{Modelos de neurônio}
+	\label{tab:modelos_neuronios}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Modelo & N. variáveis & Complexidade & Biol. plausível \\
+		\hline
+		Leaky integrate-and-fire & 1 & Muito baixa & Não \\
+		\hline
+		Izhikevich & 2 & Muito baixa & Não \\
+		\hline
+		Hodgkin-Huxley & 4 & Muito alta & Sim \\
+		\hline
+		Wilson-Cowan & 2 & Média & Não \\
+		\hline
+		Spike response model & 1 & Baixa & Não \\
+		\hline
+		FitzHugh-Nagumo & 2 & Média & Não \\
+		\hline
+		Moris-Lecar & 3 & Alta & Sim \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \section{Modelos de disparo de neurônios}\label{sec:modelosdisparo}
 \subsection{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
