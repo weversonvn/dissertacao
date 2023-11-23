@@ -56,15 +56,13 @@ $$
 que é dada na forma de uma equação diferencial, detalhada na seção seguinte.
 
 \section{Equações diferenciais ordinárias}\label{sec:eqdif}
-\begin{itemize}
-	\item Equação diferencial ordinária: uma equação relacionando uma função desconhecida $y(t)$, algumas derivadas de $y(t)$ e a variável $t$, geralmente representando o tempo \cite{adkins_ordinary_2012}
-	\item Ordem: a ordem da maior derivada que aparece na equação diferencial
-	\item $t$: variável independente
-	\item $y$: variável dependente (depende de $t$)
-	\item A solução é uma família de equações, que depende da escolha de constantes
-\end{itemize}
+As equações diferenciais são usadas para descrever sistemas dinâmicos, ou seja, que se alteram ao longo do tempo. A forma mais básica de uma equação diferencial é:
+$$
+\frac{\mathrm{d}y(t)}{\mathrm{d}t}=f(y(t))
+$$
+com o lado esquerdo da equação sendo a derivada de $y(t)$, a função presente no lado direito associada à variável $t$, que geralmente representa o tempo. Diferentemente das equações algébricas, que possuem como solução um número, as equações diferenciais tem uma família de funções como solução, variando de acordo com a escolha de constantes, como mostrado na Figura~\ref{fig:solucao}. Nela, é exibida a família de soluções $y(t) = t + 1 + ce^t$ para a equação diferencial $y'=y-t$. $y'$ é uma representação equivalente para $\frac{\mathrm{d}y(t)}{\mathrm{d}t}$. Qualquer valor de $c$ real que for escolhido representa uma solução possível para a equação, sendo exibidas as curvas para os valores de $c$ iguais à $0$, $-1$ e $0,4$.
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
 	\caption{Soluções $y(t) = t + 1 + ce^t$ da equação $y'=y-t$ para vários $c$}
 	\label{fig:solucao}
@@ -77,9 +75,9 @@ que é dada na forma de uma equação diferencial, detalhada na seção seguinte
 Segundo a lei do decaimento radioativo, a taxa na qual os átomos radioativos desintegram é proporcional ao número total de átomos radioativos presente. Sendo $N(t)$ o número de átomos radioativos no tempo $t$, então $N'(t)$ é a taxa de mudança. A lei do decaimento radioativo é a que segue:
 
 $$N'(t) = -\lambda N(t)$$
-onde $\lambda$ é a constante de decaimento.
+onde $\lambda$ é a constante de decaimento. Uma solução para essa equação diferencial é exibida na Figura~\ref{fig:decaimento}.
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
 	\caption{Decaimento radioativo ($\lambda = 0,5$)}
 	\label{fig:decaimento}
@@ -94,15 +92,9 @@ x' = ax - bxy
 $$$$
 y' = dxy - cy
 $$
-onde:\\
-$
-x: \text{população da presa}\\
-y: \text{população do predador}\\
-x', y': \text{taxas de variação de cada população}\\
-a, b, c, d: \text{parâmetros que descrevem a interação entre as espécies}
-$
+sendo $x$ a população da presa, $y$ a do predador, $x',\ y'$ as taxas de variação de cada população, e $a,\ b,\ c,\ d$ os parâmetros que descrevem a interação entre as espécies. A Figura~\ref{fig:lotka-volterra} exibe a solução do par de equações para um valor de cada parâmetro de interação.
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
 	\caption{Sistema de Lotka-Volterra ($a$ = 1,5; $b$ = 1; $c$ = 3; $d$ = 1)}
 	\label{fig:lotka-volterra}
@@ -110,49 +102,48 @@ $
 \end{figure}
 
 
-\subsubsection{Trajetória pendular}
-O pêndulo é um dispositivo que contém uma massa atrelada a um fio e que oscila em torno de um ponto fixo. A equação do movimento para o ângulo $\theta$ (o ângulo que o pêndulo faz com a vertical) é:
-
-$$
-\frac{d^2\theta}{dt^2} = -\frac{1}{Q}\frac{d\theta}{dt} + \sin{\theta} + d\cos{\Omega t}
-$$
-onde:\\
-$
-t: \text{tempo}\\
-Q: \text{fator de qualidade}\\
-d: \text{amplitude}\\
-\Omega: \text{frequência}
-$
-\\\\
-Como se trata de uma equação diferencial de segunda ordem, é necessária a redução para duas equações de primeira ordem. Fazendo a substituição de variáveis $\omega = \frac{d\theta}{dt}$ podemos reescrever da seguinte maneira:
-
-$$
-\frac{d\theta}{dt} = \omega
-$$$$
-\frac{d\omega}{dt} = -\frac{1}{Q}\omega + \sin{\theta} + d\cos{\Omega t}
-$$
-
-\begin{figure}[htb!]
-	\centering
-	\caption[Trajetória pendular]{Trajetória pendular ($Q$ = 2; $d$ = 1,5; $\Omega$ = 0,65)}
-	\label{fig:pendulo}
-	\includegraphics[width=0.7\linewidth]{figs/pendulo}
-\end{figure}
+%\subsubsection{Trajetória pendular}
+%O pêndulo é um dispositivo que contém uma massa atrelada a um fio e que oscila em torno de um ponto fixo. A equação do movimento para o ângulo $\theta$ (o ângulo que o pêndulo faz com a vertical) é:
+%
+%$$
+%\frac{d^2\theta}{dt^2} = -\frac{1}{Q}\frac{d\theta}{dt} + \sin{\theta} + d\cos{\Omega t}
+%$$
+%onde:\\
+%$
+%t: \text{tempo}\\
+%Q: \text{fator de qualidade}\\
+%d: \text{amplitude}\\
+%\Omega: \text{frequência}
+%$
+%\\\\
+%Como se trata de uma equação diferencial de segunda ordem, é necessária a redução para duas equações de primeira ordem. Fazendo a substituição de variáveis $\omega = \frac{d\theta}{dt}$ podemos reescrever da seguinte maneira:
+%
+%$$
+%\frac{d\theta}{dt} = \omega
+%$$$$
+%\frac{d\omega}{dt} = -\frac{1}{Q}\omega + \sin{\theta} + d\cos{\Omega t}
+%$$
+%
+%\begin{figure}[tb]
+%	\centering
+%	\caption[Trajetória pendular]{Trajetória pendular ($Q$ = 2; $d$ = 1,5; $\Omega$ = 0,65)}
+%	\label{fig:pendulo}
+%	\includegraphics[width=0.7\linewidth]{figs/pendulo}
+%\end{figure}
 
 \subsection{Método de Euler}
-Equações diferenciais ordinárias podem ser resolvidas analiticamente (não abordado neste curso) ou numericamente. Dentre os vários métodos existentes para a solução numérica, a adotada aqui é o método de Euler. Considere a equação $\frac{dx}{dt}=f(x,t)$, com $f(x,t)$ uma função qualquer de $x$ em relação à $t$. Dado um valor inicial $x0$ (usualmente com $t=0$), é possível simular a equação usando pontos discretos com intervalos $\Delta t$ fixos. Cada valor $x_n$ é dado por $x_n=x(t_n=n\Delta t)$. A partir disso, é possível usar o método de Euler avançado para calcular um valor seguinte a partir do valor anterior, ou seja:
+Equações diferenciais ordinárias podem ser resolvidas analiticamente, não abordado neste texto, ou numericamente. Dentre os vários métodos existentes para a solução numérica, a adotada aqui é o método de Euler. Considerando a equação $\frac{dx}{dt}=f(x,t)$, com $f(x,t)$ uma função qualquer de $x$ em relação à $t$, dado um valor inicial $x0$ (usualmente com $t=0$), é possível simular a equação usando pontos discretos com intervalos $\Delta t$ fixos. Cada valor $x_n$ é dado por $x_n=x(t_n=n\Delta t)$. A partir disso, é possível usar o método de Euler avançado para calcular um valor seguinte a partir do valor anterior, ou seja:
 $$
 x_{n+1}=x_n+f(x_n,t_n)\Delta t
 $$
-
-\begin{figure}[htb!]
+como é demonstrado na Figura~\ref{fig:euler}. Outros métodos não abordados no curso incluem o método de Euler reverso e o Runge-Kutta de segunda e quarta ordens, que são mais precisos na solução.
+\begin{figure}[tb]
 	\centering
 	\caption{Método de Euler}
 	\label{fig:euler}
 	\includegraphics[width=0.7\linewidth]{figs/euler}
 \end{figure}
 
-Outros métodos não abordados no curso incluem o método de Euler reverso e o Runge-Kutta de segunda e quarta ordens, que são mais precisos na solução.
 
 \section{Probabilidade}\label{sec:probabilidade}
 \begin{itemize}
