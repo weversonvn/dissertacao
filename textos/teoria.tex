@@ -5,7 +5,7 @@ Dada a variedade de estudantes que podem ingressar em um curso de neurociência 
 \section{Neurobiologia básica}\label{sec:fisiologia}
 O neurônio é uma célula, como outras do corpo humano, composta por íons e moléculas, ambas podendo possuir cargas positivas ou negativas. A célula neuronal é revestida por uma bi-camada lipídica, e geralmente o interior dela possui uma maior concentração de cargas negativas, fazendo com que o potencial de membrana ($V_m$), que é a diferença de potencial entre a parte interna e a externa da célula neuronal ($V_M=V_{dentro}-V_{fora}$), fique a maior parte do tempo com valor negativo. O potencial de membrana se altera quando há o fluxo de íons através dos poros de canais iônicos (Figura~\ref{fig:membrananeuronio}).
 
-\begin{figure}[tbh!]
+\begin{figure}[tb]
 	\centering
 	\caption[Membrana do neurônio]{Membrana do neurônio}
 	\includegraphics[width=0.55\linewidth]{figs/membrana_neuronio}
@@ -15,13 +15,13 @@ O neurônio é uma célula, como outras do corpo humano, composta por íons e mo
 	%% adaptado de hille 1992 (pág. 170 pdf)
 \end{figure}
 
-Os canais iônicos são canais proteicos na membrana da célula neuronal e permitem a movimentação de íons através deles, como mostrado na Figura~\ref{fig:canaisions}. Podem ser de dois tipos: com ou sem portão. Canais sem portão estão sempre abertos, enquanto os com portão podem abrir ou fechar, dependendo do valor do potencial de membrana, e por isso são chamados de canais iônicos dependentes de tensão. Quando o fluxo de corrente elétrica de todos os íons é equilibrado dentro e fora da célula neuronal (ou seja, o potencial de membrana não se altera), ele é chamado de potencial de repouso (ou de equilíbrio). O valor típico é próximo de $-70mV$. O valor do potencial de repouso é calculado com base na concentração de cada íon dentro e fora da célula neuronal usando a equação de Nernst, dada por:
+Os canais iônicos são canais proteicos na membrana da célula neuronal e permitem a movimentação de íons através deles, como mostrado na Figura~\ref{fig:canaisions}. Podem ser de dois tipos: com ou sem portão. Canais sem portão estão sempre abertos, enquanto os com portão podem abrir ou fechar, dependendo do valor do potencial de membrana, e por isso são chamados de canais iônicos dependentes de tensão. Quando o fluxo de corrente elétrica de todos os íons é equilibrado dentro e fora da célula neuronal (ou seja, o potencial de membrana não se altera), ele é chamado de potencial de repouso (ou de equilíbrio). O valor típico é próximo de $-70\ mV$. O valor do potencial de repouso é calculado com base na concentração de cada íon dentro e fora da célula neuronal usando a equação de Nernst, dada por:
 $$
 E_A=\frac{k_BT}{z_Aq_e}ln\Big(\frac{A_{fora}}{A_{dentro}}\Big)
 $$
-sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentração desse íon fora e dentro da célula neuronal, respectivamente, $T$ a temperatura absoluta (em Kelvin), $k_B$ a a constante de \textit{Boltzmann} ($1,39*10^{-23}JK^{-1}$) e $q_e$ a carga elétrica fundamental ($1,6*10^{-19}C$). Os valores de cargas, concentração e potencial de Nernst para alguns íons são apresentados na Tabela~\ref{tab:concentracao_nernst}.
+sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentração desse íon fora e dentro da célula neuronal, respectivamente, $T$ a temperatura absoluta (em Kelvin), $k_B$ a a constante de \textit{Boltzmann} ($1,39*10^{-23}\ JK^{-1}$) e $q_e$ a carga elétrica fundamental ($1,6*10^{-19}\ C$). Os valores de cargas, concentração e potencial de Nernst para alguns íons são apresentados na Tabela~\ref{tab:concentracao_nernst}.
 
-\begin{figure}[htb!]
+\begin{figure}[tb!]
 	\centering
 	\caption[Canais iônicos de potássio]{Canais iônicos de potássio. Em \textbf{a} os íons de potássio saem da célula, causando um excesso de cargas positivas fora e negativas dentro. Em \textbf{b} o fluxo para fora e dentro é igual, causando equilíbrio}
 	\label{fig:canaisions}
@@ -36,13 +36,15 @@ sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentraç
 	\label{tab:concentracao_nernst}
 	\begin{tabular}{c|c|c|c|c}
 		\hline
-		Íon & Carga & Conc. Interna & Conc. Externa & Potencial de Nernst \\
+		Íon & Carga & Conc. interna ($nM$) & Conc. externa ($nM$) & Potencial de reversão ($mV$) \\
 		\hline
-		Sódio & +1 & 15nM & 120nM & 61,6mV \\
+		Sódio & +1 & 15 & 120 & 61,6 \\
 		\hline
-		Potássio &  & 150nM & 6nM & -86,1mV \\
+		Potássio & +1 & 150 & 6 & -86,1 \\
 		\hline
-		Cálcio & +2 & 50nM & 2nM & 141,7mV \\
+		Cloreto & -1 & 52 & 560 & -65 \\
+		\hline
+		Cálcio & +2 & 50 & 2 & 141,7 \\
 		\hline
 	\end{tabular}
 \end{table}
