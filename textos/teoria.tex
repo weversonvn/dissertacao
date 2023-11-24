@@ -16,9 +16,9 @@ O neurônio é a unidade básica do sistema nervoso. É composto pelo corpo celu
 \end{figure}
 
 Os canais iônicos são canais proteicos na membrana da célula neuronal e permitem a movimentação de íons através deles, como mostrado na Figura~\ref{fig:canaisions}. Podem ser de dois tipos: com ou sem portão. Canais sem portão estão sempre abertos, enquanto os com portão podem abrir ou fechar, dependendo do valor do potencial de membrana, e por isso são chamados de canais iônicos dependentes de tensão. Quando o fluxo de corrente elétrica de todos os íons é equilibrado dentro e fora da célula neuronal (ou seja, o potencial de membrana não se altera), ele é chamado de potencial de repouso (ou de equilíbrio). O valor típico é próximo de $-70\ mV$. O valor do potencial de repouso é calculado com base na concentração de cada íon dentro e fora da célula neuronal usando a equação de Nernst, dada por:
-$$
+\begin{equation}\label{eq:nernst}
 E_A=\frac{k_BT}{z_Aq_e}ln\Big(\frac{A_{fora}}{A_{dentro}}\Big)
-$$
+\end{equation}
 sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentração desse íon fora e dentro da célula neuronal, respectivamente, $T$ a temperatura absoluta (em Kelvin), $k_B$ a a constante de \textit{Boltzmann} ($1,39*10^{-23}\ JK^{-1}$) e $q_e$ a carga elétrica fundamental ($1,6*10^{-19}\ C$). Os valores de cargas, concentração e potencial de Nernst para alguns íons são apresentados na Tabela~\ref{tab:concentracao_nernst}.
 
 \begin{figure}[tb!]
@@ -50,16 +50,16 @@ sendo $A$ o íon, $z_A$ a carga do íon, $A_{fora}$ e $A_{dentro}$ a concentraç
 \end{table}
 
 Fora do repouso, a diferença de potencial entre o interior e o exterior do neurônio produz movimentação iônica. Quando íons positivos (como $Na^+$ ou $Ca^{2+})$ entram na célula neuronal, o potencial de membrana fica menos positivo (até próximo de 0 mV), fenômeno conhecido como despolarização. De maneira semelhante, quando íons negativos (como $K^+$) saem da célula neuronal, ou negativos (como $Cl^-$) entram, o potencial de membrana fica mais negativo, fenômeno conhecido como hiperpolarização. Os canais de potássio são mais presentes na membrana do neurônio, sendo os principais responsáveis pelo potencial de equilíbrio. Já os canais de sódio, associados à despolarização, são responsáveis pela geração do potencial de ação. Devido ao excesso de cargas negativas no interior da célula neuronal, e a existência de cargas positivas no exterior, a membrana do neurônio acaba funcionando como um capacitor, criando uma capacitância ($C_m$). O fluxo de íons através de canais sem portão é considerado constante, podendo ser agrupado em um elemento chamado de vazamento (\textit{leak}, em inglês), possuindo um potencial ($E_l$) e uma condutância ($G_l$), que é a facilidade desse elemento permitir o fluxo de corrente (o inverso da resistência). Com isso, é possível escrever uma equação relacionando o potencial de membrana da célula neuronal e os elementos de vazamento, como segue:
-$$
-\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_l(E_l-V_m)/C_m
-$$
+\begin{equation}\label{eq:potencial_membrana}
+	\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_l(E_l-V_m)/C_m
+\end{equation}
 que é dada na forma de uma equação diferencial, detalhada na seção seguinte.
 
 \section{Equações diferenciais ordinárias}\label{sec:eqdif}
 As equações diferenciais são usadas para descrever sistemas dinâmicos, ou seja, que se alteram ao longo do tempo. A forma mais básica de uma equação diferencial é:
-$$
-\frac{\mathrm{d}y(t)}{\mathrm{d}t}=f(y(t))
-$$
+\begin{equation}\label{eq:eq_diferencial}
+	\frac{\mathrm{d}y(t)}{\mathrm{d}t}=f(y(t))
+\end{equation}
 com o lado esquerdo da equação sendo a derivada de $y(t)$, a função presente no lado direito associada à variável $t$, que geralmente representa o tempo. Diferentemente das equações algébricas, que possuem como solução um número, as equações diferenciais tem uma família de funções como solução, variando de acordo com a escolha de constantes, como mostrado na Figura~\ref{fig:solucao}. Nela, é exibida a família de soluções $y(t) = t + 1 + ce^t$ para a equação diferencial $y'=y-t$. $y'$ é uma representação equivalente para $\frac{\mathrm{d}y(t)}{\mathrm{d}t}$. Qualquer valor de $c$ real que for escolhido representa uma solução possível para a equação, sendo exibidas as curvas para os valores de $c$ iguais à $0$, $-1$ e $0,4$.
 
 \begin{figure}[tb]
@@ -73,8 +73,9 @@ com o lado esquerdo da equação sendo a derivada de $y(t)$, a função presente
 \subsection{Exemplos}
 \subsubsection{Decaimento radioativo}
 Segundo a lei do decaimento radioativo, a taxa na qual os átomos radioativos desintegram é proporcional ao número total de átomos radioativos presente. Sendo $N(t)$ o número de átomos radioativos no tempo $t$, então $N'(t)$ é a taxa de mudança. A lei do decaimento radioativo é a que segue:
-
-$$N'(t) = -\lambda N(t)$$
+\begin{equation}\label{eq:decaimento_radioativo}
+	N'(t) = -\lambda N(t)
+\end{equation}
 onde $\lambda$ é a constante de decaimento. Uma solução para essa equação diferencial é exibida na Figura~\ref{fig:decaimento}.
 
 \begin{figure}[tb]
@@ -86,12 +87,11 @@ onde $\lambda$ é a constante de decaimento. Uma solução para essa equação d
 
 \subsubsection{Equações de Lotka-volterra}
 Também conhecidas como equações predador-presa, são um par de equações diferenciais de primeira ordem, frequentemente usadas para descrever a dinâmica de sistemas biológicos de interação entre duas espécies, uma como predadora e a outra como presa. As populações de cada uma das espécies são dadas pelo par de equações:
-
-$$
-x' = ax - bxy
-$$$$
-y' = dxy - cy
-$$
+\begin{equation}\label{eq:lotka_volterra}
+	x' = ax - bxy
+	$$$$
+	y' = dxy - cy
+\end{equation}
 sendo $x$ a população da presa, $y$ a do predador, $x',\ y'$ as taxas de variação de cada população, e $a,\ b,\ c,\ d$ os parâmetros que descrevem a interação entre as espécies. A Figura~\ref{fig:lotka-volterra} exibe a solução do par de equações para um valor de cada parâmetro de interação.
 
 \begin{figure}[tb]
