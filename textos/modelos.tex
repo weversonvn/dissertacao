@@ -1,6 +1,6 @@
 \chapter{Modelos de neurônio}\label{cap:modelos}
 \section{Introdução}\label{sec:modelos_intro}
-Os modelos são formas de representar, matemática e/ou computacionalmente, o comportamento do neurônio. Os modelos podem variar desde os mais simples, que não representam fielmente o comportamento fisiológico do neurônio mas são úteis para simular grandes quantidades de neurônios, até os mais complexos, que trazem diversas representações de condutância e morfológicas. Alguns modelos de neurônio são apresentados na Tabela~\ref{tab:modelos_neuronios}, incluindo o número de variáveis presentes no modelo, o que reflete o número de equações diferenciais presentes e, consequentemente, a complexidade do mesmo, bem como é informado se o modelo é considerado biologicamente plausível. Os 4~(quatro) primeiros modelos são detalhados neste texto, por hora diferenciados entre os que simulam o disparo do potencial de ação, chamados aqui de modelos de disparo de neurônio, e os que simulam a taxa de disparo.
+Os modelos são formas de representar, matemática e/ou computacionalmente, o comportamento do neurônio. Os modelos podem variar desde os mais simples, que não representam fielmente o comportamento fisiológico do neurônio mas são úteis para simular grandes quantidades de neurônios, até os mais complexos, que trazem diversas representações de condutância e morfológicas. Alguns modelos de neurônio são apresentados na Tabela~\ref{tab:modelos_neuronios}, incluindo o número de variáveis presentes no modelo, o que reflete o número de equações diferenciais presentes e, consequentemente, a complexidade do mesmo, bem como é informado se o modelo é considerado biologicamente plausível. Os 4~(quatro) primeiros modelos são detalhados neste texto, por hora diferenciados entre os que simulam o disparo do potencial de ação, chamados aqui de modelos de disparo de neurônio, e os que simulam a taxa de disparo. Há, ainda, distinção, por exemplo, entre modelos de compartimento único, que modelam o potencial de membrana apenas pela variável $V$, e os multi-compartimento, que consideram variações espaciais no potencial de membrana, porém estes últimos não são abordados neste texto.
 
 \begin{table}
 	\centering
@@ -29,53 +29,39 @@ Os modelos são formas de representar, matemática e/ou computacionalmente, o co
 
 \section{Modelos de disparo de neurônios}\label{sec:modelosdisparo}
 \subsection{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
-% fig. circuito equivalente membrana
-\cite{lapicque_recherches_1907}
 
-\begin{equation}
-c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_K-V_m)+G_L(E_L-V_m)
+Para modelos de neurônio de compartimento único, o circuito elétrico equivalente da membrana pode ser representado como na Figura~\ref{fig:circuitomembrana}.
+\begin{figure}[htb!]
+	\centering
+	\caption{Circuito equivalente da membrana}
+	\label{fig:circuitomembrana}
+	\includegraphics[width=0.7\linewidth]{figs/circuito_membrana}\\
+	\cite{lapicque_recherches_1907}
+\end{figure}
+O capacitor na esquerda está associado à capacitância da membrana ($C_m$), e cada resistor em série com uma bateria representa um canal iônico. A série com o $L$ subscrito refere-se ao elemento de vazamento, citado anteriormente, e as séries são referentes aos canais iônicos dependentes de tensão, com o íon subscrito. O circuito completo tem associada a seguinte equação:
+\begin{equation}\label{eq:potencial_membrana_total}
+	c_m\frac{\mathrm{d}V_m}{\mathrm{d}t}=G_{Na}(E_{Na}-V_m)+G_{Ca}(E_{Ca}-Vm)+G_K(E_K-V_m)+G_L(E_L-V_m)
 \end{equation}
-
-\begin{description}
-	\item[Circuito equivalente da membrana neuronal] A membrana do neurônio pode ser representada pelo circuito elétrico da Figura~\ref{fig:circuitomembrana}
-	
-	\begin{figure}[htb!]
-		\centering
-		\caption{Circuito equivalente da membrana}
-		\label{fig:circuitomembrana}
-		\includegraphics[width=0.7\linewidth]{figs/circuito_membrana}
-	\end{figure}
-	
-	tendo a seguinte equação associada:
-	$$
-	c_m\frac{dV_m}{dt} = G_{Na}(E_{Na}-V_m) + G_{Ca}(E_{Ca}-V_m) + G_K(E_K-V_m) + G_L(E_L-V_m)
-	$$
-	sendo $c_m$ a capacitância de membrana, $G_A$ a condutância do íon $A$, $E_A$ o potencial do íon $A$ e $V_m$ o potencial de membrana. Ignorando por hora os canais iônicos dependentes de tensão, o circuito fica equivalente à Figura~\ref{fig:circuitolif} e a equação fica:
-	$$
-	c_m\frac{dV_m}{dt} = G_L(E_L-V_m)
-	$$
-	
-	\begin{figure}[htb!]
-		\centering
-		\caption{Circuito equivalente do modelo LIF}
-		\label{fig:circuitolif}
-		\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
-	\end{figure}
-	
-	adicionando-se a corrente aplicada, incluímos também uma condição que força o disparo do potencial de ação quando o potencial de membrana atinge um determinado limitar ($V_{th}$), forçando o potencial de membrana para um valor de \textit{reset} ($V_{reset}$) \cite{miller_introductory_2018}
-	$$
+sendo $G_A$ a condutância do íon $A$, $E_A$ o potencial do íon $A$. Ignorando por hora os canais iônicos dependentes de tensão, a equação fica como a \ref{eq:potencial_membrana}. Adicionando-se a corrente aplicada, incluímos também uma condição que força o disparo do potencial de ação quando o potencial de membrana atinge um determinado limitar ($V_{th}$), forçando o potencial de membrana para um valor de \textit{reset} ($V_{reset}$) \cite{miller_introductory_2018}. Com isso, o circuito fica equivalente à Figura~\ref{fig:circuitolif} e a equação total é como abaixo.
+\begin{equation}\label{eq:lif}
 	c_m\frac{dV_m}{dt} = G_L(E_L-V_m)+I_{ap}; \text{ se } V_m > V_{th} \text{ então } V_m\mapsto V_{reset}
-	$$
-	
-	\begin{figure}[htb!]
-		\centering
-		\caption[Exemplo da simulação com o modelo LIF]{Exemplo da simulação com o modelo LIF. Cada coluna representa um valor diferente de corrente aplicada ao modelo, que são mostradas na primeira linha de gráficos. Na segunda linha são exibidos os potenciais de membrana para cada corrente injetada. Em baixo, os instantes em que ocorreu o disparo de potenciais de ação.}
-		\label{fig:lif}
-		\includegraphics[width=0.7\linewidth]{figs/lif}
-	\end{figure}
-	
-	%% incluir a solução analítica para enfatizar a presença da constante de tempo
-\end{description}
+\end{equation}
+\begin{figure}[htb!]
+	\centering
+	\caption{Circuito equivalente do modelo LIF}
+	\label{fig:circuitolif}
+	\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
+\end{figure}
+Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispara com vazamento, em tradução livre). A corrente aplicada no modelo é acumulada (integrada), elevando o potencial de membrana até o valor de limiar, representando o momento onde o neurônio dispara. Devido a simplicidade do modelo, a equação, por si só, não é capaz de representar a hiperpolarização que ocorre fisicamente na célula neuronal após o disparo do potencial de ação, e, por isso, é acrescentada a condição de \textit{reset}. Enquanto a corrente continuar sendo aplicada, o potencial de membrana permanece sendo atualizado pela dinâmica da equação diferencial, como é exibido na Figura~\ref{fig:lif}. Três pulsos de corrente, com valores $0,18\ nA$, $0,21\ nA$ e $0,24\ nA$, são aplicados no modelo. Para o primeiro valor, o neurônio despolariza (fica menos negativo), porém não atinge o valor de limiar (como visto na primeira curva da segunda linha de gráficos). Com a injeção dos demais valores de corrente, a célula neuronal atinge o valor de limiar ($50\ mV$ nestes exemplos), ocorrendo o disparo do potencial de ação (registrado como uma linha vertical na última linha de gráficos), e com a posterior alteração do potencial de membrana para o valor de \textit{reset} ($80\ mV$ nestes exemplos).
+
+\begin{figure}[htb!]
+	\centering
+	\caption[Exemplo da simulação com o modelo LIF]{Exemplo da simulação com o modelo LIF. Cada coluna representa um valor diferente de corrente aplicada ao modelo, que são mostradas na primeira linha de gráficos. Na segunda linha são exibidos os potenciais de membrana para cada corrente injetada. Em baixo, os instantes em que ocorreu o disparo de potenciais de ação.}
+	\label{fig:lif}
+	\includegraphics[width=0.7\linewidth]{figs/lif}
+\end{figure}
+
+%% incluir a solução analítica para enfatizar a presença da constante de tempo
 
 \subsection{Extenções do modelo LIF}
 
