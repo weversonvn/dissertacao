@@ -140,6 +140,59 @@ sendo $a$ o parâmetro de agrupamento, indicando o nível de relação entre o p
 \end{figure}
 
 \subsection{Modelo de Izhikevich}\label{sec:izhikevich}
+Em 2003, Eugene Izhikevich publicou um modelo capaz de simular vários comportamentos de neurônios corticais, combinando a plausabilidade biológica do modelo de Hodgkin-Huxley (que será visto na sequência) com a eficiência computacional do modelo LIF \cite{izhikevich_simple_2003}. Ele é composto por duas equações diferenciais, que são as seguintes:
+\begin{equation}\label{eq:izhikevich_v}
+	v'=0.04v^2+5v+140-u+I
+\end{equation}
+\begin{equation}\label{eq:izhikevich_u}
+	u'=a(bv-u)
+\end{equation}
+com as condições de \textit{reset}
+\begin{equation}\label{eq:izhikevich_condicao}
+	\text{se }v\geq30\ mV,\text{ então }\begin{cases}
+		v\leftarrow c\\
+		u\leftarrow u+d
+	\end{cases}
+\end{equation}
+com $v$ sendo o potencial de membrana, $u$ a variável de recuperação da membrana, e $I$ sendo a corrente injetada (a notação adotada aqui é a mesma usada por Izhikevich). Na Figura~\ref{fig:izhikevich} é exibido o potencial de membrana para um comportamento do tipo \textit{regular spiking} quando é injetada uma corrente de $10\ mA$.
+\begin{figure}[tb]
+	\centering
+	\caption[Potencial de membrana no modelo de Izhikevich]{Potencial de membrana no modelo de Izhikevich}
+	\label{fig:izhikevich}
+	\includegraphics[width=0.7\linewidth]{figs/izhikevich}
+\end{figure}
+Os parâmetros \textit{a}, \textit{b}, \textit{c} e \textit{d} são definidos como segue:
+\begin{itemize}
+	\item O parâmetro \textit{a} representa a escala de tempo da variável de recuperação, onde valores pequenos resultam em uma recuperação mais lenta
+	\item O parâmetro \textit{b} representa a sensibilidade da variável de recuperação às subflutuações do potencial de membrana, onde valores maiores agrupam mais $v$ e $u$
+	\item O parâmetro \textit{c} representa o valor de \textit{reset} do potencial de membrana após o disparo do potencial de ação
+	\item O parâmetro \textit{d} representa o valor de \textit{reset} da variável de recuperação após o disparo do potencial de ação
+\end{itemize}
+A combinação de determinados valores para os parâmetros acima produz saídas compatíveis com alguns dos comportamentos citados anteriormente, conforme listado na Tabela~\ref{tab:padroes_izhikevich}.
+\begin{table}
+	\centering
+	\caption[Padrões de neurônio do modelo de Izhikevich]{Padrões de neurônio do modelo de Izhikevich}
+	\label{tab:padroes_izhikevich}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Padrão & a & b & c & d \\
+		\hline
+		\textit{regular spiking} & 0,02 & 0,2 & -65 & 8 \\
+		\hline
+		\textit{intrinsically bursting} & 0,02 & 0,2 & -55 & 4 \\
+		\hline
+		\textit{chattering} & 0,02 & 0,2 & -50 & 2 \\
+		\hline
+		\textit{fast spiking} & 0,1 & 0,2 & -65 & 2 \\
+		\hline
+		\textit{thalamo-cortical} & 0,02 & 0,25 & -65 & 0,05 \\
+		\hline
+		\textit{resonator} & 0,1 & 0,25 & -65 & 2 \\
+		\hline
+		\textit{low-threshold spiking} & 0,02 & 0,25 & -65 & 2 \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \subsection{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
 \subsubsection{Canais iônicos}
