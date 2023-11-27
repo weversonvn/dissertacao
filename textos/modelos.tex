@@ -63,50 +63,35 @@ Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispa
 
 %% incluir a solução analítica para enfatizar a presença da constante de tempo
 
-\subsection{Extenções do modelo LIF}
-
+\subsection{Extensões do modelo LIF}
+Apesar de útil e ser utilizado em inúmeras simulações neuronais, o modelo LIF é carente de diversos comportamentos presentes fisiologicamente no neurônio. Algumas delas são apresentadas aqui como extensões ao modelo, a fim de acrescentar algumas características que podem ser úteis nas simulações. As extensões apresentadas simulam a refratariedade e a adaptação da taxa de disparo, além de versões do modelo LIF com componentes exponenciais e adaptativas, como mostradas na sequência.
 \subsubsection{Período refratário}
-Imediatamente após a ocorrência do potencial de ação, o neurônio não é capaz de produzir um novo potencial de ação durante um curto período de tempo, e esse tempo é chamado de período refratário. Existem diferentes maneiras de simular o período refratário nos modelos neuronais, e aqui mostramos três acrescentadas ao modelo LIF
-
-\begin{description}
-	\item[Grampeamento de tensão] Trata-se de fixar o valor do potencial de membrana no valor de reset durante um tempo específico logo após o potencial de ação
-	
-	\item[Condutância refratária] Este método acrescenta uma condutância elevada, que gera uma corrente de potássio hiperpolarizante, cresce imediatamente após cada potencial de ação, e decai seguindo a seguinte equação diferencial:
-	
-	$
+Imediatamente após a ocorrência do potencial de ação, o neurônio não é capaz de produzir um novo potencial de ação durante um curto período de tempo, e esse tempo é chamado de período refratário. Existem diferentes métodos para simular esse comportamento nos modelos neuronais, e aqui mostramos três, acrescentadas ao modelo LIF, com os seus comportamentos exibidos na Figura~\ref{fig:lifrefratario}.
+\begin{figure}[tb]
+	\centering
+	\caption{Simulação do modelo LIF com período refratário}
+	\label{fig:lifrefratario}
+	\includegraphics[width=0.7\linewidth]{figs/lif_refratario}
+\end{figure}
+Em todos os métodos são simuladas a injeção de corrente de $240\ pA$ (primeira coluna de gráficos) e $400\ pA$ (segunda coluna), e a linha tracejada representa o limiar para disparo do potencial de ação. O primeiro método é chamado de \textbf{grampeamento de tensão},que consiste em fixar o potencial de membrana no valor de \textit{reset} durante um tempo específico logo após o potencial de ação. É, provavelmente, a maneira mais simples de simular a refratariedade, pois neste método o período refratário é constante. O segundo método é o da \textbf{condutância refratária}, consistindo no acréscimo de uma condutância elevada, geralmente uma corrente hiperpolarizante de potássio, que cresce imediatamente após a ocorrência de cada potencial de ação, e decai em seguida de acordo com a seguinte equação diferencial:
+\begin{equation}\label{eq:condutancia_refrataria}
 	\frac{dG_{ref}(t)}{dt} = -\frac{G_{ref}(t)}{\tau_{ref}};\text{ depois do potencial de ação } G_{ref} \mapsto G_{ref} + \Delta G
-	$
-	
-	sendo $\tau_{ref}$ a constante de tempo do período refratário e $\Delta G$ o incremento de condutância. A corrente de potássio é representada acrescentando-se à parte direita da equação do modelo LIF o termo $G_{ref}(t)[E_k-V_m(t)]$, com $E_k$ sendo o potencial de Nernst para íons de potássio
-	
-	\item[Incremento do limiar] Este método eleva, após cada potencial de ação, o limiar necessário para produzir um novo potencial de ação, e esse limiar decai seguindo a seguinte equação diferencial:
-	
-	$
+\end{equation}
+sendo $\tau_{ref}$ a constante de tempo do período refratário e $\Delta G$ o incremento de condutância. Como visto na segunda linha de gráficos, o potencial de membrana cresce em um ritmo mais lento que o normal, devido à corrente de potássio que hiperpolariza a célula. Essa corrente é representada acrescentando-se à parte direita da equação do modelo LIF o termo $G_{ref}(t)[E_k-V_m(t)]$, com $E_k$ sendo o potencial de reversão para os íons de potássio (como na Tabela~\ref{tab:concentracao_nernst}). O último método é chamado de \textbf{incremento do limiar}, onde é elevado, após cada potencial de ação, o limiar necessário para ocorrer um novo disparo. Esse limiar decai conforme a equação:
+\begin{equation}\label{eq:incremento_limiar}
 	\frac{dV_{th}(t)}{dt} = \frac{V^0_{th}-V_{th}(t)}{\tau_{ref}};\text{ depois do potencial de ação } V_{th} \mapsto V_{th} + \Delta V
-	$
-	
-	sendo $V^0_{th}$ o potencial de limiar de referência
-	
-	\begin{figure}[htb!]
-		\centering
-		\caption{Simulação do modelo LIF com período refratário}
-		\label{fig:lifrefratario}
-		\includegraphics[width=0.7\linewidth]{figs/lif_refratario}
-	\end{figure}
-	
-\end{description}
+\end{equation}
+sendo $V^0_{th}$ o potencial de limiar de referência (o valor do limiar em repouso). Como visto na última linha de gráficos, o limiar (linha tracejada) cresce absurdamente após cada disparo de potencial de ação, decaindo logo em seguida, ao contrário do potencial de membrana, que decai e cresce em seguida. 
 
-\subsubsection{Adaptação da taxa de disparo}
+\subsubsection{Adaptação da taxa de disparos}
+Uma característica presente nos neurônios é a sua capacidade de adaptar a frequência em que os disparos de potencial de ação ocorrem, com uma diminuição da taxa logo após o primeiro disparo. Uma fácil percepção da consequência da adaptação da taxa de disparo é a diferença de percepção de cheiros intensos ao longo do tempo, como quando uma pessoa entra com um perfume forte em um elevador. A implementação da adaptação da taxa de disparos é feita de maneira semelhante ao método da condutância refratária apresentada anteriormente, porém com duas diferenças:
 \begin{itemize}
-	\item Uma diminuição da taxa de disparos de potenciais de ação logo após o primeiro disparo
-	\item É implementada de maneira semelhante ao método da condutância refratária para o período refratário, porém com duas diferenças:
-	\begin{itemize}
-		\item O incremento da condutância é menor em comparação ao do período refratário. Esse incremento menor não impede o disparo de novos potenciais, como no período refratário, porém diminui a taxa deles
-		\item A escala de tempo (a constante) da condutância adaptativa é bem maior, o que permite o acúmulo das condutâncias ao longo da sequência de disparos
-	\end{itemize}
+	\item O incremento da condutância é menor em comparação ao do período refratário. Esse incremento menor não impede o disparo de novos potenciais (o que acontece no período refratário), porém diminui a taxa deles
+	\item A escala de tempo (a constante) da condutância adaptativa é bem maior, o que permite o acúmulo das condutâncias ao longo da sequência de disparos
 \end{itemize}
+A dinâmica da adaptação da taxa de disparos é exibida na Figura~\ref{fig:lifatd}. Como no exemplo do período refratário, correntes de $240\ pA$ e $400\ pA$ são injetadas, sendo exibidas as curvas de potencial de membrana (em cima), e da condutância adaptativa (embaixo), onde se pode observar incremento e acúmulo de condutância.
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
 	\caption{Adaptação da taxa de disparo no neurônio LIF}
 	\label{fig:lifatd}
@@ -114,49 +99,45 @@ Imediatamente após a ocorrência do potencial de ação, o neurônio não é ca
 \end{figure}
 
 \subsubsection{Modelo LIF exponencial}
-\begin{itemize}
-	\item Incorpora um termo adicional para a geração do potencial de ação
-	\item Não há exatamente um valor fixo para o disparo do potencial, e sim um intervalo ($\Delta_{th}$)
-	\item O termo exponencial acrescenta uma corrente despolarizante, elevando quase que instantaneamente o valor do potencial de membrana quando este se aproxima do limiar
-	\item O crescimento tende ao infinito, porém nas simulações é definido um limite ($V_{max}$) devido o computador ter problemas para lidar com valores infinitos
-\end{itemize}
-$$
-c_m\frac{dV_m}{dt} = G_L(E_L-V_m) + G_L\Delta_{th}\exp\Big(\frac{V_m-V_{th}}{\Delta_{th}}\Big) + I_{ap}
-$$$$
-\text{se } V_m > V_{max} \text{ então } V_m\mapsto V_{reset}
-$$
+O modelo LIF exponencial (ELIF) incorpora um termo adicional para a geração do potencial de ação, que é uma falta existente no modelo tradicional. Esse termo acrescenta uma corrente despolarizante, elevando quase que instantaneamente o valor do potencial de membrana quando este se aproxima do limiar. Esse crescimento tende ao infinito, porém nas simulações é definido um limite ($V_{max}$), devido o computador ter problemas para lidar com valores infinitos, alterando a condição do modelo para a equação abaixo:
+\begin{equation}\label{eq:elif_cond}
+	\text{se } V_m > V_{max} \text{ então } V_m\mapsto V_{reset}
+\end{equation}
+Além disso, não há exatamente um valor fixo para o disparo do potencial, e sim um intervalo ($\Delta_{th}$), e a equação completa deste modelo fica:
+\begin{equation}\label{eq:elif}
+	c_m\frac{dV_m}{dt} = G_L(E_L-V_m) + G_L\Delta_{th}\exp\Big(\frac{V_m-V_{th}}{\Delta_{th}}\Big) + I_{ap}
+\end{equation}
+Os gráficos comparando o potencial de membrana do modelo LIF (em cima) e ELIF (embaixo) são mostrados na Figura~\ref{fig:elif}. Uma característica interessante é a inflexão presente no modelo ELIF quando o potencial de membrana se aproxima do instante em que ocorre o disparo do potencial de ação, algo inexistente no modelo LIF.
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
 	\caption{Comparação dos modelos LIF e ELIF}
 	\label{fig:elif}
 	\includegraphics[width=0.7\linewidth]{figs/elif}
 \end{figure}
 
-
 \subsubsection{Modelo LIF exponencial adaptativo}
-\begin{itemize}
-	\item Adiciona uma corrente adaptativa hiperpolarizante, que depende do potencial de membrana
-	\item É um modelo com duas equações. A primeira contém a dinâmica do potencial de membrana (semelhante ao modelo anterior), e a segunda é referente à adaptação ($w$)
-	\item Ambas são resetadas quando ocorre um potencial de ação
-	\item É capaz de descrever padrões de disparo comuns (\textit{bursting, fast spiking, regular spiking,} etc)
-\end{itemize}
-$$
-c_m\frac{dV_m}{dt} = G_L(E_L-V_m) + G_L\Delta_{th}\exp\Big(\frac{V_m-V_{th}}{\Delta_{th}}\Big) - w + I_{ap}
-$$$$
-\tau_w\frac{dw}{dt}=a(V_m-E_L)-w
-$$$$
-\text{se } V_m > V_{max} \text{ então } V_m\mapsto V_{reset} \text{ e } w\mapsto w + b
-$$
-sendo $a$ o parâmetro de agrupamento e $b$ o de adaptação.
+O modelo LIF exponencial adaptativo (AELIF) adiciona uma corrente adaptativa hiperpolarizante ao modelo anterior, similar à utilizada no método da condutância refratária, porém com o decaimento dependendo do potencial de membrana. É um modelo com duas equações, sendo uma para a variável de adaptação ($w$) e a outra para o potencial de membrana, que é semelhante à do modelo anterior, e ambas tem um \textit{reset} quando ocorre o disparo do potencial de ação.
+% Esse modelo é capaz de descrever padrões de disparo comuns, como \textit{bursting, fast spiking, regular spiking}, dentre outros.
+As equação para este modelo são:
+\begin{equation}
+	c_m\frac{dV_m}{dt} = G_L(E_L-V_m) + G_L\Delta_{th}\exp\Big(\frac{V_m-V_{th}}{\Delta_{th}}\Big) - w + I_{ap}
+\end{equation}
+\begin{equation}
+	\tau_w\frac{dw}{dt}=a(V_m-E_L)-w
+\end{equation}
+com as condições:
+\begin{equation}
+	\text{se } V_m > V_{max} \text{ então } V_m\mapsto V_{reset} \text{ e } w\mapsto w + b
+\end{equation}
+sendo $a$ o parâmetro de agrupamento, indicando o nível de relação entre o potencial de membrana e a variável de adaptação, e $b$ o parâmetro de adaptação, que é o valor do incremento de corrente após o disparo do potencial de ação. A dinâmica do modelo ELIF é mostrada na Figura~\ref{fig:elif}, com o potencial de membrana exibido em cima e a variável de adaptação embaixo. É possível notar a semelhança da curva de adaptação com a da condutância adaptativa da adaptação da taxa de disparo, também semelhante ao método da condutância refratária.
 
-\begin{figure}[h!]
+\begin{figure}[tb]
 	\centering
-	\caption[Resposta do modelo AELIF]{Resposta do modelo AELIF para um pulso de corrente de 1 $nA$. Em cima, o potencial de membrana. Embaixo, a variável de adaptação}
+	\caption[Resposta do modelo AELIF]{Resposta do modelo AELIF para um pulso de corrente de 1 $nA$}
 	\label{fig:adexrs}
 	\includegraphics[width=0.7\linewidth]{figs/aelif}\\
 \end{figure}
-
 
 \subsection{Modelo de Izhikevich}\label{sec:izhikevich}
 
