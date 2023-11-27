@@ -36,7 +36,6 @@ Para modelos de neurônio de compartimento único, o circuito elétrico equivale
 	\caption{Circuito equivalente da membrana}
 	\label{fig:circuitomembrana}
 	\includegraphics[width=0.7\linewidth]{figs/circuito_membrana}\\
-	\cite{lapicque_recherches_1907}
 \end{figure}
 O capacitor na esquerda está associado à capacitância da membrana ($C_m$), e cada resistor em série com uma bateria representa um canal iônico. A série com o $L$ subscrito refere-se ao elemento de vazamento, citado anteriormente, e as séries são referentes aos canais iônicos dependentes de tensão, com o íon subscrito. O circuito completo tem associada a seguinte equação:
 \begin{equation}\label{eq:potencial_membrana_total}
@@ -52,7 +51,7 @@ sendo $G_A$ a condutância do íon $A$, $E_A$ o potencial do íon $A$. Ignorando
 	\label{fig:circuitolif}
 	\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
 \end{figure}
-Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispara com vazamento, em tradução livre). A corrente aplicada no modelo é acumulada (integrada), elevando o potencial de membrana até o valor de limiar, representando o momento onde o neurônio dispara. Devido a simplicidade do modelo, a equação, por si só, não é capaz de representar a hiperpolarização que ocorre fisicamente na célula neuronal após o disparo do potencial de ação, e, por isso, é acrescentada a condição de \textit{reset}. Enquanto a corrente continuar sendo aplicada, o potencial de membrana permanece sendo atualizado pela dinâmica da equação diferencial, como é exibido na Figura~\ref{fig:lif}. Três pulsos de corrente, com valores $0,18\ nA$, $0,21\ nA$ e $0,24\ nA$, são aplicados no modelo. Para o primeiro valor, o neurônio despolariza (fica menos negativo), porém não atinge o valor de limiar (como visto na primeira curva da segunda linha de gráficos). Com a injeção dos demais valores de corrente, a célula neuronal atinge o valor de limiar ($50\ mV$ nestes exemplos), ocorrendo o disparo do potencial de ação (registrado como uma linha vertical na última linha de gráficos), e com a posterior alteração do potencial de membrana para o valor de \textit{reset} ($80\ mV$ nestes exemplos).
+Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispara com vazamento, em tradução livre) \cite{lapicque_recherches_1907}. A corrente aplicada no modelo é acumulada (integrada), elevando o potencial de membrana até o valor de limiar, representando o momento onde o neurônio dispara. Devido a simplicidade do modelo, a equação, por si só, não é capaz de representar a hiperpolarização que ocorre fisicamente na célula neuronal após o disparo do potencial de ação, e, por isso, é acrescentada a condição de \textit{reset}. Enquanto a corrente continuar sendo aplicada, o potencial de membrana permanece sendo atualizado pela dinâmica da equação diferencial, como é exibido na Figura~\ref{fig:lif}. Três pulsos de corrente, com valores $0,18\ nA$, $0,21\ nA$ e $0,24\ nA$, são aplicados no modelo. Para o primeiro valor, o neurônio despolariza (fica menos negativo), porém não atinge o valor de limiar (como visto na primeira curva da segunda linha de gráficos). Com a injeção dos demais valores de corrente, a célula neuronal atinge o valor de limiar ($50\ mV$ nestes exemplos), ocorrendo o disparo do potencial de ação (registrado como uma linha vertical na última linha de gráficos), e com a posterior alteração do potencial de membrana para o valor de \textit{reset} ($80\ mV$ nestes exemplos).
 
 \begin{figure}[htb!]
 	\centering
@@ -195,15 +194,10 @@ A combinação de determinados valores para os parâmetros acima produz saídas 
 \end{table}
 
 \subsection{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
-\subsubsection{Canais iônicos}
+O último dos modelos de disparo de neurônio visto neste texto é o de Hodgkin-Huxley.
+%TODO: citação
+Como visto na Seção~\ref{sec:fisiologia}, existem canais iônicos que são dependente de tensão. A probabilidade de abertura desses canais é modificada em função do potencial de membrana. O mecanismo de funcionamento deles é como mostrado na Figura~\ref{fig:canais}. À esquerda, é possível ver os elementos que compõem esse tipo de canal: um sensor, que identifica o potencial de membrana; um filtro de seletividade, que seleciona apenas íons compatíveis com aquele canal; e os portões, que permitem ou não a passagem dos íons. Há dois tipos de portões, que estão relacionados aos processos de \textbf{ativação} e \textbf{inativação}. O primeiro refere-se à abertura de um canal iônico, geralmente devido à despolarização, que aumenta a probabilidade de um canal estar aberto. O seu oposto é a \textbf{desativação}, que fecha o canal, geralmente por hiperpolarização. A inativação é o processo que impede a abertura dos canais, tendo como oposto, necessário para que o canal se abra, chamado de \textbf{desinativação}.
 \cite{miller_introductory_2018}
-\begin{description}
-	\item[Canal iônico dependentes de tensão] A probabilidade de abertura do canal é modificada em função do potencial de membrana
-	\item[Ativação] O processo de abertura de um canal iônico, geralmente devido à despolarização. O seu oposto é a \textbf{desativação}. A despolarização aumenta a probabilidade de um canal estar aberto
-	\item[Inativação] O processo que impede a abertura dos canais. O seu oposto, necessário para que o canal se abra, é a \textbf{desinativação}
-	\item[Variável de portão] Uma variável com valores entre 0 e 1, representando a fração de canais iônicos em um determinado estado (ativado/desativado, inativado/desinativado)
-\end{description}
-
 \begin{figure}[htb!]
 	\centering
 	\caption{Mecanismo de funcionamento dos canais iônicos dependentes de tensão}
@@ -211,70 +205,71 @@ A combinação de determinados valores para os parâmetros acima produz saídas 
 	\includegraphics[width=0.6\linewidth]{figs/canais}\\
 	\small{Fonte: \cite{dayan_theoretical_2001}}
 \end{figure}
-
-
-%%% nome de alguma outra sub-seção
-No modelo de Hodgkin-Huxley o potencial de membrana é dado pela equação abaixo:
-$$
-C_m\frac{dV_m}{dt}=G_L(E_L-V_m)+G_{Na}^{(max)}m^3h(E_{Na}-V_m)+G_K^{(max)}n^4(E_K-V_m)+I_{ap}
-$$
-que é semelhante à equação do modelo LIF, porém com dois elementos a mais, um para a condutância dependente de tensão de sódio e outra para a de potássio. Essas elementos incluem as variáveis de portão: \textbf{m} para ativação de sódio, \textbf{h} para inativação de sódio, e \textbf{n} para ativação de potássio. Cada variável segue sua própria dinâmica, definidas nas equações diferenciais abaixo:
-$$
-\frac{dm}{dt}=\alpha_m(1-m)-\beta_mm
-$$$$
-\frac{dh}{dt}=\alpha_h(1-h)-\beta_hh
-$$$$
-\frac{dn}{dt}=\alpha_n(1-n)-\beta_nn
-$$
-sendo $\alpha$ a constante de crescimento de cada variável, e $\beta$ a constante de decrescimento, ambas também dependentes de tensão, conforme as equações abaixo:
-$$
-\alpha_m=\frac{10^5(-V_m-0.045)}{\exp[100(-V_m-0.045)]-1}
-\qquad
-\beta_m=4*10^5\exp\Big[\frac{(-V_m-0.070)}{0.018}\Big]
-$$$$
-\alpha_h=70\exp[50(-V_m-0.070)]
-\qquad
-\beta_h=\frac{10^3}{1+\exp[100(-V_m-0.040)]}
-$$$$
-\alpha_n=\frac{10^4(-V_m-0.060)}{\exp[100(-V_m-0.060)]-1}
-\qquad
-\beta_n=125\exp\Big[\frac{(-V_m-0.070)}{0.08}\Big]
-$$
-As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente} (o comportamento em repouso depois de um longo período de tempo): \cite{ermentrout_mathematical_2010}
-$$
-m_\infty=\frac{\alpha_m}{\alpha_m+\beta_m}
-\qquad
-h_\infty=\frac{\alpha_h}{\alpha_h+\beta_h}
-\qquad
-n_\infty=\frac{\alpha_n}{\alpha_n+\beta_n}
-$$
-com as respectivas constantes de tempo:
-$$
-\tau_m=\frac{1}{\alpha_m+\beta_m}
-\qquad
-\tau_h=\frac{1}{\alpha_h+\beta_h}
-\qquad
-\tau_n=\frac{1}{\alpha_n+\beta_n}
-$$
-O modelo também assume algumas constantes além das usadas em outros modelos:
-\begin{description}
-	\item[Condutância máxima de sódio ($G_{Na}^{(max)}$)] $12\mu S$
-	\item[Condutância máxima de potássio ($G_K^{(max)}$)] $3,6\mu S$
-	\item[Potencial de reversão do sódio ($E_{Na}$)] $45mV$
-	\item[Potencial de reversão do potássio ($E_K$)] $-82mV$
-\end{description}
-
-\begin{figure}[h!]
-	\centering
-	\caption{Potencial de membrana gerado pelo modelo de Hodgkin-Huxley}
-	\label{fig:hhvm}
-	\includegraphics[width=0.7\linewidth]{figs/hh_vm}
-\end{figure}
-
-\begin{figure}[htb!]
+Associado aos canais iônicos dependentes de tensão, existe a chamada \textbf{variável de portão}, que representa a fração desses canais que se encontra em um determinado estado (ativado/desativado, inativado/desinativado). Como se trata da probabilidade do canal estar em um desses estados, seus valores são entre $0$ e $1$. No modelo, são consideradas as variáveis \textbf{m} para ativação de sódio, \textbf{h} para inativação de sódio, e \textbf{n} para ativação de potássio, com as equações a seguir:
+\begin{equation}\label{eq:dmdt}
+	\frac{dm}{dt}=\alpha_m(1-m)-\beta_mm
+\end{equation}
+\begin{equation}\label{eq:dhdt}
+	\frac{dh}{dt}=\alpha_h(1-h)-\beta_hh
+\end{equation}
+\begin{equation}\label{eq:dndt}
+	\frac{dn}{dt}=\alpha_n(1-n)-\beta_nn
+\end{equation}
+sendo $\alpha$ a constante de crescimento de cada variável, e $\beta$ a de decrescimento, ambas também dependentes de tensão, conforme as equações abaixo:
+\begin{equation}\label{eq:alpha_m}
+	\alpha_m=\frac{10^5(-V_m-0.045)}{\exp[100(-V_m-0.045)]-1}
+\end{equation}
+\begin{equation}\label{eq:beta_m}
+	\beta_m=4*10^5\exp\Big[\frac{(-V_m-0.070)}{0.018}\Big]
+\end{equation}
+\begin{equation}\label{eq:alpha_h}
+	\alpha_h=70\exp[50(-V_m-0.070)]
+\end{equation}
+\begin{equation}\label{eq:beta_h}
+	\beta_h=\frac{10^3}{1+\exp[100(-V_m-0.040)]}
+\end{equation}
+\begin{equation}\label{eq:alpha_n}
+	\alpha_n=\frac{10^4(-V_m-0.060)}{\exp[100(-V_m-0.060)]-1}
+\end{equation}
+\begin{equation}\label{eq:beta_n}
+	\beta_n=125\exp\Big[\frac{(-V_m-0.070)}{0.08}\Big]
+\end{equation}
+\begin{figure}[tb]
 	\centering
 	\caption{Dinâmica das variáveis de portão}
 	\label{fig:portoes}
 	\includegraphics[width=0.7\linewidth]{figs/portoes}
+\end{figure}
+A dinâmica das variáveis de portão no modelo de Hodgkin-Huxley pode ser vista na Figura~\ref{fig:portoes}, para uma faixa de 66 até $76\ ms$. As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente}, que é o comportamento em repouso depois de um longo período de tempo \cite{ermentrout_mathematical_2010}, como descritas nas equações abaixo (o símbolo de $\infty$ representa o valor em regime permanente):
+\begin{equation}\label{eq:m_inf}
+	m_\infty=\frac{\alpha_m}{\alpha_m+\beta_m}
+\end{equation}
+\begin{equation}\label{eq:h_inf}
+	h_\infty=\frac{\alpha_h}{\alpha_h+\beta_h}
+\end{equation}
+\begin{equation}\label{eq:n_inf}
+	n_\infty=\frac{\alpha_n}{\alpha_n+\beta_n}
+\end{equation}
+com as respectivas constantes de tempo:
+\begin{equation}\label{eq:tau_m}
+	\tau_m=\frac{1}{\alpha_m+\beta_m}
+\end{equation}
+\begin{equation}\label{eq:tau_n}
+	\tau_h=\frac{1}{\alpha_h+\beta_h}
+\end{equation}
+\begin{equation}\label{eq:tau_h}
+	\tau_n=\frac{1}{\alpha_n+\beta_n}
+\end{equation}
+Finalmente, o potencial de membrana é dado pela equação abaixo:
+\begin{equation}\label{eq:hodgkin_huxley}
+	C_m\frac{dV_m}{dt}=G_L(E_L-V_m)+G_{Na}^{(max)}m^3h(E_{Na}-V_m)+G_K^{(max)}n^4(E_K-V_m)+I_{ap}
+\end{equation}
+que é semelhante à equação do modelo LIF, porém com dois elementos a mais, um para a condutância dependente de tensão de sódio e outra para a de potássio, que incluem as variáveis de portão. O modelo também assume algumas constantes além das usadas em outros modelos, que são a condutância máxima de sódio ($G_{Na}^{(max)}$), a condutância máxima de potássio ($G_K^{(max)}$), o potencial de reversão do sódio ($E_{Na}$) e o potencial de reversão do potássio ($E_K$). A dinâmica do potencial de membrana desse modelo para o mesmo intervalo de tempo é mostrada na Figura~\ref{fig:hhvm}.
+
+\begin{figure}[tb]
+	\centering
+	\caption{Potencial de membrana gerado pelo modelo de Hodgkin-Huxley}
+	\label{fig:hhvm}
+	\includegraphics[width=0.7\linewidth]{figs/hh_vm}
 \end{figure}
 \section{Modelos de taxa de disparo}\label{sec:modelostaxa}
