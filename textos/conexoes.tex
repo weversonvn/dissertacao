@@ -1,20 +1,10 @@
 \chapter{Conexões entre neurônios}\label{cap:conexoes}
 \section{Introdução}\label{sec:conexoes_intro}
-
+Uma vez visto o comportamento de um neurônio individualmente, este Capítulo traz informações sobre como se dá a conexão entre neurônios.
+%TODO: melhorar
 \section{Sinapses}\label{sec:sinapses}
-\begin{description}
-	\item[Sinapse] Uma conexão entre duas células neuronais. Podem ser de dois tipos:
-	\begin{description}
-		\item[Sinapses elétricas] se dão a partir de uma junção entre as duas células, por onde íons podem passar, produzindo uma corrente sináptica proporcional à diferença entre os potenciais de membrana das duas células
-		\item[Sinapses químicas] são conectadas através de um espaço entre as células, e a interação entre elas se dá pela liberação de neurotransmissores. Podem ser excitatórias, causando despolarização da célula pós-sináptica, ou inibitórias, causando hiperpolarização
-	\end{description}
-	\item[Neurotransmissor] Um elemento químico que se propaga no espaço entre dois neurônios, fazendo a comunicação entre eles. Os mais comuns associados aos neurônios corticais são o \textbf{glutamato}, que excita a célula pós-sináptica, e o \textbf{ácido $\gamma$-aminobutírico (GABA)}, que a inibe
-	\item[Neurônio pré-sináptico] O neurônio que libera o neurotransmissor durante a sinapse após o potencial de ação
-	\item[Neurônio pós-sináptico] O neurônio que responde à liberação do neurotransmissor após o potencial de ação do neurônio pré-sináptico
-	\item[Vesículas] Compartimentos ao redor da membrana neuronal por onde os neurotransmissores são transportados
-\end{description}
-
-\begin{figure}[htb!]
+A sinapse é uma conexão entre dois neurônios. Elas podem ser elétricas, que se dão a partir de uma junção entre as duas células, por onde íons podem passar, produzindo uma corrente sináptica proporcional à diferença entre os potenciais de membrana das duas células, ou químicas, que são conectadas através de um espaço entre as células, e a interação entre elas se dá pela liberação de neurotransmissores, que é um elemento químico que se propaga nesse espaço, fazendo a comunicação entre eles. As sinapses químicas podem ser excitatórias, causando despolarização da célula pós-sináptica, ou inibitórias, causando hiperpolarização. Os neurotransmissores mais comuns associados aos neurônios corticais são o \textbf{glutamato}, que excita a célula pós-sináptica, e o \textbf{ácido $\gamma$-aminobutírico (GABA)}, que a inibe. O esquema de uma sinapse química é mostrado na Figura~\ref{fig:sinapses}, onde pode-se observar também o neurônio pré-sináptico, que é aquele que libera o neurotransmissor após o potencial de ação, e o pós-sináptico, que é o que responde à liberação do neurotransmissor após o potencial de ação do neurônio pré-sináptico. Os neurotransmissores são transportados por compartimentos ao redor da membrana neuronal chamados de vesículas.
+\begin{figure}[tb]
 	\centering
 	\caption{Esquema simplificado de uma sinapse química}
 	\label{fig:sinapses}
@@ -22,25 +12,23 @@
 	\small{Fonte: \cite{miller_introductory_2018}}
 \end{figure}
 
-
-\subsection{Modelagem da transmissão sináptica}
-\cite{dayan_theoretical_2001}
-O modelo usado é:
-$$
-\frac{dG_{sin}(t)}{dt}=\frac{-G_{sin}(t)}{\tau_{sin}}
-$$
+A transmissão sináptica é modelada usando a equação abaixo \cite{dayan_theoretical_2001}:
+\begin{equation}\label{eq:sinapse}
+	\frac{dG_{sin}(t)}{dt}=\frac{-G_{sin}(t)}{\tau_{sin}}
+\end{equation}
 sendo $G_{sin}(t)$ a condutância sináptica e $\tau_{sin}$ a constante de tempo específica para o tipo de sinapse. Além disso, se houver disparo da célula pré-sináptica, ocorre o seguinte mapeamento:
-$$
-G_{sin}(t)\mapsto G_{sin}(t)+\Delta G
-$$
-onde $\Delta G$ é o incremento de condutância. Um modelo mais elaborado considera o crescimento e decaimento de condutância usando a equação abaixo:
-$$
-\Delta G_{sin}(t)=\frac{\Delta G}{K}e^{-(t-t_{disparo})/\tau_{decai}}\Big[1-e^{-(t-t_{disparo})/\tau_{cresce}}\Big]
-$$
-com $\tau_{cresce}$ a constante de crescimento, $\tau_{decai}$ a constante de decaimento ($\tau_{decai}>\tau_{cresce}$), $t_{disparo}$ o instante do disparo da célula pré-sináptica, e $K$ um fator para garantir que a condutância tenha um valor máximo igual a $\Delta G$, dada por:
-$$
-K=\Bigg(\frac{\tau_{decai}}{\tau_{cresce}+\tau_{decai}}\Bigg)\Bigg(\frac{\tau_{cresce}}{\tau_{cresce}+\tau_{decai}}\Bigg)^{\tau_{cresce}/\tau_{decai}}
-$$
+\begin{equation}\label{eq:sinapse_mapeamento}
+	G_{sin}(t)\mapsto G_{sin}(t)+\Delta G
+\end{equation}
+onde $\Delta G$ é o incremento de condutância. Um modelo mais elaborado considera o crescimento e decaimento de condutância usando a equação abaixo \cite{miller_introductory_2018}:
+\begin{equation}\label{eq:sinapse_delta}
+	\Delta G_{sin}(t)=\frac{\Delta G}{K}e^{-(t-t_{disparo})/\tau_{decai}}\Big[1-e^{-(t-t_{disparo})/\tau_{cresce}}\Big]
+\end{equation}
+com $\tau_{cresce}$ a constante de crescimento, $\tau_{decai}$ a de decaimento ($\tau_{decai}>\tau_{cresce}$), $t_{disparo}$ o instante do disparo da célula pré-sináptica, e $K$ um fator para garantir que a condutância tenha um valor máximo igual a $\Delta G$, calculado por:
+\begin{equation}\label{eq:sinapse_k}
+	K=\Bigg(\frac{\tau_{decai}}{\tau_{cresce}+\tau_{decai}}\Bigg)\Bigg(\frac{\tau_{cresce}}{\tau_{cresce}+\tau_{decai}}\Bigg)^{\tau_{cresce}/\tau_{decai}}
+\end{equation}
+A dinâmica da condutância sináptica é mostrada na Figura~\ref{fig:respostasinaptica}.
 
 \begin{figure}[htb!]
 	\centering
@@ -48,7 +36,6 @@ $$
 	\label{fig:respostasinaptica}
 	\includegraphics[width=0.8\linewidth]{figs/resposta_sinaptica}
 \end{figure}
-
 
 \section{Sinapses dinâmicas}\label{sec:dinamicas}
 \begin{description}
