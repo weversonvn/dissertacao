@@ -67,7 +67,7 @@ com $F_{fat}$ denotando o grau de facilitação ($0\leq f_{fat}\leq 1$) e $F_{ma
 
 %% falar da bomba de sódio e potassio ao falar do potencial de membrana
 
-\section{Multi-estabilidade e \textit{feedback} recorrente}\label{sec:biestabilidade}
+\section{Multi-estabilidade}\label{sec:biestabilidade}
 
 \subsection{Oscilações e multi-estabilidade}
 Além das alterações de comportamento causadas pelas entradas aplicadas (injeção de corrente), os neurônios podem mudar sua resposta de acordo com as conexões feitas uns com os outros. A capacidade dos neurônios de manter múltiplos estados de atividades mesmo recebendo valores idênticos de entrada é chamada de \textbf{multi-estabilidade}. O próprio neurônio de Hodgkin-Huxley, visto anterior, podes alternar entre um estado de quiescência, exibindo oscilações sub-limiares (variações no potencial de membrana insuficientes para a produção de um potencial de ação), e um estado de ressonância, que é uma resposta recorrente, conforme mostrado na Figura~\ref{fig:hhdinamico}. Nos três cenários é aplicado um pulso de corrente no intervalo de $0,05$ até $0,45\ s$, porém variando a amplitude. É possível observar que, para $0,300\ nA$ (no topo) ocorre apenas um disparo de potencial de ação, com uma oscilação em seguida. Para $0,624\ nA$ (no meio), alguns disparos acontecem, porém não o suficiente para ativar o comportamento ressonante, que é conseguido com um leve incremento de corrente, para $0,626\ nA$ (embaixo).
@@ -128,9 +128,30 @@ Quando são simuladas as conexões entre um grupo de neurônios, é conveniente 
 %	\includegraphics[width=0.35\linewidth]{figs/noise_induced_transitions}
 %\end{figure}
 
-\subsection{Geradores de padrão central}
+\subsection{Circuitos de multi-estabilidade}
+Um circuito conhecido de multi-estabilidade é o \textbf{gerador de padrão central} (\textit{central pattern generator}, CPG), que são circuitos neurais que podem reproduzir padrões rítmicos de atividade neuronal sem receber entradas rítmicas.
+%TODO: citação Ijspeert
+Eles são fundamentais, dentre outras coisas, para circuitos neurais associados à locomoção.
 
-\subsection{Circuitos tomadores de decisão}
+\begin{figure}[tb]
+	\centering
+	\caption[Gerador de padrão central de duas unidades]{Gerador de padrão central de duas unidades}
+	\label{fig:cpg}
+	\includegraphics[width=0.7\linewidth]{figs/cpg}
+\end{figure}
+Um exemplo do seu comportamento é exibido na Figura~\ref{fig:cpg}. Nela, são exibidas as curvas do potencial de membrana de membrana de duas unidades, conectadas como mostrado anteriormente, e com um pulso de corrente aplicado por volta de $0,25\ s$. É possível observar que, quando a célula 1 é ativada (representado pelo disparo dos potenciais de ação), a célula 2 é inibida. O contrário também ocorre, com a célula 1 sendo inibida com a ativação da célula 2, alternando entre qual das unidades dispara durante um intervalo de tempo. Não há o disparo simultâneo das duas células. Um correlato dessa atividade com a locomoção é o movimento das duas pernas humanas. Se associarmos cada perna com uma unidade, hora uma delas está em movimento (uma célula ativada), hora é a outra, alternando ao longo do tempo. Circuitos geradores de padrão central são bastante empregados no projeto de locomoção de robôs articulados.
+%TODO: citação Ijspeert
+
+Outros circuitos conhecidos de multi-estabilidade são os de tomada de decisão. Esses circuitos acumulam informações sensoriais ao longo do tempo até que uma decisão possa ser tomada. A computação da informação pode ser feita simplesmente integrando a atividade neural ao longo do tempo,
+%TODO: citação cain
+como pode ser visto na Figura~\ref{fig:tomadadecisao}. Neste exemplo, um estímulo é aplicado simultaneamente (instante $0\ s$) em duas unidades, que acumulam as evidências desse estímulo ao longo do tempo, alterando a taxa de disparo média das unidades. Neste caso, a decisão tomada, ou seja, a unidade escolhida, é a que atingir primeiro um determinado limiar, definido como a taxa de disparo de $40\ Hz$. A unidade 1 (em azul) foi a vencedora.
+\begin{figure}[tb]
+	\centering
+	\caption[Circuito de tomada de decisão]{Circuito de tomada de decisão}
+	\label{fig:tomadadecisao}
+	\includegraphics[width=0.7\linewidth]{figs/tomada_decisao}
+\end{figure}
+
 
 \section{Aprendizado e plasticidade de longa duração}\label{sec:aprendizado}
 
