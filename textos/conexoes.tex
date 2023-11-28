@@ -3,12 +3,12 @@
 Uma vez visto o comportamento de um neurônio individualmente, este Capítulo traz informações sobre como se dá a conexão entre neurônios.
 %TODO: melhorar
 \section{Sinapses}\label{sec:sinapses}
-A sinapse é uma conexão entre dois neurônios. Elas podem ser elétricas, que se dão a partir de uma junção entre as duas células, por onde íons podem passar, produzindo uma corrente sináptica proporcional à diferença entre os potenciais de membrana das duas células, ou químicas, que são conectadas através de um espaço entre as células, e a interação entre elas se dá pela liberação de neurotransmissores, que é um elemento químico que se propaga nesse espaço, fazendo a comunicação entre eles. As sinapses químicas podem ser excitatórias, causando despolarização da célula pós-sináptica, ou inibitórias, causando hiperpolarização. Os neurotransmissores mais comuns associados aos neurônios corticais são o \textbf{glutamato}, que excita a célula pós-sináptica, e o \textbf{ácido $\gamma$-aminobutírico (GABA)}, que a inibe. O esquema de uma sinapse química é mostrado na Figura~\ref{fig:sinapses}, onde pode-se observar também o neurônio pré-sináptico, que é aquele que libera o neurotransmissor após o potencial de ação, e o pós-sináptico, que é o que responde à liberação do neurotransmissor após o potencial de ação do neurônio pré-sináptico. Os neurotransmissores são transportados por compartimentos ao redor da membrana neuronal chamados de vesículas.
+A sinapse é uma conexão entre dois neurônios. Elas podem ser elétricas, que se dão a partir de uma junção entre as duas células, por onde íons podem passar, produzindo uma corrente sináptica proporcional à diferença entre os potenciais de membrana das duas células, ou químicas, que são conectadas através de um espaço entre as células, e a interação entre elas se dá pela liberação de neurotransmissores, que é um elemento químico que se propaga nesse espaço, fazendo a comunicação entre eles. As sinapses químicas são majoritárias no cérebro humano pós-natal, enquanto que as elétricas estão presentes em quantidade relevante apenas durante o período de desenvolvimento embrionário humano. As sinapses químicas são categorizadas em excitatórias ou inibitórias, de acordo com o efeito no potencial de membrana da célula pós-sináptica (a que responde à liberação do neurotransmissor após o potencial de ação do neurônio pré-sináptico). Enquanto as sinapses excitatórias despolarizam a membrana, as inibitórias causam hiperpolarização, facilitando ou dificultando, respectivamente, o potencial de ação da célula pós-sináptica. Os neurotransmissores mais comuns associados aos neurônios corticais são o \textbf{glutamato}, que excita a célula pós-sináptica, e o \textbf{ácido $\gamma$-aminobutírico (GABA)}, que a inibe. O esquema de uma sinapse química é mostrado na Figura~\ref{fig:sinapses}. Os neurotransmissores são transportados por compartimentos ao redor da membrana neuronal chamados de vesículas.
 \begin{figure}[tb]
 	\centering
 	\caption{Esquema simplificado de uma sinapse química}
 	\label{fig:sinapses}
-	\includegraphics[width=0.7\linewidth]{figs/sinapses}
+	\includegraphics[width=0.7\linewidth]{figs/sinapses}\\
 	\small{Fonte: \cite{miller_introductory_2018}}
 \end{figure}
 
@@ -28,37 +28,42 @@ com $\tau_{cresce}$ a constante de crescimento, $\tau_{decai}$ a de decaimento (
 \begin{equation}\label{eq:sinapse_k}
 	K=\Bigg(\frac{\tau_{decai}}{\tau_{cresce}+\tau_{decai}}\Bigg)\Bigg(\frac{\tau_{cresce}}{\tau_{cresce}+\tau_{decai}}\Bigg)^{\tau_{cresce}/\tau_{decai}}
 \end{equation}
-A dinâmica da condutância sináptica é mostrada na Figura~\ref{fig:respostasinaptica}.
+A dinâmica da condutância sináptica é mostrada na Figura~\ref{fig:respostasinaptica}, onde é possível observar o incremento da condutância sináptica (curva de cima) após a ocorrência de um potencial de ação (linhas verticais do gráfico embaixo).
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
 	\caption{Condutância sináptica em resposta aos potenciais de ação da célula pré-sináptica}
 	\label{fig:respostasinaptica}
-	\includegraphics[width=0.8\linewidth]{figs/resposta_sinaptica}
+	\includegraphics[width=0.7\linewidth]{figs/resposta_sinaptica}
 \end{figure}
 
-\section{Sinapses dinâmicas}\label{sec:dinamicas}
-\begin{description}
-	\item[Sinapse dinâmica] Sinapse cuja força varia em um curto período de tempo
-	\item[Depressão de curta duração] Uma redução temporária na força sináptica
-	\item[Facilitação de curta duração] Um incremento temporário na força sináptica
-\end{description}
-
-A simulação de depressão e facilitação sinápticas é feita alterando-se o valor de $\Delta G$ acima para:
-$$
-\Delta G=G_{max}p_0FD
-$$
+\subsection{Sinapses dinâmicas}
+Acima, os modelos de sinapses possuem pesos fixos. Entretanto, fisiologicamente, as condutâncias sinápticas não são fixas, mas mudam de acordo com a disponibilidade de recursos sinápticos no terminal pré-sináptico, determinados por algumas condições de entrada. Esse comportamento é chamado de sinapse dinâmica, cuja força da conexão varia em um curto período de tempo, ocasionando o a chamada plasticidade de curto prazo (ou de curta duração). Experimentalmente, são observados dois tipos, com efeitos opostos na eficácia sináptica, como mostrados na Figura~\ref{fig:plasticidadecurtaduracao}. À esquerda, é exibido o fenômeno da depressão de curta duração, que causa uma redução temporária na força sináptica, e à direita o fenômeno da facilitação de curta duração, que causa um incremento temporário.
+\begin{figure}[tb]
+	\centering
+	\caption[Depressão e facilitação sináptica]{Depressão e facilitação sináptica}
+	\label{fig:plasticidadecurtaduracao}
+	\includegraphics[width=0.7\linewidth]{figs/plasticidade_curta_duracao}
+\end{figure}
+O modelo matemático da PCP é fundamentado no conceito de uma quantidade limitada de recursos sinápticos disponíveis para transmissão, tal como a quantidade total de vesículas sinápticas. Esse número de recursos pré-sinápticos muda dinamicamente de acordo com o histórico recente de picos de atividade. Após um pico pré-sináptico, a probabilidade de liberação do conjunto disponível para utilização aumenta devido ao influxo de cálcio induzido pelo pico no terminal pré-sináptico. A simulação de depressão e facilitação sinápticas pode ser feita alterando-se o valor de $\Delta G$ acima para:
+\begin{equation}\label{eq:sinapse_facilitacao_depressao}
+	\Delta G=G_{max}p_0FD
+\end{equation}
 com $G_{max}$ o valor máximo de condutância sináptica, $p_0$ a probabilidade de liberação do neurotransmissor, e $F$ e $D$ as variáveis de facilitação e depressão sináptica, atualizadas por:
-$$
-\frac{dD}{dt}=\frac{1-D}{\tau_D}
-$$$$
-\frac{dF}{dt}=\frac{1-F}{\tau_F}
-$$
-e, seguindo cada disparo da célula pré-sináptica:
-$$
-D\mapsto D-p_0FD\qquad F\mapsto F+f_{fat}(F_{max}-F)
-$$
-com $F_{max}$ o valor máximo de facilitação e $F_{fat}$ denota o grau de facilitação ($0\leq f_{fat}\leq 1$)
+\begin{equation}\label{eq:depressao_sinaptica}
+	\frac{dD}{dt}=\frac{1-D}{\tau_D}
+\end{equation}
+\begin{equation}\label{eq:facilitacao_sinaptica}
+	\frac{dF}{dt}=\frac{1-F}{\tau_F}
+\end{equation}
+e, seguindo cada disparo da célula pré-sináptica, ocorrem os seguintes mapeamentos:
+\begin{equation}\label{eq:mapeamento_depressao_sinaptica}
+	D\mapsto D-p_0FD
+\end{equation}
+\begin{equation}\label{eq:mapeamento_facilitacao_sinaptica}
+	F\mapsto F+f_{fat}(F_{max}-F)
+\end{equation}
+com $F_{fat}$ denotando o grau de facilitação ($0\leq f_{fat}\leq 1$) e $F_{max}$ o seu valor máximo.
 
 %% falar da bomba de sódio e potassio ao falar do potencial de membrana
 
