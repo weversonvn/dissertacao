@@ -67,32 +67,66 @@ com $F_{fat}$ denotando o grau de facilitação ($0\leq f_{fat}\leq 1$) e $F_{ma
 
 %% falar da bomba de sódio e potassio ao falar do potencial de membrana
 
-\section{Biestabilidade e \textit{feedback} recorrente}\label{sec:biestabilidade}
+\section{Multi-estabilidade e \textit{feedback} recorrente}\label{sec:biestabilidade}
 
 \subsection{Oscilações e multi-estabilidade}
-\begin{description}
-	\item[Bi-estabilidade] A capacidade dos neurônios de manter dois estados de atividades mesmo recebendo valores idênticos de entrada
-	\item[Oscilações sublimiares] Variações no potencial de membrana insuficientes para a produção de um potencial de ação
-	%\item[Quebra do anôdo] Um disparo no potencial de membrana que ocorre logo após uma hiperpolarização
-	\item[Ressonância] Uma melhora na resposta de um sistema quando este é estimulado periodicamente com uma frequência particular
-\end{description}
+Além das alterações de comportamento causadas pelas entradas aplicadas (injeção de corrente), os neurônios podem mudar sua resposta de acordo com as conexões feitas uns com os outros. A capacidade dos neurônios de manter múltiplos estados de atividades mesmo recebendo valores idênticos de entrada é chamada de \textbf{multi-estabilidade}. O próprio neurônio de Hodgkin-Huxley, visto anterior, podes alternar entre um estado de quiescência, exibindo oscilações sub-limiares (variações no potencial de membrana insuficientes para a produção de um potencial de ação), e um estado de ressonância, que é uma resposta recorrente, conforme mostrado na Figura~\ref{fig:hhdinamico}. Nos três cenários é aplicado um pulso de corrente no intervalo de $0,05$ até $0,45\ s$, porém variando a amplitude. É possível observar que, para $0,300\ nA$ (no topo) ocorre apenas um disparo de potencial de ação, com uma oscilação em seguida. Para $0,624\ nA$ (no meio), alguns disparos acontecem, porém não o suficiente para ativar o comportamento ressonante, que é conseguido com um leve incremento de corrente, para $0,626\ nA$ (embaixo).
 
-\begin{figure}[htb!]
+\begin{figure}[tb]
 	\centering
-	\caption{Comportamento variado do modelo de Hodgkin-Huxley}
+	\caption{Comportamento variado do modelo de Hodgkin-Huxley para diferentes correntes}
 	\label{fig:hhdinamico}
 	\includegraphics[width=0.7\linewidth]{figs/hh_dinamico}
 \end{figure}
-% a imagem daqui, das percepções de biestabilidade, está mais para a frente
+A forma mais simples de multi-estabilidade é a bi-estabilidade, onde, com um mesmo estímulo, dois estados de atividade neuronal podem ocorrer, gerando a chamada rivalidade perceptual, onde estímulos únicos podem ser percebidos de mais de uma maneira, alterando entre cada um dos perceptos (percepções bi-estáveis), como nos exemplos da Figura~\ref{fig:biestabilidade}. Na Figura~\ref{fig:cubonecker}, o cubo pode ser visto com a face frontal em lugares diferentes. Já na Figura~\ref{fig:cao_homem}, ora a imagem aparenta ser um cachorro visto de frente, ora parece um homem de costas.
+
+\begin{figure}[tb]
+	\centering
+	\caption{Imagens produzindo percepções de bi-estabilidade}
+	\label{fig:biestabilidade}
+	\begin{subfigure}[]{0.3\textwidth}
+		\caption{O cubo de Necker pode ser visto com a face frontal em lugares diferentes}
+		\label{fig:cubonecker}
+		\includegraphics[width=\textwidth]{figs/cubo_necker}
+	\end{subfigure}
+	\qquad\qquad\qquad
+	\begin{subfigure}[]{0.3\textwidth}
+		\caption{A imagem se assemelha tanto com um cão de frente quanto um homem de costas}
+		\label{fig:cao_homem}
+		\includegraphics[width=0.8\textwidth]{figs/cao_homem}
+	\end{subfigure}
+\end{figure}
+Quando são simuladas as conexões entre um grupo de neurônios, é conveniente considerar a atividade média deles, ou seja, a taxa de disparo dentre eles, e esse conjunto de neurônios é chamado de \textbf{unidade}. No caso da bi-estabilidade, por exemplo, duas unidades rivalizam entre si, conforme mostrado na Figura~\ref{fig:unidadesdecisao}. No exemplo, $s_1$ e $s_2$ são os estímulos, diferenciados apenas pela eventual presença de ruído. As saídas $r_1$ e $r_2$ são as taxas médias de disparo de cada unidade, e cada uma delas também serve como entrada para a mesma, comportamento chamado de \textbf{\textit{feedback} recorrente}. Além disso, há uma interconexão entre as unidades, com a saída de uma se tornando entrada de outra. Tanto as entradas quando as conexões recorrentes são excitatórias (representadas pelos triângulos no topo das unidades), reforçando a taxa de disparo, enquanto as interconexões são inibitórias (representadas pelos círculos pretos). $W^{EE}$ e $W^{IE}$ são as forças das conexões, com o $EE$ indicando a conexão excitatória e $IE$ a inibitória, e $s^E$ e $s^I$ são a fração de canais sinápticos excitatórios e inibitórios, respectivamente, que estão abertos, e são função da taxa de disparos. Além do ruído na entrada, pode ocorrer ruído dentro das unidades, e a presença de ambos pode induzir às transições entre estados bi-estáveis.
+% indicar o estímulo
+%\begin{figure}[htb!]
+%	\centering
+%	\caption[Unidades de disparo com \textit{feedback} recorrente]{Unidades de disparo com \textit{feedback} recorrente. A atividade média dos neurônios é simulada, e a saída da unidade também serve como entrada para a mesma. A força da conexão recorrente é excitatória, reforçando a taxa de disparos}
+%	\label{fig:feedbackrecorrente}
+%	\includegraphics[width=0.45\linewidth]{figs/feedback_recorrente}
+%\end{figure}
+%sendo $r(S)$ a taxa média de disparos dos neurônios da unidade, que é função da entrada sináptica total, $S$, da fração de canais sinápticos abertos, $s(r)$, variável entre 0 e 1, multiplicado pela força de feedback, $W^{EE}$, o $EE$ indicando que é um feedback excitatório.
+% ligar ambas as figuras
+%\begin{figure}[ht!]
+%	\centering
+%	\caption[Unidade com feedback recorrente que determina a estabilidade de um circuito]{Unidade com feedback recorrente que determina a estabilidade de um circuito. A taxa de disparo da unidade é uma função sigmoidal, a linha contínua na direita, e o feedback é representado pela linha tracejada. Na direita, a dinâmica da taxa de disparos em função do tempo, com um pulso de entrada entre 0,5 e 0,55 segundos (a região cinza). O feedback, nesse caso, é médio ($W^{EE}=0.6$), onde taxas baixas e altas de estado são estáveis, causando uma transição entre os estados do sistema}
+%	\label{fig:biestavel}
+%	\includegraphics[width=0.7\linewidth]{figs/biestavel}
+%\end{figure}
 
 
-\begin{description}
-	\item[Unidade] Um grupo de neurônios cuja atividade média é simulada
-	\item[Feedkback recorrente] Entrada de uma unidade que depende da sua própria atividade
-\end{description}
+\begin{figure}[tb]
+	\centering
+	\caption[Unidades de decisão com feedback recorrente e interconexão]{Unidades de decisão com feedback recorrente e interconexão}
+	\label{fig:unidadesdecisao}
+	\includegraphics[width=0.7\linewidth]{figs/unidades_decisao}
+\end{figure}
 
-% a imagem ta depois
-
+%\begin{figure}[htb!]
+%	\centering
+%	\caption[Transições induzidas por ruído]{Transições induzidas por ruído geram intinerância entre dois estados atratores, explicando alternância perceptual. Em (a), três \textit{trials} separados indicando alteração entre os estados, onde a atividade de uma unidade domina sobre a outra. Em (b), a média das atividades ao longo de 10 \textit{trials} (promediação)}
+%	\label{fig:noiseinducedtransitions}
+%	\includegraphics[width=0.35\linewidth]{figs/noise_induced_transitions}
+%\end{figure}
 
 \subsection{Geradores de padrão central}
 
@@ -144,62 +178,6 @@ com $F_{fat}$ denotando o grau de facilitação ($0\leq f_{fat}\leq 1$) e $F_{ma
 	\label{fig:nullcline}
 	\includegraphics[width=0.9\linewidth]{figs/nullcline}\\
 	\small{Fonte: adaptado de \cite{miller_introductory_2018}}
-\end{figure}
-
-
-\subsection{Estados atratores}
-\begin{description}
-	\item[Intinerância de estados atratores] A mudança de um sistema de um ponto fixo para outro
-	\item[Rivalidade perceptual] Estímulos únicos podem ser percebidos de mais de uma maneira, alterando entre cada um dos perceptos (percepções bi-estáveis)
-\end{description}
-
-\begin{figure}[]
-	\centering
-	\caption{Imagens produzindo percepções de bi-estabilidade}
-	\label{fig:biestabilidade}
-	\begin{subfigure}[htb!]{0.3\textwidth}
-		\caption{O cubo de Necker pode ser visto com a face frontal em lugares diferentes}
-		\label{fig:cubonecker}
-		\includegraphics[width=\textwidth]{figs/cubo_necker}
-	\end{subfigure}
-	\qquad\qquad\qquad
-	\begin{subfigure}[htb!]{0.3\textwidth}
-		\caption{A imagem se assemelha tanto com um cão de frente quanto um homem de costas}
-		\label{fig:vasorubin}
-		\includegraphics[width=0.8\textwidth]{figs/cao_homem}
-	\end{subfigure}
-\end{figure}
-
-
-% indicar o estímulo
-\begin{figure}[htb!]
-	\centering
-	\caption[Unidades de disparo com \textit{feedback} recorrente]{Unidades de disparo com \textit{feedback} recorrente. A atividade média dos neurônios é simulada, e a saída da unidade também serve como entrada para a mesma. A força da conexão recorrente é excitatória, reforçando a taxa de disparos}
-	\label{fig:feedbackrecorrente}
-	\includegraphics[width=0.45\linewidth]{figs/feedback_recorrente}
-\end{figure}
-sendo $r(S)$ a taxa média de disparos dos neurônios da unidade, que é função da entrada sináptica total, $S$, da fração de canais sinápticos abertos, $s(r)$, variável entre 0 e 1, multiplicado pela força de feedback, $W^{EE}$, o $EE$ indicando que é um feedback excitatório.
-% ligar ambas as figuras
-\begin{figure}[ht!]
-	\centering
-	\caption[Unidade com feedback recorrente que determina a estabilidade de um circuito]{Unidade com feedback recorrente que determina a estabilidade de um circuito. A taxa de disparo da unidade é uma função sigmoidal, a linha contínua na direita, e o feedback é representado pela linha tracejada. Na direita, a dinâmica da taxa de disparos em função do tempo, com um pulso de entrada entre 0,5 e 0,55 segundos (a região cinza). O feedback, nesse caso, é médio ($W^{EE}=0.6$), onde taxas baixas e altas de estado são estáveis, causando uma transição entre os estados do sistema}
-	\label{fig:biestavel}
-	\includegraphics[width=0.7\linewidth]{figs/biestavel}
-\end{figure}
-
-
-\begin{figure}[htb!]
-	\centering
-	\caption[Unidades de decisão com feedback recorrente e interconexão]{Unidades de decisão com feedback recorrente e interconexão. As conexões recorrentes são excitatórias, enquanto as interconexões são inibitórias. A presença de ruído, tanto na entrada quanto nas unidades, pode induzir a transições entre estados bi-estáveis}
-	\label{fig:unidadesdecisao}
-	\includegraphics[width=0.7\linewidth]{figs/unidades_decisao}
-\end{figure}
-
-\begin{figure}[htb!]
-	\centering
-	\caption[Transições induzidas por ruído]{Transições induzidas por ruído geram intinerância entre dois estados atratores, explicando alternância perceptual. Em (a), três \textit{trials} separados indicando alteração entre os estados, onde a atividade de uma unidade domina sobre a outra. Em (b), a média das atividades ao longo de 10 \textit{trials} (promediação)}
-	\label{fig:noiseinducedtransitions}
-	\includegraphics[width=0.35\linewidth]{figs/noise_induced_transitions}
 \end{figure}
 
 
