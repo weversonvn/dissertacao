@@ -3,9 +3,11 @@
 Os modelos são formas de representar, matemática e/ou computacionalmente, o comportamento do neurônio. Os modelos podem variar desde os mais simples, que não representam fielmente o comportamento fisiológico do neurônio mas são úteis para simular grandes quantidades de neurônios, até os mais complexos, que trazem diversas representações de condutância e morfológicas. Alguns modelos de neurônio são apresentados na Tabela~\ref{tab:modelos_neuronios}, incluindo o número de variáveis presentes no modelo, o que reflete o número de equações diferenciais presentes e, consequentemente, a complexidade do mesmo, bem como é informado se o modelo é considerado biologicamente plausível. Os 4~(quatro) primeiros modelos são detalhados neste texto, por hora diferenciados entre os que simulam o disparo do potencial de ação, chamados aqui de modelos de disparo de neurônio, e os que simulam a taxa de disparo. Há, ainda, distinção, por exemplo, entre modelos de compartimento único, que modelam o potencial de membrana apenas pela variável $V$, e os multi-compartimento, que consideram variações espaciais no potencial de membrana, porém estes últimos não são abordados neste texto.
 
 \begin{table}
+	\IBGEtab{
 	\centering
 	\caption[Modelos de neurônio]{Modelos de neurônio}
 	\label{tab:modelos_neuronios}
+	}{
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		Modelo & N. variáveis & Complexidade & Biol. plausível \\
@@ -25,6 +27,9 @@ Os modelos são formas de representar, matemática e/ou computacionalmente, o co
 		Moris-Lecar & 3 & Alta & Sim \\
 		\hline
 	\end{tabular}
+}{
+\fonte{O autor (2023)}
+}
 \end{table}
 
 \section{Modelos de disparo de neurônios}\label{sec:modelosdisparo}
@@ -169,9 +174,11 @@ Os parâmetros \textit{a}, \textit{b}, \textit{c} e \textit{d} são definidos co
 \end{itemize}
 A combinação de determinados valores para os parâmetros acima produz saídas compatíveis com alguns dos comportamentos citados anteriormente, conforme listado na Tabela~\ref{tab:padroes_izhikevich}.
 \begin{table}
+	\IBGEtab{
 	\centering
 	\caption[Padrões de neurônio do modelo de Izhikevich]{Padrões de neurônio do modelo de Izhikevich}
 	\label{tab:padroes_izhikevich}
+	}{
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		Padrão & a & b & c & d \\
@@ -191,6 +198,9 @@ A combinação de determinados valores para os parâmetros acima produz saídas 
 		\textit{low-threshold spiking} & 0,02 & 0,25 & -65 & 2 \\
 		\hline
 	\end{tabular}
+}{
+	\fonte{O autor, baseado em \cite{izhikevich_simple_2003}}
+}
 \end{table}
 
 \subsection{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
