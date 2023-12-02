@@ -1,24 +1,21 @@
 \chapter{Inteligência artificial}\label{cap:ia} % ou aprendizado de máquina?
 \section{Introdução}\label{sec:ia_intro}
-Redes neurais artificiais são alguns tipos de modelos computacionais do cérebro. Tratam-se da interconexão entre unidades de processamento, geralmente neurônios artificiais. Os tipos de rede variam com o tipo de aprendizado e a arquitetura. Alguns tipos de aprendizado são os seguintes:
+A inteligência artificial é um amplo ramo que trata de sistemas capazes de aprender e interpretar informações, e usar esse aprendizado para objetivos específicos.
+%TODO: citação haenlein
+Um dos campos da inteligência artificial é o aprendizado de máquina, onde a unidade de computação aprende a performar uma tarefa a partir de um conjuntos de exemplos de treinamento,
+%TODO: citação louridas
+funcionando como um tipo de modelo computacional do cérebro. Esses modelos são construídos a partir da interconexão entre unidades de processamento, por vezes chamados de neurônios artificiais, e por isso são conhecidas como \textbf{redes neurais artificiais}.
 
+O tipo mais comum de aprendizado de máquina é o chamado \textbf{aprendizado supervisionado}, onde o modelo é apresentado a um conjunto de dados de exemplo que são rotulados, ou seja, cada entrada tem a sua saída definida. Durante o aprendizado, o modelo fornece uma saída e, a partir da saída verdadeira, ele se ajusta internamente para se aproximar mais do real.
+%TODO: citação lecun
+Quando não há uma saída real rotulada disponível, pode-se utilizar o \textbf{aprendizado não-supervisionado}. Nesse caso, o modelo tenta aprender alguns padrões nos dados, como grupos de exemplos similares. O aprendizado não-supervisionado tem a capacidade de identificar novos tipos de informações, já que não estão restritos aos rótulos.
+%TODO: citacao aniscar
+
+Os algoritmos de aprendizado de máquina também podem ser divididos quanto à atividade a ser realizada. Atividades de \textbf{classificação} identificam a classe da informação (por exemplo, se um animal é um cão ou gato) a partir de dados rotulados, o \textbf{agrupamento} (\textit{clustering}, em inglês) determina classes agrupando informações similares em grupos (\textit{clusters}) rotulados (como o agrupamento de filmes em gêneros), a \textbf{regressão} é usada para prever algum valor ou quantidade (como o preço de ações ao longo do tempo), e a \textbf{redução de dimensionalidade} representa dados de várias dimensões em outras menores (como as várias informações de um paciente sendo reduzidas às mais importantes para o diagnóstico de uma doença).
+
+\section{Redes neurais}\label{sec:redesneurais}
 \begin{description}
-	\item[Aprendizado supervisionado] Mapeia as entradas e saídas baseado em pares de entrada-saída de exemplo, que são rotulados (uma entrada tem a sua saída definida)
-	\item[Aprendizado não-supervisionado] Aprende padrões de dados não rotulados
-\end{description}
-
-Existem diversos tipos de redes neurais artificiais, e algumas delas estão mostradas na Figura~\ref{fig:neuraltypes}.
-
-\begin{figure}[htb!]
-	\centering
-	\caption{Alguns tipos de redes neurais}
-	\label{fig:neuraltypes}
-	\includegraphics[width=0.34\linewidth]{figs/neural_types}
-\end{figure}
-
-Alguns desses tipos são descritos abaixo:
-
-\begin{description}
+	\item[Modelo de McCulloch\&Pitts] description
 	\item[Perceptron] Primeiro modelo de neurônio artificial. É um classificador binário com uma função de ativação do tipo degrau
 	\item[Perceptron de múltiplas camadas (MLP, \textit{Multilayer perceptron})] Combinação de vários neurônios do tipo perceptron em pelo menos três camadas: uma de entrada, uma oculta e uma de saída (Figura~\ref*{fig:modelosmlp}). Utiliza a técnica de aprendizado chamada \textit{backpropagation}, onde as atualizações dos pesos é feita da camada de saída em direção à de entrada. A grande maioria das redes neurais artificiais é derivada da MLP
 	\item[Redes neurais profundas] Rede neural com uma grande quantidade de camadas ocultas. Alguns subtipos incluem as \textbf{Redes neurais recorrentes}, em que os dados fluem em qualquer direção, permitindo os neurônios enviarem \textit{feedback} uns para os outros (a rede Hopfield é uma delas), e as \textbf{Redes neurais convolucionais}, que aplicam uma operação de convolução e são bastante usadas em tarefas de visão computacional
@@ -33,11 +30,8 @@ Alguns desses tipos são descritos abaixo:
 \end{figure}
 
 
-\section{Redes neurais}\label{sec:redesneurais}
-\subsection{Redes \textit{feed-foward}}
 % backprop/grad desc
 
-\subsection{Redes recorrentes}
 % lstm
 
 \section{Redes neuromórficas}\label{sec:redesneuromorficas}
