@@ -12,6 +12,7 @@ O esquema de uma sinapse química é mostrado na Figura~\ref{fig:sinapses}. Os n
 	\label{fig:sinapses}
 	\includegraphics[width=0.7\linewidth]{figs/sinapses}\\
 	\small{Fonte: \cite{miller_introductory_2018}}
+	%TODO: trocar figura
 \end{figure}
 
 A transmissão sináptica é modelada usando a equação abaixo \cite{dayan_theoretical_2001}:
@@ -37,6 +38,7 @@ A dinâmica da condutância sináptica é mostrada na Figura~\ref{fig:respostasi
 	\caption{Condutância sináptica em resposta aos potenciais de ação da célula pré-sináptica}
 	\label{fig:respostasinaptica}
 	\includegraphics[width=0.7\linewidth]{figs/resposta_sinaptica}
+	%TODO: regerar
 \end{figure}
 
 \subsection{Sinapses dinâmicas}
@@ -46,6 +48,7 @@ Acima, os modelos de sinapses possuem pesos fixos. Entretanto, fisiologicamente,
 	\caption[Depressão e facilitação sináptica]{Depressão e facilitação sináptica}
 	\label{fig:plasticidadecurtaduracao}
 	\includegraphics[width=0.7\linewidth]{figs/plasticidade_curta_duracao}
+	%TODO: trocar figura
 \end{figure}
 O modelo matemático da PCP é fundamentado no conceito de uma quantidade limitada de recursos sinápticos disponíveis para transmissão, tal como a quantidade total de vesículas sinápticas. Esse número de recursos pré-sinápticos muda dinamicamente de acordo com o histórico recente de picos de atividade. Após um pico pré-sináptico, a probabilidade de liberação do conjunto disponível para utilização aumenta devido ao influxo de cálcio induzido pelo pico no terminal pré-sináptico. A simulação de depressão e facilitação sinápticas pode ser feita alterando-se o valor de $\Delta G$ acima para:
 \begin{equation}\label{eq:sinapse_facilitacao_depressao}
@@ -79,6 +82,7 @@ Além das alterações de comportamento causadas pelas entradas aplicadas (inje�
 	\caption{Comportamento variado do modelo de Hodgkin-Huxley para diferentes correntes}
 	\label{fig:hhdinamico}
 	\includegraphics[width=0.7\linewidth]{figs/hh_dinamico}
+	%TODO: regerar
 \end{figure}
 A forma mais simples de multi-estabilidade é a bi-estabilidade, onde, com um mesmo estímulo, dois estados de atividade neuronal podem ocorrer, gerando a chamada rivalidade perceptual, onde estímulos únicos podem ser percebidos de mais de uma maneira, alterando entre cada um dos perceptos (percepções bi-estáveis), como nos exemplos da Figura~\ref{fig:biestabilidade}. Na Figura~\ref{fig:cubonecker}, o cubo pode ser visto com a face frontal em lugares diferentes. Já na Figura~\ref{fig:cao_homem}, ora a imagem aparenta ser um cachorro visto de frente, ora parece um homem de costas.
 
@@ -97,6 +101,7 @@ A forma mais simples de multi-estabilidade é a bi-estabilidade, onde, com um me
 		\label{fig:cao_homem}
 		\includegraphics[width=0.8\textwidth]{figs/cao_homem}
 	\end{subfigure}
+	%TODO: citação
 \end{figure}
 Quando são simuladas as conexões entre um grupo de neurônios, é conveniente considerar a atividade média deles, ou seja, a taxa de disparo dentre eles, e esse conjunto de neurônios é chamado de \textbf{unidade}. No caso da bi-estabilidade, por exemplo, duas unidades rivalizam entre si, conforme mostrado na Figura~\ref{fig:unidadesdecisao}. No exemplo, $s_1$ e $s_2$ são os estímulos, diferenciados apenas pela eventual presença de ruído. As saídas $r_1$ e $r_2$ são as taxas médias de disparo de cada unidade, e cada uma delas também serve como entrada para a mesma, comportamento chamado de \textbf{\textit{feedback} recorrente}. Além disso, há uma interconexão entre as unidades, com a saída de uma se tornando entrada de outra. Tanto as entradas quando as conexões recorrentes são excitatórias (representadas pelos triângulos no topo das unidades), reforçando a taxa de disparo, enquanto as interconexões são inibitórias (representadas pelos círculos pretos). $W^{EE}$ e $W^{IE}$ são as forças das conexões, com o $EE$ indicando a conexão excitatória e $IE$ a inibitória, e $s^E$ e $s^I$ são a fração de canais sinápticos excitatórios e inibitórios, respectivamente, que estão abertos, e são função da taxa de disparos. Além do ruído na entrada, pode ocorrer ruído dentro das unidades, e a presença de ambos pode induzir às transições entre estados bi-estáveis.
 % indicar o estímulo
@@ -121,6 +126,7 @@ Quando são simuladas as conexões entre um grupo de neurônios, é conveniente 
 	\caption[Unidades de decisão com feedback recorrente e interconexão]{Unidades de decisão com feedback recorrente e interconexão}
 	\label{fig:unidadesdecisao}
 	\includegraphics[width=0.7\linewidth]{figs/unidades_decisao}
+	%TODO: referência
 \end{figure}
 
 %\begin{figure}[htb!]
@@ -140,6 +146,7 @@ Eles são fundamentais, dentre outras coisas, para circuitos neurais associados 
 	\caption[Gerador de padrão central de duas unidades]{Gerador de padrão central de duas unidades}
 	\label{fig:cpg}
 	\includegraphics[width=0.7\linewidth]{figs/cpg}
+	%TODO: referência
 \end{figure}
 Um exemplo do seu comportamento é exibido na Figura~\ref{fig:cpg}. Nela, são exibidas as curvas do potencial de membrana de membrana de duas unidades, conectadas como mostrado anteriormente, e com um pulso de corrente aplicado por volta de $0,25\ s$. É possível observar que, quando a célula 1 é ativada (representado pelo disparo dos potenciais de ação), a célula 2 é inibida. O contrário também ocorre, com a célula 1 sendo inibida com a ativação da célula 2, alternando entre qual das unidades dispara durante um intervalo de tempo. Não há o disparo simultâneo das duas células. Um correlato dessa atividade com a locomoção é o movimento das duas pernas humanas. Se associarmos cada perna com uma unidade, hora uma delas está em movimento (uma célula ativada), hora é a outra, alternando ao longo do tempo. Circuitos geradores de padrão central são bastante empregados no projeto de locomoção de robôs articulados.
 %TODO: citação Ijspeert
@@ -152,6 +159,7 @@ como pode ser visto na Figura~\ref{fig:tomadadecisao}. Neste exemplo, um estímu
 	\caption[Circuito de tomada de decisão]{Circuito de tomada de decisão}
 	\label{fig:tomadadecisao}
 	\includegraphics[width=0.7\linewidth]{figs/tomada_decisao}
+	%TODO: referência
 \end{figure}
 
 

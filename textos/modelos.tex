@@ -41,6 +41,7 @@ Para modelos de neurônio de compartimento único, o circuito elétrico equivale
 	\caption{Circuito equivalente da membrana}
 	\label{fig:circuitomembrana}
 	\includegraphics[width=0.7\linewidth]{figs/circuito_membrana}\\
+	%TODO: corrigir seta
 \end{figure}
 O capacitor na esquerda está associado à capacitância da membrana ($C_m$), e cada resistor em série com uma bateria representa um canal iônico. A série com o $L$ subscrito refere-se ao elemento de vazamento, citado anteriormente, e as séries são referentes aos canais iônicos dependentes de tensão, com o íon subscrito. O circuito completo tem associada a seguinte equação:
 \begin{equation}\label{eq:potencial_membrana_total}
@@ -55,6 +56,7 @@ sendo $G_A$ a condutância do íon $A$, $E_A$ o potencial do íon $A$. Ignorando
 	\caption{Circuito equivalente do modelo LIF}
 	\label{fig:circuitolif}
 	\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
+	%TODO: trocar GND
 \end{figure}
 Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispara com vazamento, em tradução livre) \cite{lapicque_recherches_1907}. A corrente aplicada no modelo é acumulada (integrada), elevando o potencial de membrana até o valor de limiar, representando o momento onde o neurônio dispara. Devido a simplicidade do modelo, a equação, por si só, não é capaz de representar a hiperpolarização que ocorre fisicamente na célula neuronal após o disparo do potencial de ação, e, por isso, é acrescentada a condição de \textit{reset}. Enquanto a corrente continuar sendo aplicada, o potencial de membrana permanece sendo atualizado pela dinâmica da equação diferencial, como é exibido na Figura~\ref{fig:lif}. Três pulsos de corrente, com valores $0,18\ nA$, $0,21\ nA$ e $0,24\ nA$, são aplicados no modelo. Para o primeiro valor, o neurônio despolariza (fica menos negativo), porém não atinge o valor de limiar (como visto na primeira curva da segunda linha de gráficos). Com a injeção dos demais valores de corrente, a célula neuronal atinge o valor de limiar ($50\ mV$ nestes exemplos), ocorrendo o disparo do potencial de ação (registrado como uma linha vertical na última linha de gráficos), e com a posterior alteração do potencial de membrana para o valor de \textit{reset} ($80\ mV$ nestes exemplos).
 
@@ -63,6 +65,7 @@ Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispa
 	\caption[Exemplo da simulação com o modelo LIF]{Exemplo da simulação com o modelo LIF. Cada coluna representa um valor diferente de corrente aplicada ao modelo, que são mostradas na primeira linha de gráficos. Na segunda linha são exibidos os potenciais de membrana para cada corrente injetada. Em baixo, os instantes em que ocorreu o disparo de potenciais de ação.}
 	\label{fig:lif}
 	\includegraphics[width=0.7\linewidth]{figs/lif}
+	%TODO: regerar
 \end{figure}
 
 %% incluir a solução analítica para enfatizar a presença da constante de tempo
@@ -76,6 +79,7 @@ Imediatamente após a ocorrência do potencial de ação, o neurônio não é ca
 	\caption{Simulação do modelo LIF com período refratário}
 	\label{fig:lifrefratario}
 	\includegraphics[width=0.7\linewidth]{figs/lif_refratario}
+	%TODO: regerar
 \end{figure}
 Em todos os métodos são simuladas a injeção de corrente de $240\ pA$ (primeira coluna de gráficos) e $400\ pA$ (segunda coluna), e a linha tracejada representa o limiar para disparo do potencial de ação. O primeiro método é chamado de \textbf{grampeamento de tensão},que consiste em fixar o potencial de membrana no valor de \textit{reset} durante um tempo específico logo após o potencial de ação. É, provavelmente, a maneira mais simples de simular a refratariedade, pois neste método o período refratário é constante. O segundo método é o da \textbf{condutância refratária}, consistindo no acréscimo de uma condutância elevada, geralmente uma corrente hiperpolarizante de potássio, que cresce imediatamente após a ocorrência de cada potencial de ação, e decai em seguida de acordo com a seguinte equação diferencial:
 \begin{equation}\label{eq:condutancia_refrataria}
@@ -100,6 +104,7 @@ A dinâmica da adaptação da taxa de disparos é exibida na Figura~\ref{fig:lif
 	\caption{Adaptação da taxa de disparo no neurônio LIF}
 	\label{fig:lifatd}
 	\includegraphics[width=0.7\linewidth]{figs/lif_atd}
+	%TODO: regerar
 \end{figure}
 
 \subsubsection{Modelo LIF exponencial}
@@ -118,6 +123,7 @@ Os gráficos comparando o potencial de membrana do modelo LIF (em cima) e ELIF (
 	\caption{Comparação dos modelos LIF e ELIF}
 	\label{fig:elif}
 	\includegraphics[width=0.7\linewidth]{figs/elif}
+	%TODO: regerar
 \end{figure}
 
 \subsubsection{Modelo LIF exponencial adaptativo}
@@ -141,6 +147,7 @@ sendo $a$ o parâmetro de agrupamento, indicando o nível de relação entre o p
 	\caption[Resposta do modelo AELIF]{Resposta do modelo AELIF para um pulso de corrente de 1 $nA$}
 	\label{fig:adexrs}
 	\includegraphics[width=0.7\linewidth]{figs/aelif}\\
+	%TODO: regerar
 \end{figure}
 
 \subsection{Modelo de Izhikevich}\label{sec:izhikevich}
@@ -164,6 +171,7 @@ com $v$ sendo o potencial de membrana, $u$ a variável de recuperação da membr
 	\caption[Potencial de membrana no modelo de Izhikevich]{Potencial de membrana no modelo de Izhikevich}
 	\label{fig:izhikevich}
 	\includegraphics[width=0.7\linewidth]{figs/izhikevich}
+	%TODO: referência
 \end{figure}
 Os parâmetros \textit{a}, \textit{b}, \textit{c} e \textit{d} são definidos como segue:
 \begin{itemize}
@@ -214,6 +222,7 @@ Como visto na Seção~\ref{sec:fisiologia}, existem canais iônicos que são dep
 	\label{fig:canais}
 	\includegraphics[width=0.6\linewidth]{figs/canais}\\
 	\small{Fonte: \cite{dayan_theoretical_2001}}
+	%TODO: trocar figura
 \end{figure}
 Associado aos canais iônicos dependentes de tensão, existe a chamada \textbf{variável de portão}, que representa a fração desses canais que se encontra em um determinado estado (ativado/desativado, inativado/desinativado). Como se trata da probabilidade do canal estar em um desses estados, seus valores são entre $0$ e $1$. No modelo, são consideradas as variáveis \textbf{m} para ativação de sódio, \textbf{h} para inativação de sódio, e \textbf{n} para ativação de potássio, com as equações a seguir:
 \begin{equation}\label{eq:dmdt}
@@ -249,6 +258,7 @@ sendo $\alpha$ a constante de crescimento de cada variável, e $\beta$ a de decr
 	\caption{Dinâmica das variáveis de portão}
 	\label{fig:portoes}
 	\includegraphics[width=0.7\linewidth]{figs/portoes}
+	%TODO: regerar
 \end{figure}
 A dinâmica das variáveis de portão no modelo de Hodgkin-Huxley pode ser vista na Figura~\ref{fig:portoes}, para uma faixa de 66 até $76\ ms$. As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente}, que é o comportamento em repouso depois de um longo período de tempo \cite{ermentrout_mathematical_2010}, como descritas nas equações abaixo (o símbolo de $\infty$ representa o valor em regime permanente):
 \begin{equation}\label{eq:m_inf}
@@ -281,5 +291,6 @@ que é semelhante à equação do modelo LIF, porém com dois elementos a mais, 
 	\caption{Potencial de membrana gerado pelo modelo de Hodgkin-Huxley}
 	\label{fig:hhvm}
 	\includegraphics[width=0.7\linewidth]{figs/hh_vm}
+	%TODO: regerar
 \end{figure}
 \section{Modelos de taxa de disparo}\label{sec:modelostaxa}
