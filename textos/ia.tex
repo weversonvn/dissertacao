@@ -14,21 +14,52 @@ Quando não há uma saída real rotulada disponível, pode-se utilizar o \textbf
 Os algoritmos de aprendizado de máquina também podem ser divididos quanto à atividade a ser realizada. Atividades de \textbf{classificação} identificam a classe da informação (por exemplo, se um animal é um cão ou gato) a partir de dados rotulados, o \textbf{agrupamento} (\textit{clustering}, em inglês) determina classes agrupando informações similares em grupos (\textit{clusters}) rotulados (como o agrupamento de filmes em gêneros), a \textbf{regressão} é usada para prever algum valor ou quantidade (como o preço de ações ao longo do tempo), e a \textbf{redução de dimensionalidade} representa dados de várias dimensões em outras menores (como as várias informações de um paciente sendo reduzidas às mais importantes para o diagnóstico de uma doença).
 
 \section{Redes neurais}\label{sec:redesneurais}
-\begin{description}
-	\item[Modelo de McCulloch\&Pitts] description
-	\item[Perceptron] Primeiro modelo de neurônio artificial. É um classificador binário com uma função de ativação do tipo degrau
-	\item[Perceptron de múltiplas camadas (MLP, \textit{Multilayer perceptron})] Combinação de vários neurônios do tipo perceptron em pelo menos três camadas: uma de entrada, uma oculta e uma de saída (Figura~\ref*{fig:modelosmlp}). Utiliza a técnica de aprendizado chamada \textit{backpropagation}, onde as atualizações dos pesos é feita da camada de saída em direção à de entrada. A grande maioria das redes neurais artificiais é derivada da MLP
-	\item[Redes neurais profundas] Rede neural com uma grande quantidade de camadas ocultas. Alguns subtipos incluem as \textbf{Redes neurais recorrentes}, em que os dados fluem em qualquer direção, permitindo os neurônios enviarem \textit{feedback} uns para os outros (a rede Hopfield é uma delas), e as \textbf{Redes neurais convolucionais}, que aplicam uma operação de convolução e são bastante usadas em tarefas de visão computacional
-	\item[Redes neurais de disparo (SNN, \textit{Spiking Neural Networks})] Redes onde a unidade computacional é um neurônio de disparo
-\end{description}
-
-\begin{figure}[htb!]
+O primeiro modelo de neurônio artificial foi o de McCulloch-Pitts, baseado em lógica binária e que possuía duas fase, a primeira onde o neurônio soma as contribuições de todos os neurônios anteriores, e a segunda onde o neurônio dispara apenas se um limiar for ultrapassado e não houver disparo de neurônio inibitório.
+%TODO: citação mcculloch
+Apesar de revolucionário para a época, um dos principais problemas do modelo de McCulloch-Pitts era a ausência do ajuste de pesos, ou seja, as conexões entre os neurônios sempre tinham a mesma força. Muitas pesquisas se desenvolveram na área para suprir essa necessidade, até que Frank Rosenblatt, inspirado pela teoria de Hebb vista anteriormente, criou o \textit{Perceptron},
+%TODO: citacao rosenblatt
+desenvolvido para ser um neurônio mais generalizado, sendo a base do aprendizado de máquina moderno. Matematicamente, o \textit{Perceptron} pode ser modelado pela seguinte equação:
+\begin{equation}\label{eq:perceptron}
+	y=\sigma\Big(\sum_{k=1}^Nw_kx_k+b\Big)
+\end{equation}
+onde $x_k$ é a resposta da sinapse $k$, $w_k$ é o peso da sinapse, $b$ é o \textit{bias} (viés, em português), um peso de referência que representa um conhecimento a priori, %TODO: elaborar
+$\sigma$ é uma função de ativação não-linear, e $y$ é a saída do neurônio, como representado na Figura~\ref{fig:perceptron}. Resolvido o problema da atualização dos pesos, o \textit{Perceptron} sozinho é incapaz de realizar tarefas de separação não-linear,
+%TODO: citação minsky
+levando à criação, muitos anos depois, do \textit{Perceptron} de multi-camadas (MLP, \textit{Multilayer perceptron}, em inglês), que supre as limitações do \textit{Perceptron} simples ao agrupar camadas de neurônios, como na Figura~\ref{fig:mlp}. As camadas presentes entre a entrada e a saída da rede são chamadas de camadas ocultas (ou intermediárias).
+\begin{figure}
 	\centering
-	\caption[Modelos básicos de neurônios e redes neurais]{Modelos básicos de neurônios e redes neurais. Em (a), o perceptron com uma função de ativação do tipo degrau; em (b), o perceptron com uma função de ativação sigmoide; em (c), uma rede neural com uma camada oculta}
-	\label{fig:modelosmlp}
-	\includegraphics[width=0.9\linewidth]{figs/modelos_mlp}
+	\caption{Arquiteturas do Perceptron}
+	\label{fig:perceptrons}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{figs/perceptron}
+		\caption{Perceptron}
+		\label{fig:perceptron}
+	\end{subfigure}
+	\qquad\qquad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{figs/mlp}
+		\caption{Perceptron de multi-camadas}
+		\label{fig:mlp}
+	\end{subfigure}
 \end{figure}
 
+Os vários neurônios presentes nessa arquitetura frequentemente têm seus pesos atualizados através do algoritmo de gradiente descendente, que busca minimizar o erro entre a saída obtida pela rede e a real (aprendizado supervisionado), e essa atualização é feita através da metodologia da retro-propagação (\textit{backpropagation}, em inglês), ou seja, as atualizações das camadas finais da rede são propagadas em direção às iniciais.
+%TODO: citação werbos
+Quando há uma grande quantidade de camadas na rede ela é chamada de rede neural profunda (\textit{deep neural network}, em inglês), permitindo um mapeamento de dados mais complexos, o que não seria muito eficiente em redes não profundas. Uma lista não exaustiva de arquiteturas, profundas ou não, é apresentada abaixo:
+\begin{alineas}
+	\item \textbf{\textit{Convolutional Neural Networks} (CNN, Redes neurais convolucionais)}: possui camadas que implementam a operação matemática de convolução, aplicando um filtro no sinal, e camadas de sub-amostragem (\textit{downsampling}), chamadas de \textit{pooling}. Essas redes lidam bem com sinais em duas dimensões, e por isso são frequentemente aplicadas em tarefas de visão computacional (relacionadas a imagens e vídeos);
+	%TODO: citação lecun gradiente
+	\item \textbf{\textit{Recurrent Neural Networks} (RNN, Redes neurais recorrentes)}: muito usadas em tarefas de entradas sequenciais, como processamento de fala e linguagem, possem a característica de processar os dados elemento a elemento, considerando também informações dos elementos passados, armazenados em pesos de conexões recorrentes, que funcionam como uma memória dinâmica para a rede;
+	%TODO: citação elman finding
+	\item \textbf{\textit{Hopfield Networks} (Redes Hopfield)}: proposta por J. J. Hopfield, são redes que são treinadas para aprender padrões (memórias) dos dados de maneira associativa, baseado no princípio de Hebb de que neurônios que disparam juntos se conectam;
+	%TODO: citação hopfield
+	\item \textbf{\textit{Autoencoder} (auto codificador)}: redes que aprendem a representar os dados reduzindo sua dimensionalidade, diminuindo as camadas ocultas, e, posteriormente, recriando os dados originais;
+	%TODO: citação hinton reducing
+	\item \textbf{\textit{Long Short-Term Memory} (LSTM)}: uma variação da RNN composta de 4~(quatro) blocos de memória, sendo um principal e os outros três, chamados de portões de entrada, esquecimento e saída, responsáveis por alterar o estado da célula como um todo.
+	%TODO: citação hochreiter
+	Devida à sua capacidade de reter informações de longo tempo em séries temporais, são muito usadas em sistemas de reconhecimento de voz;
+	\item \textbf{\textit{Spiking Neural Networks} (SNN, redes neurais de disparo)} testando
+\end{alineas}
 
 % backprop/grad desc
 
