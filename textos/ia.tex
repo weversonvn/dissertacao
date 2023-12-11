@@ -41,11 +41,12 @@ levando à criação, muitos anos depois, do \textit{Perceptron} de multi-camada
 		\caption{Perceptron de multi-camadas}
 		\label{fig:mlp}
 	\end{subfigure}
+	%TODO: trocar figura
 \end{figure}
 
 Os vários neurônios presentes nessa arquitetura frequentemente têm seus pesos atualizados através do algoritmo de gradiente descendente, que busca minimizar o erro entre a saída obtida pela rede e a real (aprendizado supervisionado), e essa atualização é feita através da metodologia da retro-propagação (\textit{backpropagation}, em inglês), ou seja, as atualizações das camadas finais da rede são propagadas em direção às iniciais.
 %TODO: citação werbos
-Quando há uma grande quantidade de camadas na rede ela é chamada de rede neural profunda (\textit{deep neural network}, em inglês), permitindo um mapeamento de dados mais complexos, o que não seria muito eficiente em redes não profundas. Uma lista não exaustiva de arquiteturas, profundas ou não, é apresentada abaixo:
+Quando há uma grande quantidade de camadas na rede ela é chamada de rede neural profunda (\textit{deep neural network}, em inglês), permitindo um mapeamento de dados mais complexos, o que não seria muito eficiente em redes não profundas. Uma lista não exaustiva de arquiteturas, profundas ou não, de redes neurais artificiais (\textit{artificial neural networks} (ANN), em inglês) é apresentada abaixo:
 \begin{alineas}
 	\item \textbf{\textit{Convolutional Neural Networks} (CNN, Redes neurais convolucionais)}: possui camadas que implementam a operação matemática de convolução, aplicando um filtro no sinal, e camadas de sub-amostragem (\textit{downsampling}), chamadas de \textit{pooling}. Essas redes lidam bem com sinais em duas dimensões, e por isso são frequentemente aplicadas em tarefas de visão computacional (relacionadas a imagens e vídeos);
 	%TODO: citação lecun gradiente
@@ -55,59 +56,74 @@ Quando há uma grande quantidade de camadas na rede ela é chamada de rede neura
 	%TODO: citação hopfield
 	\item \textbf{\textit{Autoencoder} (auto codificador)}: redes que aprendem a representar os dados reduzindo sua dimensionalidade, diminuindo as camadas ocultas, e, posteriormente, recriando os dados originais;
 	%TODO: citação hinton reducing
-	\item \textbf{\textit{Long Short-Term Memory} (LSTM)}: uma variação da RNN composta de 4~(quatro) blocos de memória, sendo um principal e os outros três, chamados de portões de entrada, esquecimento e saída, responsáveis por alterar o estado da célula como um todo.
+	\item \textbf{\textit{Long Short-Term Memory} (LSTM, memória longa de curto prazo)}: uma variação da RNN composta de 4~(quatro) blocos de memória, sendo um principal e os outros três, chamados de portões de entrada, esquecimento e saída, responsáveis por alterar o estado da célula como um todo.
 	%TODO: citação hochreiter
 	Devida à sua capacidade de reter informações de longo tempo em séries temporais, são muito usadas em sistemas de reconhecimento de voz;
-	\item \textbf{\textit{Spiking Neural Networks} (SNN, redes neurais de disparo)} testando
 \end{alineas}
-
-% backprop/grad desc
-
-% lstm
+Além das arquiteturas citadas acima, existem outras que são baseadas no princípio de funcionamento do neurônio, envolvendo, inclusive, alterações físicas dos equipamentos onde são implementadas. Essas redes são chamadas de \textbf{neuromórficas}, detalhadas na seção seguinte.
 
 \section{Redes neuromórficas}\label{sec:redesneuromorficas}
-% estado da arte
-% hardware neuromórfico (von-neumann vs neuromorfico)
+A maioria das redes neurais convencionais, derivadas da MLP, são implementadas com base na arquitetura de computadores de Von Neumann, onde as unidades de memória e processamento ficam separadas.
+%TODO: citação von neumann
+Algumas características dessa arquitetura incluem a codificação da informação para sinais binários (0 e 1) e os programas escritos em instruções explícitas (algoritmos), que são computadas pelo processador e os dados são armazenados na memória, trafegando por um barramento que conecta os dois elementos.
 
-\begin{itemize}
-	\item Redes neurais de disparo usam neurônios de disparo como unidades de computação, como os modelos \textit{Leaky integrate-and-fire} (LIF) e o modelo de Izhikevich
-	\item As unidades de computação são conectadas entre si e interagem através das sinapses (Figura~\ref{fig:sinapse})
-\end{itemize}
-
-\begin{figure}[htb!]
+As arquiteturas neuromórficas surgem como uma opção onde estrutura e funcionamento são mais semelhantes ao do cérebro, em especial os neurônios e sinapses.
+%TODO: citação ivanov neuromorphic
+As redes neurais desenvolvidas com base nos princípios dessa arquitetura são chamadas de \textbf{redes neurais de disparo}~(\textit{spiking neural networks}, SNN, em inglês), cuja arquitetura é mostrada na Figura~\ref{fig:snn}. Diferentemente da arquitetura de Von Neumann, a neuromórfica distribui o processamento e memória em conjunto nos elementos de neurônio e sinapses, respectivamente, evitando o tempo da transmissão de informação através do barramento entre memória e processador.
+%TODO: citação indiveri memory
+Outra diferença da arquitetura neuromórfica é que a informação é codificada, tanto espacial quanto temporalmente, em sequências de potenciais de ação.
+%TODO: citação frenkel bottom-up
+Além disso, os programas de computadores neuromórficos são definidos pela estrutura da rede neural e seus parâmetros.
+%TODO: citação schuman oportunities
+\begin{figure}[tb]
 	\centering
-	\caption[Neurônios pré e pós sinápticos conectados através de uma sinapse]{Neurônios pré (verde) e pós (roxo) sinápticos conectados através de uma sinapse. Os neurotransmissores (círculos vermelhos) são liberados do axônio pré-sinaptico para o dendrito pós-saptico, gerando potenciais pós-sinapticos que podem ser excitatórios (EPSP) ou inibitórios (IPSP). No neurônios pós-sinaptico os potenciais de todos os dendritos são somados e, dependendo do valor total, um potencial de ação (AP) pode ser gerado}
-	\label{fig:sinapse}
-	\includegraphics[width=0.3\linewidth]{figs/sinapse}
-\end{figure}
-
-\subsection{Processamento de informação}
-\begin{itemize}
-	\item A informação recebida pelas redes precisa ser codificada, e dois métodos para isso são:
-	\begin{description}
-		\item[Codificação de taxa] A taxa de disparo dos neurônios é usada. A taxa pode ser calculada como a média temporal (quantidade de disparos por intervalo de tempo), média de disparos em \textit{trials} diferentes, dentre outras maneiras
-		\item[Codificação de tempo de disparo] O instante exato de ocorrência de disparos individuais é usado. Dentre os tipos de codificação nesse caso incluem-se o tempo do primeiro disparo (o tempo entre o início do estímulo e a ocorrência do primeiro disparo), a codificação de ordem (a ordem em que os neurônios disparam é o código), a codificação de latência (a diferença de tempo entre os disparos), dentre outras
-	\end{description}
-	\item Os critérios para seleção do método de codificação variam por diferentes aspectos, como a \textbf{minimização da perda de informação após a decodificação} e o \textbf{aumento da acurácia de previsão/classificação}
-\end{itemize}
-
-\subsection{Aprendizado das redes de disparo}
-\begin{itemize}
-	\item Para cada tipo de codificação citada acima, um método de aprendizado é empregado, que são:
-	\begin{description}
-		\item[Aprendizado baseado em taxa] Uma variação do método \textit{backpropagation} é usada aqui, relacionando as ativações das unidades das redes neurais com as taxas de disparo
-		\item[Aprendizado baseado em disparo] Utiliza a plasticidade dependente de tempo de disparo (STDP, \textit{spike-timing dependent plasticity}),onde os pesos das conexões sinapticas são proporcionais ao grau de relação entre os tempos de disparo pré e pós-sinapticos (Figura~\ref{fig:stdp})
-	\end{description}
-\end{itemize}
-
-\begin{figure}[htb!]
-	\centering
-	\caption{Conceito da STDP}
-	\label{fig:stdp}
-	\includegraphics[width=0.7\linewidth]{figs/stdp}
+	\caption[Arquitetura de redes neurais de disparo (SNN)]{Arquitetura de redes neurais de disparo (SNN)}
+	\label{fig:snn}
+	\includegraphics[width=0.7\linewidth]{figs/snn}
 \end{figure}
 
 
+Alguns projetos de dispositivos de \textit{hardware} foram desenvolvidos com base na arquitetura neuromórfica. O projeto \textbf{\textit{SpiNNaker}} propôs um computador paralelo massivo de milhões de núcleos, desenvolvido para a modelagem de redes neurais de disparo de grande escala.
+%TODO: citação furber the spinnaker
+O \textbf{\textit{BrainScaleS}} é um robusto sistema integrado de \textit{hardware} neuromórfico capaz de ser usado para modelar a complexidade neural, bem como topologias de rede realistas, permitindo a execução direta de modelos que anteriormente só eram possíveis de serem simulados numericamente.
+%TODO: schemmel a wafer-scale
+O projeto responsável pela sua criação, chamado de FACETS, participou do desenvolvimento do modelo AELIF, visto anteriormente, e esse modelo foi implementado fisicamente como um \textit{chip} presente no \textit{BrainScaleS}.
+%TODO: aamir from lif to adex
+O projeto \textbf{\textit{TrueNorth}} criou um chip com mais de 5~(cinco) bilhões de transistores e 4096~(quatro mil e noventa e seis) núcleos sinápticos, interconectados por uma rede de chips internos que integra 1~(um) milhão de neurônios de disparo programáveis e 256~(duzentas e cinquenta e seis) milhões de sinapses configuráveis.
+%TODO: citação merolla a million spiking-neuron
+O \textbf{\textit{Loihi}} é um chip de $60\ mm^2$ fabricado com processadores da Intel de $14-nm$ que integra uma variedade de recursos para o campo de redes neurais de disparo, como conectividade, compartimentos dendríticos, atrasos sinápticos e, mais importante, regras de aprendizado sinápticos programáveis.
+%TODO: citação davies loihi
+
+Diversos outros chips neuromórficos existem ou estão sendo pesquisados, com diferentes tecnologias de desenvolvimento e modelagem aplicadas,
+%TODO: mehonic brain-inspired
+alguns deles utilizando uma tecnologia chamada de \textbf{memristor}, uma espécie de transistor capaz de alterar a sua condutividade dependendo da corrente ou tensão aplicada aos seus terminais, sendo úteis para a implementação eficiente de computação em memória para as redes neurais de disparo.
+%TODO: citação mehonic memristors
+Vale destacar, também, que muitos desses dispositivos podem ser usados com redes neurais convencionais, como RNNs e CNNs, fazendo com que os estudos desse tipo de arquitetura estejam em alta.
+
+As redes neurais de disparo usam, principalmente, neurônios do tipo integra-e-dispara para trocar informações via disparos de potencial de ação, e as unidades de computação são conectadas entre si e interagem através das sinapses.
+%TODO: citação roy towards
+É possível converter as redes neurais convencionais em redes de disparo fazendo alguns ajustes de pesos e normalização, a fim de tirar proveito das vantagens proporcionados pelo uso do \textit{hardware} neuromórfico.
+%TODO: citação diehl conversion
+Para fazer a conversão entre as redes neurais artificiais e as redes neurais de disparo, os dados de entrada precisam ser codificados em disparos de potencial de ação, e essa codificação pode ser baseada na taxa de disparo, na ordem de disparos de uma população, ou temporal.
+
+Na codificação de taxa, a média temporal (quantidade de disparos por intervalo de tempo) ou a média de disparos de diferentes \textit{trials} é usada, tendo um correlato com o que ocorre em populações de neurônios do córtex auditivo primário.
+%TODO: citação decharms primary
+Na codificação de ordem de disparos de uma população vários neurônios diferentes disparam um potencial de ação, porém o importante não é o instante exato em que eles disparam, e sim a ordem deles, ou seja, qual neurônio disparou primeiro, qual foi o segundo, e assim por diante.
+%TODO: citação mallot coding
+A codificação temporal considera o exato momento em que ocorre o disparo do potencial de ação de cada neurônio, um comportamento neuronal de relevância.
+%TODO: citação bohte the evidence
+Subclassificações dessa codificação podem considerar apenas o instante do primeiro disparo ou a latência (a diferença de tempo entre os disparos). Os critérios para seleção do método de codificação variam por diferentes aspectos, como a minimização da perda de informação após a decodificação ou o aumento da acurácia de previsão/classificação.
+
+Do ponto de vista do aprendizado das redes neurais de disparo, o não-supervisionado frequentemente faz uso da STDP como parte do seu mecanismo, com os pesos de potencialização e depressão de longa duração sendo atualizados durante o aprendizado.
+%TODO: citação kheradpisheh stdp-based
+No caso do aprendizado supervisionado, existe uma variação do método \textit{backpropagation}, relacionando as ativações das unidades de redes neurais com as taxas de disparo.
+%TODO: citação diehl fast-classifying
+No entanto, há discussões acerca do treinamento direto com \textit{backpropagation} na simulação do cérebro, principalmente na conversão de ANNs para SNNs. Algumas alternativas são encontradas na literatura, como o \textit{SpikeProp}, semelhante ao \textit{backpropagation},
+%TODO: citação bohte error-backpropagation
+o \textit{ReSuMe}, que pode ser usado em tarefas de tomada de decisão,
+%TODO: citação ponulak supervised
+e o \textit{SPAN}, que transforma as sequências de potenciais de ação na fase de treinamento em sinais analógicos, para que operações metemáticas comuns possam ser aplicadas.
+%TODO: citação mohemmed span
 
 % pensar onde colocar os simuladores
 % \section{Simuladores neuronais}\label{sec:simuladores}
