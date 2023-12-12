@@ -1,6 +1,6 @@
-\chapter{Modelos de neurônio}\label{cap:modelos}
+\chapter{Modelos de neurônio de disparo}\label{cap:modelos}
 \section{Introdução}\label{sec:modelos_intro}
-Os modelos são formas de representar, matemática e/ou computacionalmente, o comportamento do neurônio. Os modelos podem variar desde os mais simples, que não representam fielmente o comportamento fisiológico do neurônio mas são úteis para simular grandes quantidades de neurônios, até os mais complexos, que trazem diversas representações de condutância e morfológicas. Alguns modelos de neurônio são apresentados na Tabela~\ref{tab:modelos_neuronios}, incluindo o número de variáveis presentes no modelo, o que reflete o número de equações diferenciais presentes e, consequentemente, a complexidade do mesmo, bem como é informado se o modelo é considerado biologicamente plausível. Os 4~(quatro) primeiros modelos são detalhados neste texto, por hora diferenciados entre os que simulam o disparo do potencial de ação, chamados aqui de modelos de disparo de neurônio, e os que simulam a taxa de disparo. Há, ainda, distinção, por exemplo, entre modelos de compartimento único, que modelam o potencial de membrana apenas pela variável $V$, e os multi-compartimento, que consideram variações espaciais no potencial de membrana, porém estes últimos não são abordados neste texto.
+Os modelos são formas de representar, matemática e/ou computacionalmente, o comportamento do neurônio. Os modelos podem variar desde os mais simples, que não representam fielmente o comportamento fisiológico do neurônio mas são úteis para simular grandes quantidades de neurônios, até os mais complexos, que trazem diversas representações de condutância e morfológicas. Alguns modelos de neurônio são apresentados na Tabela~\ref{tab:modelos_neuronios}, incluindo o número de variáveis presentes no modelo, o que reflete o número de equações diferenciais presentes e, consequentemente, a complexidade do mesmo, bem como é informado se o modelo é considerado biologicamente plausível. Os 4~(quatro) primeiros modelos são detalhados neste texto, por hora diferenciados entre os que simulam o disparo do potencial de ação, chamados aqui de modelos de neurônio de disparo, e os que simulam a taxa de disparo, detalhados no Capítulo seguinte. Há, ainda, distinção, por exemplo, entre modelos de compartimento único, que modelam o potencial de membrana apenas pela variável $V$, e os multi-compartimento, que consideram variações espaciais no potencial de membrana, porém estes últimos não são abordados neste texto.
 
 \begin{table}
 	\IBGEtab{
@@ -32,8 +32,7 @@ Os modelos são formas de representar, matemática e/ou computacionalmente, o co
 }
 \end{table}
 
-\section{Modelos de disparo de neurônios}\label{sec:modelosdisparo}
-\subsection{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
+\section{Modelo integra-e-dispara com vazamento}\label{sec:modelolif}
 
 Para modelos de neurônio de compartimento único, o circuito elétrico equivalente da membrana pode ser representado como na Figura~\ref{fig:circuitomembrana}.
 \begin{figure}[htb!]
@@ -150,7 +149,7 @@ sendo $a$ o parâmetro de agrupamento, indicando o nível de relação entre o p
 	%TODO: regerar
 \end{figure}
 
-\subsection{Modelo de Izhikevich}\label{sec:izhikevich}
+\section{Modelo de Izhikevich}\label{sec:izhikevich}
 Em 2003, Eugene Izhikevich publicou um modelo capaz de simular vários comportamentos de neurônios corticais, combinando a plausabilidade biológica do modelo de Hodgkin-Huxley (que será visto na sequência) com a eficiência computacional do modelo LIF \cite{izhikevich_simple_2003}. Ele é composto por duas equações diferenciais, que são as seguintes:
 \begin{equation}\label{eq:izhikevich_v}
 	v'=0.04v^2+5v+140-u+I
@@ -211,10 +210,10 @@ A combinação de determinados valores para os parâmetros acima produz saídas 
 }
 \end{table}
 
-\subsection{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
+\section{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
 O último dos modelos de disparo de neurônio visto neste texto é o de Hodgkin-Huxley.
 %TODO: citação
-Como visto na Seção~\ref{sec:fisiologia}, existem canais iônicos que são dependente de tensão. A probabilidade de abertura desses canais é modificada em função do potencial de membrana. O mecanismo de funcionamento deles é como mostrado na Figura~\ref{fig:canais}. À esquerda, é possível ver os elementos que compõem esse tipo de canal: um sensor, que identifica o potencial de membrana; um filtro de seletividade, que seleciona apenas íons compatíveis com aquele canal; e os portões, que permitem ou não a passagem dos íons. Há dois tipos de portões, que estão relacionados aos processos de \textbf{ativação} e \textbf{inativação}. O primeiro refere-se à abertura de um canal iônico, geralmente devido à despolarização, que aumenta a probabilidade de um canal estar aberto. O seu oposto é a \textbf{desativação}, que fecha o canal, geralmente por hiperpolarização. A inativação é o processo que impede a abertura dos canais, tendo como oposto, necessário para que o canal se abra, chamado de \textbf{desinativação}.
+Como visto na Seção~\ref{sec:fisiologia}, existem canais iônicos que são dependentes de tensão. A probabilidade de abertura desses canais é modificada em função do potencial de membrana. O mecanismo de funcionamento deles é como mostrado na Figura~\ref{fig:canais}. À esquerda, é possível ver os elementos que compõem esse tipo de canal: um sensor, que identifica o potencial de membrana; um filtro de seletividade, que seleciona apenas íons compatíveis com aquele canal; e os portões, que permitem ou não a passagem dos íons. Há dois tipos de portões, que estão relacionados aos processos de \textbf{ativação} e \textbf{inativação}. O primeiro refere-se à abertura de um canal iônico, geralmente devido à despolarização, que aumenta a probabilidade de um canal estar aberto. O seu oposto é a \textbf{desativação}, que fecha o canal, geralmente por hiperpolarização. A inativação é o processo que impede a abertura dos canais, tendo como oposto, necessário para que o canal se abra, chamado de \textbf{desinativação}.
 \cite{miller_introductory_2018}
 \begin{figure}[htb!]
 	\centering
@@ -293,4 +292,3 @@ que é semelhante à equação do modelo LIF, porém com dois elementos a mais, 
 	\includegraphics[width=0.7\linewidth]{figs/hh_vm}
 	%TODO: regerar
 \end{figure}
-\section{Modelos de taxa de disparo}\label{sec:modelostaxa}
