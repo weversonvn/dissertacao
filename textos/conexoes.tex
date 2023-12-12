@@ -41,7 +41,7 @@ A dinâmica da condutância sináptica é mostrada na Figura~\ref{fig:respostasi
 	%TODO: regerar
 \end{figure}
 
-\subsection{Sinapses dinâmicas}
+\subsection{Sinapses dinâmicas}\label{subsec:sinapses_dinamicas}
 Acima, os modelos de sinapses possuem pesos fixos. Entretanto, fisiologicamente, as condutâncias sinápticas não são fixas, mas mudam de acordo com a disponibilidade de recursos sinápticos no terminal pré-sináptico, determinados por algumas condições de entrada. Esse comportamento é chamado de sinapse dinâmica, cuja força da conexão varia em um curto período de tempo, ocasionando o a chamada plasticidade de curto prazo (ou de curta duração). Experimentalmente, são observados dois tipos, com efeitos opostos na eficácia sináptica, como mostrados na Figura~\ref{fig:plasticidadecurtaduracao}. À esquerda, é exibido o fenômeno da depressão de curta duração, que causa uma redução temporária na força sináptica, e à direita o fenômeno da facilitação de curta duração, que causa um incremento temporário.
 \begin{figure}[tb]
 	\centering
@@ -165,10 +165,44 @@ como pode ser visto na Figura~\ref{fig:tomadadecisao}. Neste exemplo, um estímu
 
 \section{Aprendizado e plasticidade de longa duração}\label{sec:aprendizado}
 
-\subsection{Aprendizado de Hebb}
+A plasticidade é a capacidade do cérebro de se adaptar, tanto estrutural quanto funcionalmente, em resposta à estímulos externos.
+%TODO: citação mateos-aparicio the impact
+O termo se torno bastante conhecido principalmente devido à chamada \textbf{Regra de Hebb}, que diz que se um neurônio A excita um neurônio B repetidas vezes, contribuindo para o disparo deste, então a sinapse entre os dois deve ser fortalecida.
+%TODO: citação hebb the organization
+Diferentemente das alterações de curta duração mostradas na Seção~\ref{subsec:sinapses_dinamicas}, as mudanças das forças de conexões neuronais da plasticidade sináptica persistem por longos períodos de tempo. Um exemplo é o conceito de \textbf{potencialização de longa duração} (\textit{long-term potentiation, LTP, em inglês}), que se trata de um crescimento da força de conexão sináptica que duram por algumas dezenas de minutos.
+%TODO: citação bliss long-lasting
+Do mesmo modo, há a \textbf{depressão de longa duração} (\textit{long-term depression, LTD, em inglês}), que é a diminuição da força de conexão por um longo período de tempo.
+%TODO: citação bear long-term
+A regra de plasticidade mais simples é dada pela equação abaixo:
+\begin{equation}\label{eq:regra_hebb}
+	\tau_w\dfrac{\mathrm{d}\mathbf{w}}{\mathrm{d}t}=v\mathbf{u}
+\end{equation}
+onde $\tau_w$ é uma constante de tempo que controla a taxa em que os pesos se atualizam, $w$ é o vetor de pesos sinápticos, $v$ é a atividade do neurônio pós-sináptico e $u$ o vetor de atividades dos neurônios pré-sinápticos.
 
-\subsection{Redes Hopfield}
+Na versão simplificada de plasticidade exibida acima, tanto a atividade do neurônio pré-sináptico quanto a do pós aumentam a força da conexão. Na prática, porém, há uma espécie de competição entre diferentes sinapses, que pode ser observada na chamada \textbf{plasticidade dependente do tempo de disparo} (\textit{spike-timing dependent plasticity}, STDP, em inglês), que depende do tempo relativo do disparo das células pré e pós-sinápticas, como exibido na Figura~\ref{fig:stdp}.
+%TODO: citação song competitive
+\begin{figure}[tb]
+	\centering
+	\caption[Plasticidade dependente do tempo de disparo (STDP)]{Plasticidade dependente do tempo de disparo (STDP)}
+	\label{fig:stdp}
+	\includegraphics[width=0.7\linewidth]{figs/stdp}
+	\legend{Fonte: o autor (\the\year)}
+	%TODO: ajustar rótulo da ordenada
+\end{figure}
+Na abscissa é apresentada a diferença de tempo entre os disparos dos neurônios pré e pós-sinápticos. 0~(zero) significa que ambos disparam ao mesmo tempo, valores negativos estão associados ao neurônio pré-sináptico disparando primeiro, e valores positivos ao disparo do neurônio pós-sináptico primeiro. Na primeira situação, com o pré seguido do pós (curva em vermelho), a atividade resulta em uma potencialização de longa duração, com a diferença de peso sendo maior proporcionalmente à diminuição do tempo entre os disparos, até próximo de 0~(zero), enquanto na situação onde o pós-sináptico dispara primeiro (curva em azul), a atividade resulta em uma depressão de longa duração, também com a diferença de peso aumentando proporcionalmente com a diminuição da diferença de tempo entre os disparos.
 
+A modelagem da STDP é dada pela equação abaixo:
+%TODO: citação song competitive
+\begin{equation}\label{eq:stdp}
+	\Delta_w=\begin{cases}
+		A_+\exp(\Delta t/\tau_+)\quad\text{se }\Delta t<0\\
+		-A_-\exp(-\Delta t/\tau_-)\quad\text{se }\Delta t\geq0
+	\end{cases}
+\end{equation}
+sendo $A_+$ e $A_-$ os valores máximos de modificação sináptica, ambos com valor positivo e o máximo próximo de $\Delta_t=0$. $\tau_+$ e $\tau_-$ são as faixas de intervalo entre disparo das células pré para pós-sinápticas. A STDP é uma das bases de aprendizado de diversos algoritmos de aprendizado de máquina, que serão apresentados no Capítulo seguinte.
+
+%\subsection{Redes Hopfield}
+%
 %\section{Caos e criticalidade}\label{sec:caos}
 %% colocar introdução
 %% transição de estados
