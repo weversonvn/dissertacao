@@ -162,6 +162,39 @@ como pode ser visto na Figura~\ref{fig:tomadadecisao}. Neste exemplo, um estímu
 	%TODO: referência
 \end{figure}
 
+\section{Modelos de taxa de disparo}\label{sec:modelostaxa}
+Nos exemplos acima, os cálculos de taxa de disparo são feitos simulando vários neurônios individualmente. Mesmo usando modelos mais simplificados, como os de integra-e-dispara, esse estratégia pode não ser muito adequada, principalmente do ponto de vista da eficiência computacional, onde a simulação de um grande número de neurônios (milhares ou dezenas de milhares) pode se tornar impraticável mesmo utilizando computadores mais robustos. Nesses casos, convém utilizar um modelo que fornece a taxa de disparo. Sem dúvidas, o mais conhecido deles é o de Wilson-Cowan.
+%TODO: citação wilson-cowan excitatory
+Esse modelo leva em consideração as subpopulações (unidades) de neurônios excitatórios e inibitórios separadamente, levando em conta o chamado \textbf{Princípio de Dale}, onde cada neurônio é classificado como puramente excitatório ou inibitório, não podendo ser os dois ao mesmo tempo.
+%TODO: citação dale pharmacology
+
+As equações do modelo de Wilson-Cowan possuem o formato abaixo, com a Equação~\ref{eq:wilson_cowan_e} referente à variação da taxa de disparos para a população de neurônios excitatórios, e a Equação~\ref{eq:wilson_cowan_i} para a população de neurônios inibitórios:
+\begin{align}
+	\tau_e\frac{\mathrm{d}r_e}{\mathrm{d}t} &=-r_e+F_e(w_{ee}r_e-w_{ie}r_i+T_e(t))\label{eq:wilson_cowan_e}\\
+	\tau_i\frac{\mathrm{d}r_i}{\mathrm{d}t} &=-r_i+F_i(w_{ei}r_e-w_{ii}r_i+T_i(t))\label{eq:wilson_cowan_i}
+\end{align}
+sendo $T_e(t)$ e $T_i(t)$ as entradas do modelo, $r_e$ e $r_i$ as taxas de disparo, $\tau_e$ e $\tau_i$ as constantes de tempo, $w_{ee}$ e $w_{ii}$ os pesos das conexões excitatórias (recorrentes) e $w_{ie}$ e $w_{ei}$ os pesos das conexões inibitórias. $F$ é uma função de ativação que nesse caso, define a fração de neurônios que disparam para cada subpopulação.
+
+O comportamento observado ao simular o modelo de Wilson-Cowan é exibido na Figura~\ref{fig:wilson_cowan}. A atividade, em termos de taxa de disparo de cada subpopulação, pode convergir para um valor estável em regime permanente, como mostrado na Figura~\ref{fig:ww_atividade}. Após aproximadamente $50\ ms$, as taxas de disparo não se alteram, para ambas as subpopulações. Esse modelo também possui uma significância importante em comparação à outros trabalhos por ser uma introdução formal de ferramentas para análise de sistemas dinâmicos em neurociência.
+%TODO: citação ramezanian-panahi generative
+De maneira simplificada, sistemas dinâmicos são aqueles onde as variáveis mudam ao longo do tempo, como no caso das taxas de disparo se alterando. Quando as taxas de disparo de cada população não se alteram, a curva que representa a trajetória delas é chamada de \textbf{\textit{nullcline}} (isóclina de inclinação nula, em tradução livre), ocorrendo quando as derivadas das equações \ref{eq:wilson_cowan_e} e \ref{eq:wilson_cowan_i} são iguais a zero, como mostradas na Figura~\ref{fig:ww_trajetoria}, sendo a curva em vermelho para a subpopulação excitatória, e em verde para a inibitória. A curva em azul representa a trajetória do sistema como um todo, que converge para o ponto de interseção entre as curvas das duas subpopulações, onde ambas as taxas não se alteram, sendo este o ponto de equilíbrio do sistema. As setas na cor cinza representam as trajetórias das alterações do sistema em direção ao ponto de equilíbrio.
+\begin{figure}
+	\centering
+	\caption{Comportamento das simulações do modelo de Wilson-Cowan}
+	\label{fig:wilson_cowan}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\caption{Atividade}
+		\label{fig:ww_atividade}
+		\includegraphics[width=\textwidth]{figs/ww_atividade}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.49\textwidth}
+		\caption{Trajetória}
+		\label{fig:ww_trajetoria}
+		\includegraphics[width=\textwidth]{figs/ww_trajetoria}
+	\end{subfigure}
+	\legend{Fonte: o autor (\the\year)}
+\end{figure}
 
 \section{Aprendizado e plasticidade de longa duração}\label{sec:aprendizado}
 
