@@ -40,7 +40,6 @@ Para modelos de neurônio de compartimento único, o circuito elétrico equivale
 	\caption{Circuito equivalente da membrana}
 	\label{fig:circuitomembrana}
 	\includegraphics[width=0.7\linewidth]{figs/circuito_membrana}\\
-	%TODO: corrigir seta
 \end{figure}
 O capacitor na esquerda está associado à capacitância da membrana ($C_m$), e cada resistor em série com uma bateria representa um canal iônico. A série com o $L$ subscrito refere-se ao elemento de vazamento, citado anteriormente, e as séries são referentes aos canais iônicos dependentes de tensão, com o íon subscrito. O circuito completo tem associada a seguinte equação:
 \begin{equation}\label{eq:potencial_membrana_total}
@@ -170,12 +169,12 @@ com $v$ sendo o potencial de membrana, $u$ a variável de recuperação da membr
 	\caption[Potencial de membrana no modelo de Izhikevich]{Potencial de membrana no modelo de Izhikevich}
 	\label{fig:izhikevich}
 	\includegraphics[width=0.7\linewidth]{figs/izhikevich}
-	%TODO: referência
+	\fonte{O autor (\the\year)}
 \end{figure}
 Os parâmetros \textit{a}, \textit{b}, \textit{c} e \textit{d} são definidos como segue:
 \begin{itemize}
 	\item O parâmetro \textit{a} representa a escala de tempo da variável de recuperação, onde valores pequenos resultam em uma recuperação mais lenta
-	\item O parâmetro \textit{b} representa a sensibilidade da variável de recuperação às subflutuações do potencial de membrana, onde valores maiores agrupam mais $v$ e $u$
+	\item O parâmetro \textit{b} representa a sensibilidade da variável de recuperação às sub-flutuações do potencial de membrana, onde valores maiores agrupam mais $v$ e $u$
 	\item O parâmetro \textit{c} representa o valor de \textit{reset} do potencial de membrana após o disparo do potencial de ação
 	\item O parâmetro \textit{d} representa o valor de \textit{reset} da variável de recuperação após o disparo do potencial de ação
 \end{itemize}
@@ -211,9 +210,7 @@ A combinação de determinados valores para os parâmetros acima produz saídas 
 \end{table}
 
 \section{Modelo de Hodgkin-Huxley}\label{sec:modelohh}
-O último dos modelos de disparo de neurônio visto neste texto é o de Hodgkin-Huxley.
-%TODO: citação
-Como visto na Seção~\ref{sec:fisiologia}, existem canais iônicos que são dependentes de tensão. A probabilidade de abertura desses canais é modificada em função do potencial de membrana. O mecanismo de funcionamento deles é como mostrado na Figura~\ref{fig:canais}. À esquerda, é possível ver os elementos que compõem esse tipo de canal: um sensor, que identifica o potencial de membrana; um filtro de seletividade, que seleciona apenas íons compatíveis com aquele canal; e os portões, que permitem ou não a passagem dos íons. Há dois tipos de portões, que estão relacionados aos processos de \textbf{ativação} e \textbf{inativação}. O primeiro refere-se à abertura de um canal iônico, geralmente devido à despolarização, que aumenta a probabilidade de um canal estar aberto. O seu oposto é a \textbf{desativação}, que fecha o canal, geralmente por hiperpolarização. A inativação é o processo que impede a abertura dos canais, tendo como oposto, necessário para que o canal se abra, chamado de \textbf{desinativação}.
+O último dos modelos de disparo de neurônio visto neste texto é o de Hodgkin-Huxley \cite{hodgkin_quantitative_1952}. Como visto na Seção~\ref{sec:fisiologia}, existem canais iônicos que são dependentes de tensão. A probabilidade de abertura desses canais é modificada em função do potencial de membrana. O mecanismo de funcionamento deles é como mostrado na Figura~\ref{fig:canais}. À esquerda, é possível ver os elementos que compõem esse tipo de canal: um sensor, que identifica o potencial de membrana; um filtro de seletividade, que seleciona apenas íons compatíveis com aquele canal; e os portões, que permitem ou não a passagem dos íons. Há dois tipos de portões, que estão relacionados aos processos de \textbf{ativação} e \textbf{inativação}. O primeiro refere-se à abertura de um canal iônico, geralmente devido à despolarização, que aumenta a probabilidade de um canal estar aberto. O seu oposto é a \textbf{desativação}, que fecha o canal, geralmente por hiperpolarização. A inativação é o processo que impede a abertura dos canais, tendo como oposto, necessário para que o canal se abra, chamado de \textbf{desinativação}.
 \cite{miller_introductory_2018}
 \begin{figure}[htb!]
 	\centering
@@ -259,7 +256,7 @@ sendo $\alpha$ a constante de crescimento de cada variável, e $\beta$ a de decr
 	\includegraphics[width=0.7\linewidth]{figs/portoes}
 	%TODO: regerar
 \end{figure}
-A dinâmica das variáveis de portão no modelo de Hodgkin-Huxley pode ser vista na Figura~\ref{fig:portoes}, para uma faixa de 66 até $76\ ms$. As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente}, que é o comportamento em repouso depois de um longo período de tempo \cite{ermentrout_mathematical_2010}, como descritas nas equações abaixo (o símbolo de $\infty$ representa o valor em regime permanente):
+A dinâmica das variáveis de portão no modelo de Hodgkin-Huxley pode ser vista na Figura~\ref{fig:portoes}, para uma faixa de 66 até $76\ ms$. As variáveis de portão também podem se definidas pelas suas equações em \textbf{regime permanente}, que é o comportamento em repouso depois de um longo período de tempo~\cite{ermentrout_mathematical_2010}, como descritas nas equações abaixo (o símbolo de $\infty$ representa o valor em regime permanente):
 \begin{equation}\label{eq:m_inf}
 	m_\infty=\frac{\alpha_m}{\alpha_m+\beta_m}
 \end{equation}

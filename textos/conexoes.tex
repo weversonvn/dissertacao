@@ -1,7 +1,7 @@
 \chapter{Conexões entre neurônios}\label{cap:conexoes}
 \section{Introdução}\label{sec:conexoes_intro}
-Uma vez visto o comportamento de um neurônio individualmente, este Capítulo traz informações sobre como se dá a conexão entre neurônios.
-%TODO: melhorar
+Uma vez visto o comportamento de um neurônio individualmente, este Capítulo traz informações sobre como se dá a conexão entre neurônios. Começando pela conexão direta entre dois neurônios, segue-se com alterações possíveis nessas conexões, além de situações onde é simulada a conexão de diversos neurônios, com comportamentos específicos, implementados com base nos neurônios mostrados anteriormente. Segue, ainda, mostrando um modelo que simula diretamente o comportamento do grupo de neurônios, e finaliza com considerações sobre como o cérebro aprende.
+
 \section{Sinapses}\label{sec:sinapses}
 A sinapse é uma conexão entre dois neurônios. Elas podem ser elétricas, que se dão a partir de uma junção entre as duas células, por onde íons podem passar, produzindo uma corrente sináptica proporcional à diferença entre os potenciais de membrana das duas células, ou químicas, que são conectadas através de um espaço entre as células, e a interação entre elas se dá pela liberação de neurotransmissores, que é um elemento químico que se propaga nesse espaço, fazendo a comunicação entre eles. As sinapses químicas são majoritárias no cérebro humano pós-natal, enquanto que as elétricas estão presentes em quantidade relevante apenas durante o período de desenvolvimento embrionário humano. As sinapses químicas são categorizadas em excitatórias ou inibitórias, de acordo com o efeito no potencial de membrana da célula pós-sináptica (a que responde à liberação do neurotransmissor após o potencial de ação do neurônio pré-sináptico). Enquanto as sinapses excitatórias despolarizam a membrana, as inibitórias causam hiperpolarização, facilitando ou dificultando, respectivamente, o potencial de ação da célula pós-sináptica. Os neurotransmissores mais comuns associados aos neurônios corticais são o \textbf{glutamato}, que excita a célula pós-sináptica, e o \textbf{ácido $\gamma$-aminobutírico (GABA)}, que, normalmente, a inibe~\footnote{No cérebro pré-natal o GABA é excitatório \cite{ben-ari_excitatory_2002}}.
 O esquema de uma sinapse química é mostrado na Figura~\ref{fig:sinapses}. Os neurotransmissores são transportados por compartimentos ao redor da membrana neuronal chamados de vesículas.
@@ -69,8 +69,6 @@ e, seguindo cada disparo da célula pré-sináptica, ocorrem os seguintes mapeam
 \end{equation}
 com $F_{fat}$ denotando o grau de facilitação ($0\leq f_{fat}\leq 1$) e $F_{max}$ o seu valor máximo.
 
-%% falar da bomba de sódio e potassio ao falar do potencial de membrana
-
 \section{Multi-estabilidade}\label{sec:biestabilidade}
 
 \subsection{Oscilações e multi-estabilidade}
@@ -83,41 +81,18 @@ Além das alterações de comportamento causadas pelas entradas aplicadas (inje�
 	\includegraphics[width=0.7\linewidth]{figs/hh_dinamico}
 	%TODO: regerar
 \end{figure}
-A forma mais simples de multi-estabilidade é a bi-estabilidade, onde, com um mesmo estímulo, dois estados de atividade neuronal podem ocorrer, gerando a chamada rivalidade perceptual, onde estímulos únicos podem ser percebidos de mais de uma maneira, alterando entre cada um dos perceptos (percepções bi-estáveis), como nos exemplos da Figura~\ref{fig:biestabilidade}. Na Figura~\ref{fig:cubonecker}, o cubo pode ser visto com a face frontal em lugares diferentes. Já na Figura~\ref{fig:cao_homem}, ora a imagem aparenta ser um cachorro visto de frente, ora parece um homem de costas.
+A forma mais simples de multi-estabilidade é a bi-estabilidade, onde, com um mesmo estímulo, dois estados de atividade neuronal podem ocorrer, gerando a chamada rivalidade perceptual, onde estímulos únicos podem ser percebidos de mais de uma maneira, alterando entre cada um dos perceptos (percepções bi-estáveis), como no exemplo da Figura~\ref{fig:cubonecker}, uma ilusão de ótica onde o cubo, conhecido como Cubo de Necker, pode ser visto com a face frontal em lugares diferentes.
+% Já na Figura~\ref{fig:cao_homem}, ora a imagem aparenta ser um cachorro visto de frente, ora parece um homem de costas.
 
 \begin{figure}[tb]
 	\centering
-	\caption{Imagens produzindo percepções de bi-estabilidade}
-	\label{fig:biestabilidade}
-	\begin{subfigure}[]{0.3\textwidth}
-		\caption{O cubo de Necker pode ser visto com a face frontal em lugares diferentes}
-		\label{fig:cubonecker}
-		\includegraphics[width=\textwidth]{figs/cubo_necker}
-	\end{subfigure}
-	\qquad\qquad\qquad
-	\begin{subfigure}[]{0.3\textwidth}
-		\caption{A imagem se assemelha tanto com um cão de frente quanto um homem de costas}
-		\label{fig:cao_homem}
-		\includegraphics[width=0.8\textwidth]{figs/cao_homem}
-	\end{subfigure}
-	%TODO: citação
+	\caption[Cubo de Necker]{Cubo de Necker}
+	\label{fig:cubonecker}
+	\includegraphics[width=0.7\textwidth]{figs/cubo_necker}
+	\fonte{Domínio público}
 \end{figure}
+
 Quando são simuladas as conexões entre um grupo de neurônios, é conveniente considerar a atividade média deles, ou seja, a taxa de disparo dentre eles, e esse conjunto de neurônios é chamado de \textbf{unidade}. No caso da bi-estabilidade, por exemplo, duas unidades rivalizam entre si, conforme mostrado na Figura~\ref{fig:unidadesdecisao}. No exemplo, $s_1$ e $s_2$ são os estímulos, diferenciados apenas pela eventual presença de ruído. As saídas $r_1$ e $r_2$ são as taxas médias de disparo de cada unidade, e cada uma delas também serve como entrada para a mesma, comportamento chamado de \textbf{\textit{feedback} recorrente}. Além disso, há uma interconexão entre as unidades, com a saída de uma se tornando entrada de outra. Tanto as entradas quando as conexões recorrentes são excitatórias (representadas pelos triângulos no topo das unidades), reforçando a taxa de disparo, enquanto as interconexões são inibitórias (representadas pelos círculos pretos). $W^{EE}$ e $W^{IE}$ são as forças das conexões, com o $EE$ indicando a conexão excitatória e $IE$ a inibitória, e $s^E$ e $s^I$ são a fração de canais sinápticos excitatórios e inibitórios, respectivamente, que estão abertos, e são função da taxa de disparos. Além do ruído na entrada, pode ocorrer ruído dentro das unidades, e a presença de ambos pode induzir às transições entre estados bi-estáveis.
-% indicar o estímulo
-%\begin{figure}[htb!]
-%	\centering
-%	\caption[Unidades de disparo com \textit{feedback} recorrente]{Unidades de disparo com \textit{feedback} recorrente. A atividade média dos neurônios é simulada, e a saída da unidade também serve como entrada para a mesma. A força da conexão recorrente é excitatória, reforçando a taxa de disparos}
-%	\label{fig:feedbackrecorrente}
-%	\includegraphics[width=0.45\linewidth]{figs/feedback_recorrente}
-%\end{figure}
-%sendo $r(S)$ a taxa média de disparos dos neurônios da unidade, que é função da entrada sináptica total, $S$, da fração de canais sinápticos abertos, $s(r)$, variável entre 0 e 1, multiplicado pela força de feedback, $W^{EE}$, o $EE$ indicando que é um feedback excitatório.
-% ligar ambas as figuras
-%\begin{figure}[ht!]
-%	\centering
-%	\caption[Unidade com feedback recorrente que determina a estabilidade de um circuito]{Unidade com feedback recorrente que determina a estabilidade de um circuito. A taxa de disparo da unidade é uma função sigmoidal, a linha contínua na direita, e o feedback é representado pela linha tracejada. Na direita, a dinâmica da taxa de disparos em função do tempo, com um pulso de entrada entre 0,5 e 0,55 segundos (a região cinza). O feedback, nesse caso, é médio ($W^{EE}=0.6$), onde taxas baixas e altas de estado são estáveis, causando uma transição entre os estados do sistema}
-%	\label{fig:biestavel}
-%	\includegraphics[width=0.7\linewidth]{figs/biestavel}
-%\end{figure}
 
 
 \begin{figure}[tb]
@@ -125,47 +100,32 @@ Quando são simuladas as conexões entre um grupo de neurônios, é conveniente 
 	\caption[Unidades de decisão com feedback recorrente e interconexão]{Unidades de decisão com feedback recorrente e interconexão}
 	\label{fig:unidadesdecisao}
 	\includegraphics[width=0.7\linewidth]{figs/unidades_decisao}
-	%TODO: referência
+	\fonte{O autor (\the\year)}
 \end{figure}
 
-%\begin{figure}[htb!]
-%	\centering
-%	\caption[Transições induzidas por ruído]{Transições induzidas por ruído geram intinerância entre dois estados atratores, explicando alternância perceptual. Em (a), três \textit{trials} separados indicando alteração entre os estados, onde a atividade de uma unidade domina sobre a outra. Em (b), a média das atividades ao longo de 10 \textit{trials} (promediação)}
-%	\label{fig:noiseinducedtransitions}
-%	\includegraphics[width=0.35\linewidth]{figs/noise_induced_transitions}
-%\end{figure}
-
 \subsection{Circuitos de multi-estabilidade}
-Um circuito conhecido de multi-estabilidade é o \textbf{gerador de padrão central} (\textit{central pattern generator}, CPG), que são circuitos neurais que podem reproduzir padrões rítmicos de atividade neuronal sem receber entradas rítmicas.
-%TODO: citação Ijspeert
-Eles são fundamentais, dentre outras coisas, para circuitos neurais associados à locomoção.
+Um circuito conhecido de multi-estabilidade é o \textbf{gerador de padrão central} (\textit{central pattern generator}, CPG), que são circuitos neurais que podem reproduzir padrões rítmicos de atividade neuronal sem receber entradas rítmicas~\cite{ijspeert_central_2008}. Eles são fundamentais, dentre outras coisas, para circuitos neurais associados à locomoção.
 
 \begin{figure}[tb]
 	\centering
 	\caption[Gerador de padrão central de duas unidades]{Gerador de padrão central de duas unidades}
 	\label{fig:cpg}
 	\includegraphics[width=0.7\linewidth]{figs/cpg}
-	%TODO: referência
+	\fonte{O autor (\the\year)}
 \end{figure}
-Um exemplo do seu comportamento é exibido na Figura~\ref{fig:cpg}. Nela, são exibidas as curvas do potencial de membrana de membrana de duas unidades, conectadas como mostrado anteriormente, e com um pulso de corrente aplicado por volta de $0,25\ s$. É possível observar que, quando a célula 1 é ativada (representado pelo disparo dos potenciais de ação), a célula 2 é inibida. O contrário também ocorre, com a célula 1 sendo inibida com a ativação da célula 2, alternando entre qual das unidades dispara durante um intervalo de tempo. Não há o disparo simultâneo das duas células. Um correlato dessa atividade com a locomoção é o movimento das duas pernas humanas. Se associarmos cada perna com uma unidade, hora uma delas está em movimento (uma célula ativada), hora é a outra, alternando ao longo do tempo. Circuitos geradores de padrão central são bastante empregados no projeto de locomoção de robôs articulados.
-%TODO: citação Ijspeert
+Um exemplo do seu comportamento é exibido na Figura~\ref{fig:cpg}. Nela, são exibidas as curvas do potencial de membrana de membrana de duas unidades, conectadas como mostrado anteriormente, e com um pulso de corrente aplicado por volta de $0,25\ s$. É possível observar que, quando a célula 1 é ativada (representado pelo disparo dos potenciais de ação), a célula 2 é inibida. O contrário também ocorre, com a célula 1 sendo inibida com a ativação da célula 2, alternando entre qual das unidades dispara durante um intervalo de tempo. Não há o disparo simultâneo das duas células. Um correlato dessa atividade com a locomoção é o movimento das duas pernas humanas. Se associarmos cada perna com uma unidade, hora uma delas está em movimento (uma célula ativada), hora é a outra, alternando ao longo do tempo. Circuitos geradores de padrão central são bastante empregados no projeto de locomoção de robôs articulados~\cite{ijspeert_central_2008}.
 
-Outros circuitos conhecidos de multi-estabilidade são os de tomada de decisão. Esses circuitos acumulam informações sensoriais ao longo do tempo até que uma decisão possa ser tomada. A computação da informação pode ser feita simplesmente integrando a atividade neural ao longo do tempo,
-%TODO: citação cain
-como pode ser visto na Figura~\ref{fig:tomadadecisao}. Neste exemplo, um estímulo é aplicado simultaneamente (instante $0\ s$) em duas unidades, também conectadas como acima, que acumulam as evidências desse estímulo ao longo do tempo, alterando a taxa de disparo média das unidades. Neste caso, a decisão tomada, ou seja, a unidade escolhida, é a que atingir primeiro um determinado limiar, definido como a taxa de disparo de $40\ Hz$. A unidade 1 (em azul) foi a vencedora.
+Outros circuitos conhecidos de multi-estabilidade são os de tomada de decisão. Esses circuitos acumulam informações sensoriais ao longo do tempo até que uma decisão possa ser tomada. A computação da informação pode ser feita simplesmente integrando a atividade neural ao longo do tempo~\cite{cain_computational_2012}, como pode ser visto na Figura~\ref{fig:tomadadecisao}. Neste exemplo, um estímulo é aplicado simultaneamente (instante $0\ s$) em duas unidades, também conectadas como acima, que acumulam as evidências desse estímulo ao longo do tempo, alterando a taxa de disparo média das unidades. Neste caso, a decisão tomada, ou seja, a unidade escolhida, é a que atingir primeiro um determinado limiar, definido como a taxa de disparo de $40\ Hz$. A unidade 1 (em azul) foi a vencedora.
 \begin{figure}[tb]
 	\centering
 	\caption[Circuito de tomada de decisão]{Circuito de tomada de decisão}
 	\label{fig:tomadadecisao}
 	\includegraphics[width=0.7\linewidth]{figs/tomada_decisao}
-	%TODO: referência
+	\fonte{O autor (\the\year)}
 \end{figure}
 
 \section{Modelos de taxa de disparo}\label{sec:modelostaxa}
-Nos exemplos acima, os cálculos de taxa de disparo são feitos simulando vários neurônios individualmente. Mesmo usando modelos mais simplificados, como os de integra-e-dispara, esse estratégia pode não ser muito adequada, principalmente do ponto de vista da eficiência computacional, onde a simulação de um grande número de neurônios (milhares ou dezenas de milhares) pode se tornar impraticável mesmo utilizando computadores mais robustos. Nesses casos, convém utilizar um modelo que fornece a taxa de disparo. Sem dúvidas, o mais conhecido deles é o de Wilson-Cowan.
-%TODO: citação wilson-cowan excitatory
-Esse modelo leva em consideração as subpopulações (unidades) de neurônios excitatórios e inibitórios separadamente, levando em conta o chamado \textbf{Princípio de Dale}, onde cada neurônio é classificado como puramente excitatório ou inibitório, não podendo ser os dois ao mesmo tempo.
-%TODO: citação dale pharmacology
+Nos exemplos acima, os cálculos de taxa de disparo são feitos simulando vários neurônios individualmente. Mesmo usando modelos mais simplificados, como os de integra-e-dispara, esse estratégia pode não ser muito adequada, principalmente do ponto de vista da eficiência computacional, onde a simulação de um grande número de neurônios (milhares ou dezenas de milhares) pode se tornar impraticável mesmo utilizando computadores mais robustos. Nesses casos, convém utilizar um modelo que fornece a taxa de disparo. Sem dúvidas, o mais conhecido deles é o de Wilson-Cowan~\cite{wilson_excitatory_1972}. Esse modelo leva em consideração as subpopulações (unidades) de neurônios excitatórios e inibitórios separadamente, levando em conta o chamado \textbf{Princípio de Dale}, onde cada neurônio é classificado como puramente excitatório ou inibitório, não podendo ser os dois ao mesmo tempo~\cite{dale_pharmacology_1935}.
 
 As equações do modelo de Wilson-Cowan possuem o formato abaixo, com a Equação~\ref{eq:wilson_cowan_e} referente à variação da taxa de disparos para a população de neurônios excitatórios, e a Equação~\ref{eq:wilson_cowan_i} para a população de neurônios inibitórios:
 \begin{align}
@@ -174,9 +134,7 @@ As equações do modelo de Wilson-Cowan possuem o formato abaixo, com a Equaçã
 \end{align}
 sendo $T_e(t)$ e $T_i(t)$ as entradas do modelo, $r_e$ e $r_i$ as taxas de disparo, $\tau_e$ e $\tau_i$ as constantes de tempo, $w_{ee}$ e $w_{ii}$ os pesos das conexões excitatórias (recorrentes) e $w_{ie}$ e $w_{ei}$ os pesos das conexões inibitórias. $F$ é uma função de ativação que nesse caso, define a fração de neurônios que disparam para cada subpopulação.
 
-O comportamento observado ao simular o modelo de Wilson-Cowan é exibido na Figura~\ref{fig:wilson_cowan}. A atividade, em termos de taxa de disparo de cada subpopulação, pode convergir para um valor estável em regime permanente, como mostrado na Figura~\ref{fig:ww_atividade}. Após aproximadamente $50\ ms$, as taxas de disparo não se alteram, para ambas as subpopulações. Esse modelo também possui uma significância importante em comparação à outros trabalhos por ser uma introdução formal de ferramentas para análise de sistemas dinâmicos em neurociência.
-%TODO: citação ramezanian-panahi generative
-De maneira simplificada, sistemas dinâmicos são aqueles onde as variáveis mudam ao longo do tempo, como no caso das taxas de disparo se alterando. Quando as taxas de disparo de cada população não se alteram, a curva que representa a trajetória delas é chamada de \textbf{\textit{nullcline}} (isóclina de inclinação nula, em tradução livre), ocorrendo quando as derivadas das equações \ref{eq:wilson_cowan_e} e \ref{eq:wilson_cowan_i} são iguais a zero, como mostradas na Figura~\ref{fig:ww_trajetoria}, sendo a curva em vermelho para a subpopulação excitatória, e em verde para a inibitória. A curva em azul representa a trajetória do sistema como um todo, que converge para o ponto de interseção entre as curvas das duas subpopulações, onde ambas as taxas não se alteram, sendo este o ponto de equilíbrio do sistema. As setas na cor cinza representam as trajetórias das alterações do sistema em direção ao ponto de equilíbrio.
+O comportamento observado ao simular o modelo de Wilson-Cowan é exibido na Figura~\ref{fig:wilson_cowan}. A atividade, em termos de taxa de disparo de cada subpopulação, pode convergir para um valor estável em regime permanente, como mostrado na Figura~\ref{fig:ww_atividade}. Após aproximadamente $50\ ms$, as taxas de disparo não se alteram, para ambas as subpopulações. Esse modelo também possui uma significância importante em comparação à outros trabalhos por ser uma introdução formal de ferramentas para análise de sistemas dinâmicos em neurociência~\cite{ramezanian-panahi_generative_2022}. De maneira simplificada, sistemas dinâmicos são aqueles onde as variáveis mudam ao longo do tempo, como no caso das taxas de disparo se alterando. Quando as taxas de disparo de cada população não se alteram, a curva que representa a trajetória delas é chamada de \textbf{\textit{nullcline}} (isóclina de inclinação nula, em tradução livre), ocorrendo quando as derivadas das equações \ref{eq:wilson_cowan_e} e \ref{eq:wilson_cowan_i} são iguais a zero, como mostradas na Figura~\ref{fig:ww_trajetoria}, sendo a curva em vermelho para a subpopulação excitatória, e em verde para a inibitória. A curva em azul representa a trajetória do sistema como um todo, que converge para o ponto de interseção entre as curvas das duas subpopulações, onde ambas as taxas não se alteram, sendo este o ponto de equilíbrio do sistema. As setas na cor cinza representam as trajetórias das alterações do sistema em direção ao ponto de equilíbrio.
 \begin{figure}
 	\centering
 	\caption{Comportamento das simulações do modelo de Wilson-Cowan}
@@ -197,34 +155,23 @@ De maneira simplificada, sistemas dinâmicos são aqueles onde as variáveis mud
 
 \section{Aprendizado e plasticidade de longa duração}\label{sec:aprendizado}
 
-A plasticidade é a capacidade do cérebro de se adaptar, tanto estrutural quanto funcionalmente, em resposta à estímulos externos.
-%TODO: citação mateos-aparicio the impact
-O termo se torno bastante conhecido principalmente devido à chamada \textbf{Regra de Hebb}, que diz que se um neurônio A excita um neurônio B repetidas vezes, contribuindo para o disparo deste, então a sinapse entre os dois deve ser fortalecida.
-%TODO: citação hebb the organization
-Diferentemente das alterações de curta duração mostradas na Seção~\ref{subsec:sinapses_dinamicas}, as mudanças das forças de conexões neuronais da plasticidade sináptica persistem por longos períodos de tempo. Um exemplo é o conceito de \textbf{potencialização de longa duração} (\textit{long-term potentiation, LTP, em inglês}), que se trata de um crescimento da força de conexão sináptica que duram por algumas dezenas de minutos.
-%TODO: citação bliss long-lasting
-Do mesmo modo, há a \textbf{depressão de longa duração} (\textit{long-term depression, LTD, em inglês}), que é a diminuição da força de conexão por um longo período de tempo.
-%TODO: citação bear long-term
-A regra de plasticidade mais simples é dada pela equação abaixo:
+A plasticidade é a capacidade do cérebro de se adaptar, tanto estrutural quanto funcionalmente, em resposta à estímulos externos~\cite{mateos-aparicio_impact_2019}. O termo se torno bastante conhecido principalmente devido à chamada \textbf{Regra de Hebb}, que diz que se um neurônio A excita um neurônio B repetidas vezes, contribuindo para o disparo deste, então a sinapse entre os dois deve ser fortalecida~\cite{hebb_organization_2005}. Diferentemente das alterações de curta duração mostradas na Seção~\ref{subsec:sinapses_dinamicas}, as mudanças das forças de conexões neuronais da plasticidade sináptica persistem por longos períodos de tempo. Um exemplo é o conceito de \textbf{potencialização de longa duração} (\textit{long-term potentiation, LTP, em inglês}), que se trata de um crescimento da força de conexão sináptica que duram por algumas dezenas de minutos~\cite{bliss_longlasting_1973}. Do mesmo modo, há a \textbf{depressão de longa duração} (\textit{long-term depression, LTD, em inglês}), que é a diminuição da força de conexão por um longo período de tempo~\cite{bear_long-term_1996}. A regra de plasticidade mais simples é dada pela equação abaixo:
 \begin{equation}\label{eq:regra_hebb}
 	\tau_w\dfrac{\mathrm{d}\mathbf{w}}{\mathrm{d}t}=v\mathbf{u}
 \end{equation}
 onde $\tau_w$ é uma constante de tempo que controla a taxa em que os pesos se atualizam, $w$ é o vetor de pesos sinápticos, $v$ é a atividade do neurônio pós-sináptico e $u$ o vetor de atividades dos neurônios pré-sinápticos.
 
-Na versão simplificada de plasticidade exibida acima, tanto a atividade do neurônio pré-sináptico quanto a do pós aumentam a força da conexão. Na prática, porém, há uma espécie de competição entre diferentes sinapses, que pode ser observada na chamada \textbf{plasticidade dependente do tempo de disparo} (\textit{spike-timing dependent plasticity}, STDP, em inglês), que depende do tempo relativo do disparo das células pré e pós-sinápticas, como exibido na Figura~\ref{fig:stdp}.
-%TODO: citação song competitive
+Na versão simplificada de plasticidade exibida acima, tanto a atividade do neurônio pré-sináptico quanto a do pós aumentam a força da conexão. Na prática, porém, há uma espécie de competição entre diferentes sinapses, que pode ser observada na chamada \textbf{plasticidade dependente do tempo de disparo} (\textit{spike-timing dependent plasticity}, STDP, em inglês), que depende do tempo relativo do disparo das células pré e pós-sinápticas, como exibido na Figura~\ref{fig:stdp}~\cite{song_competitive_2000}.
 \begin{figure}[tb]
 	\centering
 	\caption[Plasticidade dependente do tempo de disparo (STDP)]{Plasticidade dependente do tempo de disparo (STDP)}
 	\label{fig:stdp}
 	\includegraphics[width=0.7\linewidth]{figs/stdp}
 	\legend{Fonte: o autor (\the\year)}
-	%TODO: ajustar rótulo da ordenada
 \end{figure}
 Na abscissa é apresentada a diferença de tempo entre os disparos dos neurônios pré e pós-sinápticos. 0~(zero) significa que ambos disparam ao mesmo tempo, valores negativos estão associados ao neurônio pré-sináptico disparando primeiro, e valores positivos ao disparo do neurônio pós-sináptico primeiro. Na primeira situação, com o pré seguido do pós (curva em vermelho), a atividade resulta em uma potencialização de longa duração, com a diferença de peso sendo maior proporcionalmente à diminuição do tempo entre os disparos, até próximo de 0~(zero), enquanto na situação onde o pós-sináptico dispara primeiro (curva em azul), a atividade resulta em uma depressão de longa duração, também com a diferença de peso aumentando proporcionalmente com a diminuição da diferença de tempo entre os disparos.
 
-A modelagem da STDP é dada pela equação abaixo:
-%TODO: citação song competitive
+A modelagem da STDP é dada pela equação abaixo~\cite{song_competitive_2000}:
 \begin{equation}\label{eq:stdp}
 	\Delta_w=\begin{cases}
 		A_+\exp(\Delta t/\tau_+)\quad\text{se }\Delta t<0\\
@@ -232,88 +179,3 @@ A modelagem da STDP é dada pela equação abaixo:
 	\end{cases}
 \end{equation}
 sendo $A_+$ e $A_-$ os valores máximos de modificação sináptica, ambos com valor positivo e o máximo próximo de $\Delta_t=0$. $\tau_+$ e $\tau_-$ são as faixas de intervalo entre disparo das células pré para pós-sinápticas. A STDP é uma das bases de aprendizado de diversos algoritmos de aprendizado de máquina, que serão apresentados no Capítulo seguinte.
-
-%\subsection{Redes Hopfield}
-%
-%\section{Caos e criticalidade}\label{sec:caos}
-%% colocar introdução
-%% transição de estados
-%% matemática dos estados
-%
-%\subsection{Nullclines}
-%\begin{description}
-%	% isóclina de inclinação nula
-%	\item[Fase-plano] \textit{Plots} dos eixos das duas variáveis em um sistema de duas equações diferenciais ordinárias. Mostram os pontos fixos, \textit{nullclines} e trajetórias das variáveis ao longo do tempo
-%	\item[\textit{Nullcline} (Isóclina de inclinação nula)] Curvas que mostram a dependência de pontos fixos entre as variáveis de um sistema de equações diferenciais ordinárias. Cada equação diferencial gera uma \textit{nullcline}, e as interseções entre elas definem os pontos fixos do sistema
-%	%\item[Quebra do anôdo] Um disparo no potencial de membrana que ocorre logo após uma hiperpolarização
-%	\item[Pontos fixos] Pares de valores onde o sistema não se altera (o lado direito da equação diferencial ordinária é igual a 0)
-%\end{description}
-%
-%% exemplo lotka-volterra
-%\begin{figure}[htb!]
-%	\centering
-%	\caption{\textit{Nullclines} em sistemas de Lotka-Volterra}
-%	\label{fig:nullclineslotkavolterra}
-%	\includegraphics[width=0.7\linewidth]{figs/nullclines_lotka_volterra}\\
-%	\small{Fonte: \cite{zeeman_extinction_1995}}
-%\end{figure}
-%
-%% exemplo fitz-hugh nagumo
-%\begin{figure}[htb!]
-%	\centering
-%	\caption{Plano de fase e estados fisiológicos no modelo FitzHugh-Nagumo}
-%	\label{fig:fitzhugh}
-%	\includegraphics[width=0.7\linewidth]{figs/fitzhugh}\\
-%	\small{Fonte: Scholarpedia}
-%\end{figure}
-%
-%% exemplo izhikevich
-%% exemplo livro (sistemas bi-estáveis)
-%\begin{figure}[htb!]
-%	\centering
-%	\caption[\textit{Nullclines} mostrando pontos fixos de sistemas bi-estáveis]{\textit{Nullclines} mostrando pontos fixos de sistemas bi-estáveis. A linha pontilhada é para $r_2$, e a contínua é para $r_1$. Os pontos fixos, onde as linhas se interceptam, são representados pelos círculos. Os sólidos são pontos estáveis, enquanto os abertos são instáveis.}
-%	\label{fig:nullcline}
-%	\includegraphics[width=0.9\linewidth]{figs/nullcline}\\
-%	\small{Fonte: adaptado de \cite{miller_introductory_2018}}
-%\end{figure}
-%
-%
-%\subsubsection{Múltiplos atratores}
-%\begin{itemize}
-%	\item Alterações para mais de dois estados perceptuais
-%	\item Podem ser representados usando modelos ocultos de Markov (HMM, \textit{Hidden Markov Models})
-%	\item Na Figura~\ref{fig:hmm}, em (b), são mostrados os estados discretos que o HMM pode assumir nesse caso (círculos coloridos), com as matrizes de probabilidades de transição entre estados por unidade (a espessura das setas).
-%	\item Cada estado é definido pela probabilidade de emissão de um padrão particular em um intervalo de tempo (histogramas dentro dos círculos)
-%\end{itemize}
-%
-%\begin{figure}[htb!]
-%	\centering
-%	\caption[Modelos ocultos de Markov]{Modelos ocultos de Markov. Em (a), os conjuntos de trens de disparo de potenciais de ação. Em (b), os estados discretos que o HMM assume. Em (c), as probabilidades a posteori para cada estado}
-%	\label{fig:hmm}
-%	\includegraphics[width=0.8\linewidth]{figs/hmm}
-%\end{figure}
-%
-%
-%\subsection{Caos}
-%\begin{itemize}
-%	\item A \textbf{teoria do caos} é um ramo da matemática que lida com sistemas dinâmicos não lineares, ou seja, a interação dos componentes do sistema não é somente a adição desses componentes individualmente, devido a existência de efeitos multiplicativos ou de \textit{feedback}
-%	\item Sistemas caóticos podem ter poucas partes e seguirem regras bem simples, porém possuem uma sensibilidade bem grande às condições iniciais, onde o impacto de um pequeno efeito pode crescer exponencialmente ao longo do tempo
-%	\item A dinâmica não-linear de sistemas com caos facilita a habilidade de adaptação presente em sistemas neuronais, causando transições de um padrão de comportamento para outro quando o ambiente é alterado e, consequentemente, criando uma rica variedade de padrões
-%	\item Sistemas operam na \textbf{beira do caos} quando, para um mesmo conjunto de parâmetros, se ajustados em uma direção tornam o sistema caótico, enquanto que se ajustados em outra direção fazem com que o sistema apresente estados estáveis
-%	\item O conjunto de parâmetros, na condição de beira do caos, pode ser chamado de crítico, com o sistema podendo exibir \textbf{criticalidade}, uma propriedade dos sistemas onde uma pequena alteração do sistema em um local pode tanto ter um efeito local quanto se propagar e alterar o sistema como um todo
-%	\item Acredita-se que sistemas em criticalidade possuem melhores capacidades de processamento de informação e otimização de memória, inspirando a hipótese da criticalidade, proposição onde o cérebro opera em um estado crítico, devido às capacidades de computação ótimas associadas precisarem ser evolutivamente selecionadas para isso
-%	\item A ideia geral de sistemas se auto migrarem para estados críticos através de processos descentralizados é conhecido como \textbf{criticalidade auto-organizável} (SOC, \textit{self-organized criticality})
-%	\item Uma cascata de disparos de atividade neuronal que ultrapassa um limiar em intervalos de tempo seguidos é chamado de \textbf{avalanche} (Fig.~\ref*{fig:sandpile})
-%	\item Exemplos de sistemas que podem exibir comportamento caótico incluem o modelo de neurônio de Izhikevich (já visto) e a equação do mapa logístico (tutorial), dada por $x_{t+1}=rx_t(1-x_t)$, e que representa um modelo discreto de crescimento populacional, sendo $x_t$ a taxa de população no tempo $t$ e $r$ a taxa de crescimento
-%\end{itemize}
-%
-%\begin{figure}[htb!]
-%	\centering
-%	\caption{Modelo de pilha de areia}
-%	\label{fig:sandpile}
-%	\includegraphics[width=0.7\linewidth]{figs/sandpile}
-%\end{figure}
-
-%\subsection{Coeficiente de Lypunov}
-
-%\subsection{Avalanches}
