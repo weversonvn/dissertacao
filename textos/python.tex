@@ -359,30 +359,12 @@ ax.plot([1, 2, 3, 4], [1, 4, 2, 3] # exibe alguns dados no eixo
 	
 	\begin{figure}[htb!]
 		\centering
-		\caption{Plot}
+		\caption{Exemplo simples de plot}
 		\label{fig:plot}
 		\includegraphics[width=0.8\textwidth]{figs/plot.png}
-	\end{figure}
-	\item A figura tem várias partes, onde cada uma pode ser alterada
-	
-	\begin{figure}[htb!]
-		\centering
-		\caption{Partes da figura no Matplotlib}
-		\label{fig:anatomy}
-		\includegraphics[width=0.8\textwidth]{figs/anatomy}\\
-		\tiny{Fonte: Documentação do Matplotlib}
+		\fonte{O autor (\the\year)}
 	\end{figure}
 	
-	\begin{description}
-		\item[Figura (Figure)] A figura \textbf{toda}. Armazena os eixos, elementos "especiais" (títulos, legendas, etc). Cria-se usando o \textit{pyplot}:
-		\begin{minted}{python}
-fig = plt.figure()  # uma figura vazia sem eixos
-fig, ax = plt.subplots()  # uma figura com um único eixo
-fig, axs = plt.subplots(2, 2)  # uma figura com uma grade de eixos 2x2
-		\end{minted}
-		\item[Eixos (Axes)] O \textit{plot} de fato. É a região da imagem com os dados espaciais. Os \textit{Axes} podem ter dois (ou três no caso 3D) \textit{Axis}(ver abaixo) que lida com os limites do gráfico. Cada \textit{Axes} pode ter seu próprio título e legendas para x e y.
-		\item[Eixo (Axis)] A linha numerada. Tem os limites do gráfico e os marcadores, bem como os nomes dos marcadores.
-	\end{description}
 	\item Tipos de gráficos comuns:
 	\begin{description}
 		\item[plot] Plota $x$ vs $y$ como linhas e/ou marcadores
@@ -402,9 +384,10 @@ plt.show()
 		
 		\begin{figure}[htb!]
 			\centering
-			\caption{Stem}
+			\caption{Gráfico do tipo Stem}
 			\label{fig:stem}
 			\includegraphics[width=0.8\textwidth]{figs/stem.pdf}
+			\fonte{O autor (\the\year)}
 		\end{figure}
 		\item[scatter] Plota y vs x com diferentes tamanhos e cores dos marcadores
 		\begin{minted}{python}
@@ -423,9 +406,10 @@ plt.show()
 		
 		\begin{figure}[htb!]
 			\centering
-			\caption{Scatter}
+			\caption{Gráfico de dispersão (scatter)}
 			\label{fig:scatter}
 			\includegraphics[width=0.8\textwidth]{figs/scatter.pdf}
+			\fonte{O autor (\the\year)}
 		\end{figure}
 	\end{description}
 	\item Mais comandos e exemplos do \textit{Matplotlib} estão na \href{https://matplotlib.org/stable/contents.html}{documentação online} (em inglês)
