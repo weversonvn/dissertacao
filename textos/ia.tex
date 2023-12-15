@@ -18,17 +18,17 @@ $\sigma$ é uma função de ativação não-linear, e $y$ é a saída do neurôn
 	\caption{Arquiteturas do Perceptron}
 	\label{fig:perceptrons}
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[width=\textwidth]{figs/perceptron}
 		\caption{Perceptron}
 		\label{fig:perceptron}
+		\includegraphics[width=\textwidth]{figs/perceptron}
 	\end{subfigure}
 	\qquad\qquad
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[width=\textwidth]{figs/mlp}
 		\caption{Perceptron de multi-camadas}
 		\label{fig:mlp}
+		\includegraphics[width=\textwidth]{figs/mlp}
 	\end{subfigure}
-	%TODO: trocar figura
+	\fonte{\cite{parhi_brain-inspired_2020}}
 \end{figure}
 
 Os vários neurônios presentes nessa arquitetura frequentemente têm seus pesos atualizados através do algoritmo de gradiente descendente, que busca minimizar o erro entre a saída obtida pela rede e a real (aprendizado supervisionado), e essa atualização é feita através da metodologia da retro-propagação (\textit{backpropagation}, em inglês), ou seja, as atualizações das camadas finais da rede são propagadas em direção às iniciais~\cite{werbos_beyond_1974}. Quando há uma grande quantidade de camadas na rede ela é chamada de rede neural profunda (\textit{deep neural network},DNN, em inglês), permitindo um mapeamento de dados mais complexos, o que não seria muito eficiente em redes não profundas. Uma lista não exaustiva de arquiteturas, profundas ou não, de redes neurais artificiais (\textit{artificial neural networks} (ANN), em inglês) é apresentada abaixo:
@@ -51,6 +51,7 @@ As arquiteturas neuromórficas surgem como uma opção onde estrutura e funciona
 	\caption[Arquitetura de redes neurais de disparo (SNN)]{Arquitetura de redes neurais de disparo (SNN)}
 	\label{fig:snn}
 	\includegraphics[width=0.7\linewidth]{figs/snn}
+	\fonte{\cite{parhi_brain-inspired_2020}}
 \end{figure}
 
 
