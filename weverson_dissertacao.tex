@@ -301,7 +301,23 @@ This work presents a proposal for an introductory course on computational neuros
 % ---
 % listar em ordem alfabética
 \begin{siglas}
-\item[UFPA] Universidade Federal do Pará
+	\item[AELIF] \textit{Adaptative exponential leaky integrate-and-fire}
+	\item[ANN] \textit{Artificial neural network}
+	\item[CNN] \textit{Convolutional neural network}
+	\item[DNN] \textit{Deep neural network}
+	\item[EEG] Eletroencefalograma
+	\item[ELIF] \textit{Exponential leaky integrate-and-fire}
+	\item[GABA] Ácido $\gamma$-aminobutírico
+	\item[GPG] \textit{Central pattern generator}
+	\item[LIF] \textit{Leaky integrate-and-fire}
+	\item[LSTM] \textit{Long short-term memory}
+	\item[LTD] \textit{Long-term depression}
+	\item[LTP] \textit{Long-term potentiation}
+	\item[MLP] \textit{Multilayer perceptron}
+	\item[PCP] Plasticidade de curto prazo
+	\item[RNN] \textit{Recurrent neural network}
+	\item[SNN] \textit{Spiking neural network}
+	\item[STDP] \textit{Spike-timing dependent plasticity}
 \end{siglas}
 % ---
 
@@ -310,7 +326,88 @@ This work presents a proposal for an introductory course on computational neuros
 % ---
 % inserir na ordem que aparecem no texto
 \begin{simbolos}
-\item[$\alpha$] Estrela de maior brilho de uma constelação % eu gosto de ver estrelas (literalmente)
+\item[$V_m$] Potencial de membrana
+\item[$E_A$] Concentração do íon A
+\item[$z_A$] Carga do íon A
+\item[$k_B$] Constante de Boltzmann
+\item[$q_e$] Carga fundamental
+\item[$Na^+$] Íon sódio
+\item[$Ca^{2+}$] Íon cálcio
+\item[$K^+$] Íon potássio
+\item[$Cl^-$] Íon cloreto
+\item[$C_m$] Capacitância da membrana neuronal
+\item[$E_l$] Potencial de vazamento
+\item[$G_l$] Condutância de vazamento
+\item[$\frac{\mathrm{d}}{\mathrm{d}t}$] Representação de equação diferencial na notação de Leibniz
+\item[$y'$] Representação de equação diferencial na notação de Lagrange
+\item[$\lambda$] Constante de decaimento radioativo
+\item[$G_A$] Condutância do íon A
+\item[$V_{th}$] Potencial de limiar
+\item[$I_ap$] Corrente aplicada no(s) neurônio(s)
+\item[$V_{reset}$] Potencial de reset
+\item[$G_{ref}$] Condutância refratária
+\item[$\tau_{ref}$] Constante de tempo do período refratário
+\item[$\Delta G$] Incremento de condutância
+\item[$V_{th}^0$] Potencial de limiar de referência
+\item[$\Delta V$] Incremento de potencial
+\item[$V_{max}$] Potencial de membrana máximo do modelo ELIF
+\item[$\Delta_{th}$] Intervalo de limiar
+\item[$w$] Variável de adaptação do modelo AELIF
+\item[$m$] Variável de portão de ativação de sódio
+\item[$h$] Variável de portão de inativação de sódio
+\item[$n$] Variável de portão de ativação de potássio
+\item[$\alpha_m$] Constante de crescimento da variável de portão de ativação de sódio
+\item[$\beta_m$] Constante de decrescimento da variável de portão de ativação de sódio
+\item[$\alpha_h$] Constante de crescimento da variável de portão de inativação de sódio
+\item[$\beta_h$] Constante de decrescimento da variável de portão de inativação de sódio
+\item[$\alpha_n$] Constante de crescimento da variável de portão de ativação de potássio
+\item[$\beta_n$] Constante de decrescimento da variável de portão de ativação de potássio
+\item[$m_\infty$] Variável de portão de ativação de sódio em regime permanente
+\item[$h_\infty$] Variável de portão de inativação de sódio em regime permanente
+\item[$n_\infty$] Variável de portão de ativação de potássio em regime permanente
+\item[$\tau_m$] Constante de tempo da variável de portão de ativação de sódio
+\item[$\tau_h$] Constante de tempo da variável de portão de inativação de sódio
+\item[$\tau_n$] Constante de tempo da variável de portão de ativação de potássio
+\item[$G_{Na}^{(max)}$] Condutância máxima de sódio
+\item[$G_K^{(max)}$] Condutância máxima de potássio
+\item[$G_{sin}$] Condutância sináptica
+\item[$\tau_{sin}$] Constante de tempo da sinapse
+\item[$\tau_{cresce}$] Constante de tempo de crescimento da condutância sináptica
+\item[$\tau_{decai}$] Constante de tempo de decaimento da condutância sináptica
+\item[$t_{disparo}$] Instante de tempo do disparo das célula pré-sináptica
+\item[$K$] Fator de controle da condutância sináptica
+\item[$G_{max}$] Valor máximo da condutância sináptica
+\item[$p_0$] Probabilidade de liberação do neurotransmissor
+\item[$F$] Variável de facilitação sináptica
+\item[$D$] Variável de depressão sináptica
+\item[$\tau_D$] Constante de tempo da depressão sináptica
+\item[$\tau_F$] Constante de tempo da facilitação sináptica
+\item[$F_{fat}$] Grau de facilitação sináptica
+\item[$F_{max}$] Valor máximo de facilitação sináptica
+\item[$r_n$] Taxa de disparo da unidade $n$
+\item[$W^{EE}$] Força de conexões excitatórias
+\item[$W^{IE}$] Força de conexões inibitórias
+\item[$s^E$] Fração de canais sinápticos excitatórios abertos
+\item[$s^I$] Fração de canais sinápticos inibitórios abertos
+\item[$r_e$] Taxa de disparos de subpopulações excitatórias no modelo de Wilson-Cowan
+\item[$r_i$] Taxa de disparos de subpopulações inibitórias no modelo de Wilson-Cowan
+\item[$T_e(t)$] Entrada da unidade de subpopulação excitatória no modelo de Wilson-Cowan
+\item[$T_i(t)$] Entrada da unidade de subpopulação inibitória no modelo de Wilson-Cowan
+\item[$\tau_e$] Constante de tempo da subpopulação excitatória no modelo de Wilson-Cowan
+\item[$\tau_i$] Constante de tempo da subpopulação inibitória no modelo de Wilson-Cowan
+\item[$F_e$] Função de ativação para a subpopulação excitatória no modelo de Wilson-Cowan
+\item[$F_i$] Função de ativação para a subpopulação inibitória no modelo de Wilson-Cowan
+\item[$\tau_w$] Constante de tempo de atualização de pesos sinápticos
+\item[$\mathbf{w}$] Vetor de pesos sinápticos
+\item[$\mathbf{u}$] Vetor de atividades dos neurônios pré-sinápticos
+\item[$A_+$] Valor máximo de modificação sináptica para potencialização de longa duração
+\item[$A_-$] Valor máximo de modificação sináptica para depressão de longa duração
+\item[$\tau_+$] Faixa de intervalo entre disparo das células pré para pós-sinápticas na potencialização de longa duração
+\item[$\tau_-$] Faixa de intervalo entre disparo das células pré para pós-sinápticas na depressão de longa duração
+\item[$x_k$] Resposta da sinapse $k$ no modelo do \textit{Perceptron}
+\item[$w_k$] Peso da sinapse no \textit{Perceptron}
+\item[$b$] \textit{Bias}
+\item[$\sigma$] Função de ativação não-linear do \textit{Perceptron}
 \end{simbolos}
 % ---
 

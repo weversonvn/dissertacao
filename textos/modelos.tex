@@ -56,11 +56,11 @@ sendo $G_A$ a condutância do íon $A$, $E_A$ o potencial do íon $A$. Ignorando
 	\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
 	%TODO: trocar GND
 \end{figure}
-Essa é a equação do modelo \textit{Leaky integrate-and-fire} (integra e dispara com vazamento, em tradução livre) \cite{lapicque_recherches_1907}. A corrente aplicada no modelo é acumulada (integrada), elevando o potencial de membrana até o valor de limiar, representando o momento onde o neurônio dispara. Devido a simplicidade do modelo, a equação, por si só, não é capaz de representar a hiperpolarização que ocorre fisicamente na célula neuronal após o disparo do potencial de ação, e, por isso, é acrescentada a condição de \textit{reset}. Enquanto a corrente continuar sendo aplicada, o potencial de membrana permanece sendo atualizado pela dinâmica da equação diferencial, como é exibido na Figura~\ref{fig:lif}. Três pulsos de corrente, com valores $0,18\ nA$, $0,21\ nA$ e $0,24\ nA$, são aplicados no modelo. Para o primeiro valor, o neurônio despolariza (fica menos negativo), porém não atinge o valor de limiar (como visto na primeira curva da segunda linha de gráficos). Com a injeção dos demais valores de corrente, a célula neuronal atinge o valor de limiar ($50\ mV$ nestes exemplos), ocorrendo o disparo do potencial de ação (registrado como uma linha vertical na última linha de gráficos), e com a posterior alteração do potencial de membrana para o valor de \textit{reset} ($80\ mV$ nestes exemplos).
+Essa é a equação do modelo \textit{Leaky integrate-and-fire} (LIF, integra e dispara com vazamento, em tradução livre) \cite{lapicque_recherches_1907}. A corrente aplicada no modelo é acumulada (integrada), elevando o potencial de membrana até o valor de limiar, representando o momento onde o neurônio dispara. Devido a simplicidade do modelo, a equação, por si só, não é capaz de representar a hiperpolarização que ocorre fisicamente na célula neuronal após o disparo do potencial de ação, e, por isso, é acrescentada a condição de \textit{reset}. Enquanto a corrente continuar sendo aplicada, o potencial de membrana permanece sendo atualizado pela dinâmica da equação diferencial, como é exibido na Figura~\ref{fig:lif}. Três pulsos de corrente, com valores $0,18\ nA$, $0,21\ nA$ e $0,24\ nA$, são aplicados no modelo. Para o primeiro valor, o neurônio despolariza (fica menos negativo), porém não atinge o valor de limiar (como visto na primeira curva da segunda linha de gráficos). Com a injeção dos demais valores de corrente, a célula neuronal atinge o valor de limiar ($50\ mV$ nestes exemplos), ocorrendo o disparo do potencial de ação (registrado como uma linha vertical na última linha de gráficos), e com a posterior alteração do potencial de membrana para o valor de \textit{reset} ($80\ mV$ nestes exemplos).
 
 \begin{figure}[htb!]
 	\centering
-	\caption[Exemplo da simulação com o modelo LIF]{Exemplo da simulação com o modelo LIF. Cada coluna representa um valor diferente de corrente aplicada ao modelo, que são mostradas na primeira linha de gráficos. Na segunda linha são exibidos os potenciais de membrana para cada corrente injetada. Em baixo, os instantes em que ocorreu o disparo de potenciais de ação.}
+	\caption[Exemplo da simulação com o modelo LIF]{Exemplo da simulação com o modelo LIF}
 	\label{fig:lif}
 	\includegraphics[width=0.7\linewidth]{figs/lif}
 	%TODO: regerar
@@ -106,7 +106,7 @@ A dinâmica da adaptação da taxa de disparos é exibida na Figura~\ref{fig:lif
 \end{figure}
 
 \subsubsection{Modelo LIF exponencial}
-O modelo LIF exponencial (ELIF) incorpora um termo adicional para a geração do potencial de ação, que é uma falta existente no modelo tradicional. Esse termo acrescenta uma corrente despolarizante, elevando quase que instantaneamente o valor do potencial de membrana quando este se aproxima do limiar. Esse crescimento tende ao infinito, porém nas simulações é definido um limite ($V_{max}$), devido o computador ter problemas para lidar com valores infinitos, alterando a condição do modelo para a equação abaixo:
+O modelo LIF exponencial (\textit{exponential leaky integrate-and-fire}, ELIF, em inglês) incorpora um termo adicional para a geração do potencial de ação, que é uma falta existente no modelo tradicional. Esse termo acrescenta uma corrente despolarizante, elevando quase que instantaneamente o valor do potencial de membrana quando este se aproxima do limiar. Esse crescimento tende ao infinito, porém nas simulações é definido um limite ($V_{max}$), devido o computador ter problemas para lidar com valores infinitos, alterando a condição do modelo para a equação abaixo:
 \begin{equation}\label{eq:elif_cond}
 	\text{se } V_m > V_{max} \text{ então } V_m\mapsto V_{reset}
 \end{equation}
@@ -125,7 +125,7 @@ Os gráficos comparando o potencial de membrana do modelo LIF (em cima) e ELIF (
 \end{figure}
 
 \subsubsection{Modelo LIF exponencial adaptativo}
-O modelo LIF exponencial adaptativo (AELIF) adiciona uma corrente adaptativa hiperpolarizante ao modelo anterior, similar à utilizada no método da condutância refratária, porém com o decaimento dependendo do potencial de membrana. É um modelo com duas equações, sendo uma para a variável de adaptação ($w$) e a outra para o potencial de membrana, que é semelhante à do modelo anterior, e ambas tem um \textit{reset} quando ocorre o disparo do potencial de ação.
+O modelo LIF exponencial adaptativo (\textit{adaptative exponential leaky integrate-and-fire}, AELIF, em inglês) adiciona uma corrente adaptativa hiperpolarizante ao modelo anterior, similar à utilizada no método da condutância refratária, porém com o decaimento dependendo do potencial de membrana. É um modelo com duas equações, sendo uma para a variável de adaptação ($w$) e a outra para o potencial de membrana, que é semelhante à do modelo anterior, e ambas tem um \textit{reset} quando ocorre o disparo do potencial de ação.
 % Esse modelo é capaz de descrever padrões de disparo comuns, como \textit{bursting, fast spiking, regular spiking}, dentre outros.
 As equação para este modelo são:
 \begin{equation}
