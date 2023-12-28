@@ -204,4 +204,78 @@
 	\]
 \end{frame}
 
-\subsection{Hodgkin-Huxley}
+\subsection{Modelo de Hodgkin-Huxley}
+\begin{frame}{Modelo de Hodgkin-Huxley}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[htb!]
+				\centering
+				\caption{Mecanismo de funcionamento dos canais iônicos dependentes de tensão}
+				\label{fig:canais}
+				\includegraphics[width=0.9\linewidth]{figs/canais}
+%				\fonte{\cite{dayan_theoretical_2001}}
+				%TODO: trocar figura
+			\end{figure}
+		\column{5cm}
+		\begin{itemize}
+			\item A probabilidade de abertura dos canais é função do potencial de membrana;
+			\item ativação: abertura do canal iônico, geralmente por despolarização (inverso: desativação);
+			\note{desativação geralmente por hiperpolarização}
+			\item inativação: impedimento da abertura dos canais (inverso: desinativação)
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Modelo de Hodgkin-Huxley}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Dinâmica das variáveis de portão}
+				\label{fig:portoes}
+				\includegraphics[width=0.9\linewidth]{figs/portoes}
+%				\fonte{O autor (\the\year)}
+				%TODO: regerar
+			\end{figure}
+		\column{5cm}
+		\begin{itemize}
+			\item Variável de portão: representa a fração de canais em determinado estado;
+			\item \textbf{m}: ativação de sódio;
+			\item \textbf{h}: inativação de sódio;
+			\item \textbf{n}: ativação de potássio.
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Modelo de Hodgkin-Huxley}
+		\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Potencial de membrana gerado pelo modelo de Hodgkin-Huxley}
+				\label{fig:hhvm}
+				\includegraphics[width=0.8\linewidth]{figs/hh_vm}
+				%				\fonte{O autor (\the\year)}
+				%TODO: regerar
+			\end{figure}
+		\column{5cm}
+			\[
+				\frac{dm}{dt}=\alpha_m(1-m)-\beta_mm
+			\]\[
+				\frac{dh}{dt}=\alpha_h(1-h)-\beta_hh
+			\]\[
+				\frac{dn}{dt}=\alpha_n(1-n)-\beta_nn
+			\]
+	\end{columns}
+	
+	\[
+		C_m\frac{dV_m}{dt}=G_L(E_L-V_m)+G_{Na}^{(max)}m^3h(E_{Na}-V_m)+G_K^{(max)}n^4(E_K-V_m)+I_{ap}
+	\]
+	\note{\textbf{m}: ativação de sódio}
+	\note{\textbf{h}: inativação de sódio}
+	\note{\textbf{n}: ativação de potássio}
+	\note{$G_{Na}^{max}$: condutância máxima de sódio}
+	\note{$G_K^{max}$: condutância máxima de potássio}
+	\note{$E_{Na}$: potencial de reversão do sódio}
+	\note{$E_K$: potencial de reversão do potássio}
+\end{frame}
