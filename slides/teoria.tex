@@ -83,5 +83,48 @@
 
 \subsection*{Equações diferenciais ordinárias}
 \begin{frame}
-	teste
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}
+				\centering
+				\caption{Soluções da equação $y'=y-t$ para vários $c$}
+				\label{fig:solucao}
+				\includegraphics[width=0.7\linewidth]{figs/solucao}
+%				\fonte{O autor (\the\year)}
+			\end{figure}
+			\note{solução: $y(t) = t + 1 + ce^t$}
+		\column{5cm}
+			\[
+				\frac{\mathrm{d}y(t)}{\mathrm{d}t}=f(y(t))
+			\]
+			\begin{itemize}
+				\item Equações diferenciais: descrevem sistemas dinâmicos;
+				\item possuem como solução uma família de equações;
+				\item podem ser resolvidas de maneira analítica ou numérica.
+			\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Método de Euler}
+				\label{fig:euler}
+				\includegraphics[width=0.7\linewidth]{figs/euler}
+%				\fonte{O autor (\the\year)}
+			\end{figure}
+		\column{5cm}
+		\begin{itemize}
+			\item Método de Euler: soluciona numericamente equações diferenciais;
+			\item considera um valor inicial ($X_0$) e intervalos discretos fixos ($\Delta t$);
+			\item calcula o valor seguinte ($x_{n+1}$) a partir do atual ($x_n$);
+			\item o algoritmo para utilizá-lo é implementado em Python.
+			\note{Algoritmo: sequência de instruções para executar uma determinada tarefa}
+		\end{itemize}
+		\[
+			x_{n+1}=x_n+f(x_n,t_n)\Delta t
+		\]
+	\end{columns}
 \end{frame}
