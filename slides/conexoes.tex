@@ -60,10 +60,10 @@
 				%TODO: trocar figura
 			\end{figure}
 		\column{5cm}
-		\begin{itemize}
-			\item Depressão de curta duração: redução temporária na força sináptica;
-			\item Facilitação de curta duração: incremento temporário na força sináptica
-		\end{itemize}
+			\begin{itemize}
+				\item Depressão de curta duração: redução temporária na força sináptica;
+				\item Facilitação de curta duração: incremento temporário na força sináptica
+			\end{itemize}
 	\end{columns}
 	\[
 		\begin{aligned}
@@ -75,6 +75,105 @@
 \end{frame}
 
 \subsection{Multi-estabilidade}
+\begin{frame}{Multi-estabilidade}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Comportamento variado do modelo de Hodgkin-Huxley}
+				\label{fig:hhdinamico}
+				\includegraphics[width=0.9\linewidth]{figs/hh_dinamico}
+%				\fonte{O autor (\the\year)}
+				%TODO: regerar
+			\end{figure}
+		\column{5cm}
+			\begin{itemize}
+				\item Capacidade dos neurônios de manterem múltiplos estados mesmo com a mesma entrada;
+				\item Hodgkin-Huxley, por exemplo, pode alternar entre oscilações e ressonância
+			\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Bi-estabilidade}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Cubo de Necker}
+				\label{fig:cubonecker}
+				\includegraphics[width=0.7\textwidth]{figs/cubo_necker}
+%				\fonte{Domínio público}
+			\end{figure}
+		\column{5cm}
+			\begin{itemize}
+				\item Forma mais simples de multi-estabilidade;
+				\item dois estados de atividade podem ocorrer;
+				\item causa a rivalidade perceptual: estímulos únicos podem ser percebidos de mais de uma maneira
+			\end{itemize}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}{Unidades de decisão}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Unidades de decisão com feedback recorrente e interconexão}
+				\label{fig:unidadesdecisao}
+				\includegraphics[width=\linewidth]{figs/unidades_decisao}
+%				\fonte{O autor (\the\year)}
+			\end{figure}
+		\column{5cm}
+			\begin{itemize}
+				\item grupo de neurônios onde é considerada a atividade média deles;
+				\note{as entradas diferem por ruído}
+				\item unidades podem ter interconexão, com uma inibindo a outra;
+				\item podem conectar a si mesmas (\textit{feedback} recorrente).
+				\note{o ruído, tanto na entrada quanto dentro da unidade, pode induzir às transições entre estados}
+			\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Circuito gerador de padrão central}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Gerador de padrão central de duas unidades}
+				\label{fig:cpg}
+				\includegraphics[width=\linewidth]{figs/cpg}
+%				\fonte{O autor (\the\year)}
+			\end{figure}
+		\column{5cm}
+			\begin{itemize}
+				\item reproduzem padrões rítmicos de atividade neuronal sem receber entradas rítmicas;
+				\item a ativação de uma célula inibe a outra;
+				\note{correlato com a locomoção: movimento das duas pernas}
+				\item muito aplicados em circuitos associados à locomoção de robôs articulados.
+			\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Circuitos de tomada de decisão}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Circuito de tomada de decisão}
+				\label{fig:tomadadecisao}
+				\includegraphics[width=\linewidth]{figs/tomada_decisao}
+%				\fonte{O autor (\the\year)}
+			\end{figure}
+		\column{5cm}
+			\begin{itemize}
+				\item Acumulam informações sensoriais ao longo do tempo até uma decisão ser tomada;
+				\item cada unidade acumula evidências do estímulo ao longo do tempo;
+				\item a primeira unidade a atingir um limiar é considerada a vencedora.
+				\note{limiar de 40 Hz}
+			\end{itemize}
+	\end{columns}
+\end{frame}
 
 \subsection{Modelos de taxa de disparo}
 
