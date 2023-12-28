@@ -142,22 +142,55 @@ Programa de Pós-graduação em Engenharia Elétrica \\
 
 
 \begin{document}
-\include{slides/preambulo}
-\include{slides/intro}
-\include{slides/teoria}
-\include{slides/modelos}
-\include{slides/conexoes}
-\include{slides/ia}
-\include{slides/conclusao}
-\include{slides/referencias}
+	\begin{frame}
+		\titlepage % Print the title page as the first slide
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Agenda} % Table of contents slide, comment this block out to remove it
+		\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+		% You might wish to add the option [pausesections]
+	\end{frame}
 
-%------------------------------------------------
-\section*{}
-\begin{frame}[noframenumbering]
-\centering
-\textbf{Muito obrigado!}
-\end{frame}
+	\include{slides/intro}
+	\include{slides/teoria}
+	\include{slides/modelos}
+	\include{slides/conexoes}
+	\include{slides/ia}
+	\include{slides/conclusao}
 
-%----------------------------------------------------------------------------------------
+	%%------------------------------------------------
+	%\section*{Referências}
+	%%------------------------------------------------
+	%\begin{frame}[noframenumbering]
+	\begin{frame}
+		\frametitle{Referências}
+		\footnotesize{
+			\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+				\bibitem[HANSEN, Dan Witzner; JI, Qiang; 2010]{p1} Dan Witzner Hansen, Qiang Ji (2010)
+				\newblock In the Eye of the Beholder: A Survey of Models for Eyes and Gaze
+				\newblock \emph{IEEE Transactions on Circuits and Systems for Video Technology}, IEEE, v. 32, n. 3, p. 478 -- 500.
+				
+				\bibitem[WANG, Xiaomeng; LIU, Kang; QIAN, Xu; 2015]{p2} Xiaomeng Wang, Kang Liu, Xu Qian (2015)
+				\newblock A survey on gaze estimation
+				\newblock \emph{International Conference on Intelligent Systems and Knowledge Engineering}, IEEE, p. 260 -- 267.
+				
+				\bibitem[VIOLA, Paul; JONES, Michael J.; 2004]{p3} 
+				Erik Murphy-Chutorian, Mohan M. Trivedi (2009)
+				\newblock Head pose estimation in computer vision: A survey
+				\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, IEEE, v. 31, n. 4, p. 1056 -- 1059.
+				
+				\bibitem[HANSEN, Dan Witzner; JI, Qiang; 2010]{p1} Junwen Wu, Mohan M. Trivedi (2008)
+				\newblock A two-stage head pose estimation framework and evaluation
+				\newblock \emph{Pattern Recognition}, Elsevier, n. 41, p. 1138 -- 1158.
+			\end{thebibliography}
+		}
+	\end{frame}
+
+	\section*{}
+	\begin{frame}[noframenumbering]
+	\centering
+	\textbf{Muito obrigado!}
+	\end{frame}
 
 \end{document} 
