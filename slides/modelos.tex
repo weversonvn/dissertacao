@@ -168,6 +168,40 @@
 	\]
 \end{frame}
 
-\subsection{Izhikevich}
+\subsection{Modelo de Izhikevich}
+\begin{frame}{Modelo de Izhikevich}
+	\begin{columns}[t]
+		\column{5cm}
+			\begin{figure}[tb]
+				\centering
+				\caption{Potencial de membrana no modelo de Izhikevich}
+				\label{fig:izhikevich}
+				\includegraphics[width=0.83\linewidth]{figs/izhikevich}
+%				\fonte{O autor (\the\year)}
+			\end{figure}
+		\column{5cm}
+		\begin{itemize}
+			\item possui uma equação para o potencial de membrana e outra para a variável de recuperação;
+			\note{mesma notação usada pelo Izhikevich}
+			\item a combinação dos valores $a$, $b$, $c$ e $d$ produz diferentes padrões de comportamento de neurônios.
+			\note{figura: regular spiking}
+			\note{a: escala de tempo da variável de recuperação. Valores pequenos = recuperação mais lenta}
+			\note{b: sensibilidade da var. de recuperação. Valores maiores agrupam mais $v$ e $u$}
+			\note{c: valor de reset do potencial de membrana}
+			\note{d: valor de reset da variável de recuperação}
+		\end{itemize}
+	\end{columns}
+	\[
+		\begin{aligned}
+			v'&=0.04v^2+5v+140-u+I\\
+			u'&=a(bv-u)
+		\end{aligned}
+		\qquad
+		\text{se }v\geq30\ mV,\text{ então }\begin{cases}
+			v\leftarrow c\\
+			u\leftarrow u+d
+		\end{cases}
+	\]
+\end{frame}
 
 \subsection{Hodgkin-Huxley}
