@@ -15,8 +15,8 @@
 				\item O capacitor está associado à capacitância de membrana;
 				\item $G_L$ e $E_L$ referem-se aos elementos de vazamento;
 				\item os demais são referentes aos canais iônicos dependentes de tensão.
-				\note{na: sódio}
-				\note{ca: cálcio}
+				\note{na: sódio\\}
+				\note{ca: cálcio\\}
 				\note{k: potássio}
 			\end{itemize}
 	\end{columns}
@@ -33,7 +33,7 @@
 				\centering
 				\caption{Circuito equivalente do modelo LIF}
 				\label{fig:circuitolif}
-				\includegraphics[width=0.5\linewidth]{figs/circuito_lif}
+				\includegraphics[width=0.8\linewidth]{figs/circuito_lif}
 %				\fonte{O autor (\the\year)}
 				%TODO: trocar GND
 			\end{figure}
@@ -78,9 +78,9 @@
 			\item intervalo de tempo que o neurônio não produz um novo disparo;
 			\item não é presente no modelo LIF, por isso é acrescentado como extensão;
 			\item métodos existentes para simular incluem o grampeamento de tensão, a condutância refratária e o incremento do limiar.
-			\note{grampeamento de tensão: fixa o potencial de membrana no valor de reset}
-			\note{condutância refratária: acrescenta uma condutância elevada, geralmente uma corrente hiperpolarizante de potássio, fazendo com que o potencial de membrana cresça em um ritmo mais lento}
-			\note{incremento do limiar: aumenta o valor do limiar após cada potencial de ação}
+			\note{\textbf{grampeamento de tensão:} fixa o potencial de membrana no valor de reset\\}
+			\note{\textbf{condutância refratária:} acrescenta uma condutância elevada, geralmente uma corrente hiperpolarizante de potássio, fazendo com que o potencial de membrana cresça em um ritmo mais lento\\}
+			\note{\textbf{incremento do limiar:} aumenta o valor do limiar após cada potencial de ação}
 		\end{itemize}
 	\end{columns}
 \end{frame}
@@ -101,8 +101,8 @@
 			\item Diminuição da taxa de disparos logo após o primeiro; 
 			\item é implementado de maneira semelhante ao método da condutância refratária;
 			\item difere pelo valor do incremento de condutância, que é menor, e a escala de tempo, que é maior.
-			\note{Uma fácil percepção da consequência da adaptação da taxa de disparo é a diferença de percepção de cheiros intensos ao longo do tempo, como quando uma pessoa entra com um perfume forte em um elevador}
-			\note{o incremento menor não impede o disparo de novos potenciais, só diminui a taxa}
+			\note{Uma fácil percepção da consequência da adaptação da taxa de disparo é a diferença de percepção de cheiros intensos ao longo do tempo, como quando uma pessoa entra com um perfume forte em um elevador\\}
+			\note{o incremento menor não impede o disparo de novos potenciais, só diminui a taxa\\}
 			\note{a escala de tempo maior permite o acúmulo das condutâncias ao longo da sequência de disparos}
 		\end{itemize}
 	\end{columns}
@@ -147,13 +147,13 @@
 %				\fonte{O autor (\the\year)}
 				%TODO: regerar
 			\end{figure}
-			\note{Resposta do modelo AELIF para um pulso de corrente de 1 $nA$}
+			\note{Resposta do modelo AELIF para um pulso de corrente de 1 $nA$\\}
 		\column{5cm}
 		\begin{itemize}
 			\item Adiciona uma corrente adaptativa hiperpolarizante;
 			\item modelo de duas equações, para o potencial de membrana e a variável de adaptação ($w$).
-			\note{a: parâmetro de agrupamento}
-			\note{b: parâmetro de adaptação (incremento de corrente após o disparo)}
+			\note{\textbf{a:} parâmetro de agrupamento\\}
+			\note{\textbf{b:} parâmetro de adaptação (incremento de corrente após o disparo)\\}
 			\note{a curva de adaptação é semelhante à condutância adaptativa e condutância refratária}
 		\end{itemize}
 		\[
@@ -182,13 +182,13 @@
 		\column{5cm}
 		\begin{itemize}
 			\item possui uma equação para o potencial de membrana e outra para a variável de recuperação;
-			\note{mesma notação usada pelo Izhikevich}
+			\note{mesma notação usada pelo Izhikevich\\}
 			\item a combinação dos valores $a$, $b$, $c$ e $d$ produz diferentes padrões de comportamento de neurônios.
-			\note{figura: regular spiking}
-			\note{a: escala de tempo da variável de recuperação. Valores pequenos = recuperação mais lenta}
-			\note{b: sensibilidade da var. de recuperação. Valores maiores agrupam mais $v$ e $u$}
-			\note{c: valor de reset do potencial de membrana}
-			\note{d: valor de reset da variável de recuperação}
+			\note{figura: regular spiking\\}
+			\note{\textbf{a:} escala de tempo da variável de recuperação. Valores pequenos = recuperação mais lenta\\}
+			\note{\textbf{b:} sensibilidade da var. de recuperação. Valores maiores agrupam mais $v$ e $u$\\}
+			\note{\textbf{c:} valor de reset do potencial de membrana\\}
+			\note{\textbf{d:} valor de reset da variável de recuperação}
 		\end{itemize}
 	\end{columns}
 	\[
@@ -271,11 +271,14 @@
 	\[
 		C_m\frac{dV_m}{dt}=G_L(E_L-V_m)+G_{Na}^{(max)}m^3h(E_{Na}-V_m)+G_K^{(max)}n^4(E_K-V_m)+I_{ap}
 	\]
-	\note{\textbf{m}: ativação de sódio}
-	\note{\textbf{h}: inativação de sódio}
-	\note{\textbf{n}: ativação de potássio}
-	\note{$G_{Na}^{max}$: condutância máxima de sódio}
-	\note{$G_K^{max}$: condutância máxima de potássio}
-	\note{$E_{Na}$: potencial de reversão do sódio}
-	\note{$E_K$: potencial de reversão do potássio}
+	\note{\textbf{m}: ativação de sódio\\}
+	\note{\textbf{h}: inativação de sódio\\}
+	\note{\textbf{n}: ativação de potássio\\}
+	\note{$\mathbf{\alpha}$: constante de crescimento\\}
+	\note{$\mathbf{\beta}$: constante de decrescimento\\}
+	\note{$G_{Na}^{max}$: condutância máxima de sódio\\}
+	\note{$G_K^{max}$: condutância máxima de potássio\\}
+	\note{$E_{Na}$: potencial de reversão do sódio\\}
+	\note{$E_K$: potencial de reversão do potássio\\}
+	\note{35 min}
 \end{frame}

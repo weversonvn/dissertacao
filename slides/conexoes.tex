@@ -7,7 +7,7 @@
 				\centering
 				\caption{Esquema simplificado de uma sinapse química}
 				\label{fig:sinapses}
-				\includegraphics[width=0.9\linewidth]{figs/sinapses}\\
+				\includegraphics[width=\linewidth]{figs/sinapses}\\
 %				\fonte{\cite{miller_introductory_2018}}
 				%TODO: trocar figura
 			\end{figure}
@@ -17,7 +17,7 @@
 				\item elétricas: se dão a partir de uma junção entre duas células;
 				\item químicas: conectadas por um espaço entre as células por meio de neurotransmissores.
 				\item excitatórias: despolarizam a membrana; inibitórias: hiperpolarizam
-				\note{glutamato: excita a célula}
+				\note{glutamato: excita a célula\\}
 				\note{gaba: normalmente inibe}
 			\end{itemize}
 	\end{columns}
@@ -170,7 +170,8 @@
 				\item Acumulam informações sensoriais ao longo do tempo até uma decisão ser tomada;
 				\item cada unidade acumula evidências do estímulo ao longo do tempo;
 				\item a primeira unidade a atingir um limiar é considerada a vencedora.
-				\note{limiar de 40 Hz}
+				\note{limiar de 40 Hz\\}
+				\note{nesse exemplo foi usado o neuronio HH}
 			\end{itemize}
 	\end{columns}
 \end{frame}
@@ -199,8 +200,8 @@
 		\quad
 		\tau_i\frac{\mathrm{d}r_i}{\mathrm{d}t} =-r_i+F_i(w_{ei}r_e-w_{ii}r_i+T_i(t))
 	\]
-	\note{considera subpopulações excitatórias e inibitórias}
-	\note{sistemas dinâmicos: se alteram ao longo do tempo (taxa de disparo)}
+	\note{considera subpopulações excitatórias e inibitórias\\}
+	\note{sistemas dinâmicos: se alteram ao longo do tempo (taxa de disparo)\\}
 	\note{nullcline: trajetória quando as derivadas são nulas (taxa de disparo não se altera)}
 \end{frame}
 
@@ -217,7 +218,7 @@
 			\end{figure}
 		\column{5cm}
 			\begin{itemize}
-				\note{Regra de Hebb: se um neurônio A excita um neurônio B repetidas vezes, então a sinapse entre os dois deve ser fortalecida}
+				\note{Regra de Hebb: se um neurônio A excita um neurônio B repetidas vezes, então a sinapse entre os dois deve ser fortalecida\\}
 				\item potencialização de longa duração: crescimento da força de conexão sináptica;
 				\item depressão de longa duração: diminuição da força;
 				\[
@@ -226,8 +227,9 @@
 						-A_-\exp(-\Delta t/\tau_-)\text{, }\Delta t\geq0
 					\end{cases}
 				\]
-				\note{$A_+$ e $A_-$: valores máximos de modificação sináptica}
-				\note{$\tau_+$ e $\tau_-$: faixas de intervalo entre disparo das células pré e pós-sinápticas}
+				\note{$A_+$ e $A_-$: valores máximos de modificação sináptica\\}
+				\note{$\tau_+$ e $\tau_-$: faixas de intervalo entre disparo das células pré e pós-sinápticas\\}
+				\note{50 min}
 			\end{itemize}
 	\end{columns}
 \end{frame}

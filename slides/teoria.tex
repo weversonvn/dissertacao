@@ -1,12 +1,12 @@
 \section{Base teórica}
 \subsection*{Neurobiologia básica}
-\begin{frame}
+\begin{frame}{O neurônio}
 	\begin{columns}[t]
 		\column{5cm}
-			\begin{figure}[tb]
+			\begin{figure}
 				\centering
 				\caption{Neurônio}
-				\includegraphics[width=0.55\linewidth]{figs/neuronio}
+				\includegraphics[width=0.7\linewidth]{figs/neuronio}
 				\label{fig:neuronio}
 				%		\fonte{Adaptado de \cite{lopez-ruiz_simulation_2016}}
 				%TODO: trocar figura
@@ -15,18 +15,17 @@
 			\begin{itemize}
 				\item Composto pelo núcleo (soma), dendritos, axônio e terminais axonais;
 				\item contém íons e moléculas, positivas ou negativas.
-				\note{Teste de nota}
 			\end{itemize}
 	\end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{O neurônio}
 	\begin{columns}[t]
 		\column{5cm}
 			\begin{figure}[tb]
 				\centering
 				\caption{Membrana do neurônio}
-				\includegraphics[width=0.55\linewidth]{figs/membrana_neuronio}
+				\includegraphics[width=\linewidth]{figs/membrana_neuronio}
 				\label{fig:membrananeuronio}
 %				\fonte{adaptado de \cite{hille_ionic_1992}}
 			\end{figure}
@@ -40,14 +39,14 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Canais iônicos}
 	\begin{columns}[t]
 		\column{5cm}
 			\begin{figure}[tb!]
 				\centering
 				\caption{Canais iônicos de potássio}
 				\label{fig:canaisions}
-				\includegraphics[width=0.7\linewidth]{figs/canais_ions}
+				\includegraphics[width=\linewidth]{figs/canais_ions}
 %				\fonte{Adaptado de \cite{ermentrout_mathematical_2010}}
 			\end{figure}
 		\column{5cm}
@@ -60,7 +59,7 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Canais iônicos}
 	\begin{columns}[t]
 		\column{5cm}
 			\begin{itemize}
@@ -77,19 +76,20 @@
 				\item $C_m$: capacitância da membrana
 				\item $E_l$: potencial de vazamento
 				\item $G_l$: condutância de vazamento
+				\note{elementos de vazamento: agrupamento do fluxo de íons de canais sem portão}
 			\end{itemize}
 	\end{columns}
 \end{frame}
 
 \subsection*{Equações diferenciais ordinárias}
-\begin{frame}
+\begin{frame}{Equações diferenciais ordinárias}
 	\begin{columns}[t]
 		\column{5cm}
 			\begin{figure}
 				\centering
 				\caption{Soluções da equação $y'=y-t$ para vários $c$}
 				\label{fig:solucao}
-				\includegraphics[width=0.7\linewidth]{figs/solucao}
+				\includegraphics[width=\linewidth]{figs/solucao}
 %				\fonte{O autor (\the\year)}
 			\end{figure}
 			\note{solução: $y(t) = t + 1 + ce^t$}
@@ -105,14 +105,14 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Método de Euler}
 	\begin{columns}[t]
 		\column{5cm}
 			\begin{figure}[tb]
 				\centering
 				\caption{Método de Euler}
 				\label{fig:euler}
-				\includegraphics[width=0.7\linewidth]{figs/euler}
+				\includegraphics[width=\linewidth]{figs/euler}
 %				\fonte{O autor (\the\year)}
 			\end{figure}
 		\column{5cm}
@@ -120,8 +120,9 @@
 			\item Método de Euler: soluciona numericamente equações diferenciais;
 			\item considera um valor inicial ($X_0$) e intervalos discretos fixos ($\Delta t$);
 			\item calcula o valor seguinte ($x_{n+1}$) a partir do atual ($x_n$);
-			\item o algoritmo para utilizá-lo é implementado em Python.
-			\note{Algoritmo: sequência de instruções para executar uma determinada tarefa}
+			\item o algoritmo é implementado em Python.
+			\note{Algoritmo: sequência de instruções para executar uma determinada tarefa\\}
+			\note{15 min}
 		\end{itemize}
 		\[
 			x_{n+1}=x_n+f(x_n,t_n)\Delta t
