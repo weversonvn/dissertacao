@@ -101,7 +101,10 @@
 \newcommand{\faculdadedocoorientador}{\def \@faculdadedocoorientador}
 \newcommand{\imprimirfaculdadedocoorientador}{\@faculdadedocoorientador}
 \faculdadedocoorientador{}
-
+% comando para anotar o numero da defesa
+\newcommand{\numerodefesa}{\def \@numerodefesa}
+\newcommand{\imprimirnumerodefesa}{\@numerodefesa}
+\numerodefesa{}
 
 % Novo list of (listings) para QUADROS
 
@@ -202,6 +205,11 @@
     	\textbf{\imprimirautor}
 	\end{flushright}
 
+	\begin{flushleft}
+		\vspace{1cm}
+		\textbf{\imprimirnumerodefesa}
+	\end{flushleft}
+	
 	%\vspace{4cm}
     \vspace{\fill}
 
@@ -258,9 +266,12 @@
       {\normalsize\imprimircoorientadorRotulo~\imprimircoorientador}%
     }%
       \end{minipage}%
-      \vspace*{\fill}
+      %\vspace*{\fill}
     }%
-
+	\begin{flushleft}
+		\vspace{1cm}
+		\textbf{\imprimirnumerodefesa}
+	\end{flushleft}
     
 
     \vspace*{\fill}

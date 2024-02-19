@@ -99,12 +99,13 @@
 \universidade{Universidade Federal do Pará}
 \instituto{Instituto de Tecnologia}
 \faculdade{Programa de Pós-Graduação em Engenharia Elétrica}
-\titulo{Introdução à Neurociência Computacional com a linguagem Python}
+\titulo{Introdução à neurociência computacional com a linguagem Python}
 \autor{Weverson Vieira do Nascimento}
 \local{Belém - PA}
 \data{\the\year}
 \tipotrabalho{Dissertação}
 \grau{Mestre em Engenharia Elétrica } % manter o espaço no final
+\numerodefesa{DM 39/2023}
 \preambulo{Dissertação apresentada como exigência parcial para obtenção do grau de \imprimirgrau pela \imprimiruniversidade. Área de concentração: Engenharias.}
 \sobrenome{Nascimento}
 \nome{Weverson Vieira do}
@@ -114,9 +115,9 @@ Python.
 Conexões neuronais.
 Inteligência artificial.
 }
-
+\year=2023
 % orientadores
-\orientador{Prof. Dr. Antonio Pereira Junior}
+\orientador{Prof. Dr. Antonio Pereira \mbox{Junior}}
 %\coorientador{Prof. Dr. Ciclano}
 \datadadefesa{Data da Defesa: \underline{\qquad \qquad\qquad}}% janeiro de 2018}
 \conceito{Conceito: \underline{\qquad\qquad\qquad}}
@@ -145,7 +146,6 @@ Inteligência artificial.
 }
 \makeatother
 % --- 
-
 % --- 
 % Espaçamentos entre linhas e parágrafos 
 % --- 
@@ -195,7 +195,8 @@ Inteligência artificial.
 % \end{fichacatalografica}
 \newpage
 \begin{fichacatalografica}
-	\imprimirfichacatalografica
+%	\imprimirfichacatalografica
+	\includepdf{ficha.pdf}
 \end{fichacatalografica}
 
 % ---
@@ -204,8 +205,9 @@ Inteligência artificial.
 % na versão final deve-se incluir a folha assinada
 % \includepdf{folhadeaprovacao_final.pdf}
 \begin{folhadeaprovacao}
-	\ufpaPaginaDeAprovacao
+	%\ufpaPaginaDeAprovacao
     %\imprimirfolhadeaprovacao
+    \includepdf{folha_aprovacao.pdf}
 \end{folhadeaprovacao}
 % ---
 
@@ -217,7 +219,7 @@ Inteligência artificial.
    \noindent
    \begin{flushright}
       \textit{Para a comunidade acadêmica brasileira,}\\
-      \textit{que segue na luta,}\\
+      \textit{que segue com um trabalho exemplar,}\\
       \textit{apesar das várias adversidades.}
    \end{flushright}
 \end{dedicatoria}
@@ -231,10 +233,8 @@ Primeiramente, agradeço a Deus, pois sem a força dele não seria possível a c
 Agradeço aos meus familiares, pelo apoio em toda a jornada até aqui, especialmente aos meus pais, Áurea e Raimundo, por sempre apoiarem minhas decisões. Cabe destaque aos tios Ari e Vanise, pelo apoio durante o início do mestrado, antes sequer de eu ir para Florianópolis.\\
 Agradeço, também, à Laís Rocha, por ter me apoiado e compreendido meus momentos de falta.\\
 Faço aqui grandes agradecimentos ao meu orientador, Antonio, por todos os ensinamentos que me proporcionou nesse tempo, e pela paciência comigo, especialmente durante as várias ausências minhas.\\
-Muitos amigos e colegas meus me deram força durante essa jornada. Começa destacando aqui Letícia de Miranda, Flávio Matos, os mais próximos, bem como os demais do bando, que direta ou indiretamente me apoiaram ao longo desse tempo todo.\\
-Agradecimentos especiais ao Geandreson Costa, Pedro Nascimento e Wesler Sales, pela companhia de sempre, pelos vários co-workings, e por lembrarem de ligar a câmera quando a gente não via ninguém durante a fase aguda da pandemia e tudo era online.\\
+Muitos amigos e colegas meus me deram força durante essa jornada. Começa destacando aqui Letícia de Miranda, Flávio Matos, os mais próximos, bem como os demais do bando, que direta ou indiretamente me apoiaram ao longo desse tempo todo. Agradecimentos especiais ao Geandreson Costa, Pedro Nascimento e Wesler Sales, pela companhia de sempre, pelos vários co-workings, e por lembrarem de ligar a câmera quando a gente não via ninguém durante a fase aguda da pandemia. Aos meus amigos do LINC, Lucas Vinícius, Ewerton Christian e Ana Zuila Castro, pela recepção e os vários cafés. Agradeço também aos meus colegas de UFPA, dos mais variados ambientes, em especial de ENGCOMP e do LAPS, que contribuíram com um pouco de conhecimento de mundo, conversas de corredor e cafés, essenciais para espairecer quando era necessário. Aqui cabe também um agradecimento para a secretaria do PPGEE, pois cada visita ao local revigorava meus ânimos, mesmo quando a minha situação não era das melhores.\\
 Não poderia deixar de fazer um agradecimento de destaque ao Matheus Cardoso e Flávia Rocha, por todo o apoio durante o começo do meu mestrado, ainda na UFSC, sendo os amigos que eu não sabia que precisava. Muito obrigado pelo abrigo, pelas maratonas da novela dos congelados, as noites de \textit{Overcooked} e as raivas vendo nossos times de futebol.\\
-Agradeço também aos meus colegas de UFPA, dos mais variados ambientes, que contribuíram com um pouco de conhecimento de mundo, conversas de corredor e cafés, essenciais para espairecer quando era necessário. Aqui cabe também um agradecimento para a secretaria do PPGEE, pois cada visita ao local revigorava meus ânimos, mesmo quando a minha situação não era das melhores.\\
 Um agradecimento especial para os meus colegas da Azos, pela compreensão durante minhas ausências por atividades acadêmicas, e pela motivação em todas as vezes que falei sobre meu mestrado.\\
 Agradeço ao CNPq, pelo apoio financeiro.\\
 Finalmente, fica aqui um agradecimento para qualquer um que, de alguma maneira que este cérebro não lembra, contribuiu para que este trabalho fosse concluído.
@@ -347,13 +347,14 @@ This work presents a proposal for an introductory course on computational neuros
 \item[$C_m$] Capacitância da membrana neuronal
 \item[$E_l$] Potencial de vazamento
 \item[$G_l$] Condutância de vazamento
-\item[$\frac{\mathrm{d}}{\mathrm{d}t}$] Representação de equação diferencial na notação de Leibniz
-\item[$y'$] Representação de equação diferencial na notação de Lagrange
+\item[$\frac{\mathrm{d}}{\mathrm{d}t}$] Representação da operação de derivada na notação de Leibniz
+\item[$y'$] Representação da operação de derivada na notação de Lagrange
 \item[$\lambda$] Constante de decaimento radioativo
 \item[$G_A$] Condutância do íon A
 \item[$V_{th}$] Potencial de limiar
 \item[$I_ap$] Corrente aplicada no(s) neurônio(s)
 \item[$V_{reset}$] Potencial de reset
+\item[$\to$] Atualização do valor de uma variável
 \item[$G_{ref}$] Condutância refratária
 \item[$\tau_{ref}$] Constante de tempo do período refratário
 \item[$\Delta G$] Incremento de condutância
